@@ -1,0 +1,5080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise Open Finance & AI-First Banking | Intellect Design Arena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       RESET & FOUNDATIONS
+    ═══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: #E6E6E6;
+      color: #0A0A0A;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; cursor: pointer; font-family: inherit; }
+    ul { list-style: none; }
+
+    :root {
+      --g-dark:   #0A312C;
+      --g-deep:   #0d4a1d;
+      --g-main:   #21552F;
+      --g-mid:    #2d7a42;
+      --g-bright: #3a9650;
+      --g-pale:   #f0f7f1;
+      --g-muted:  #d4e8d6;
+      --white:    #ffffff;
+      --off:      #fafafa;
+      --gray-50:  #f5f5f5;
+      --gray-100: #eeeeee;
+      --gray-300: #cccccc;
+      --gray-500: #888888;
+      --gray-700: #444444;
+      --ink:      #0A0A0A;
+      --ink-soft: #3a3a3a;
+    }
+
+    /* ═══════════════════════════════════════════════
+       SCROLLBAR
+    ═══════════════════════════════════════════════ */
+    ::-webkit-scrollbar { display: none; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+
+    /* ═══════════════════════════════════════════════
+       ANNOUNCEMENT BAR
+    ═══════════════════════════════════════════════ */
+    .announce {
+      background: var(--g-dark);
+      color: #fff;
+      padding: 0 24px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      position: relative;
+    }
+    .announce-close {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .announce-close:hover { color: #fff; }
+    .announce strong { font-weight: 600; }
+    .announce-link {
+      color: #a3e9b4;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .announce-link:hover { color: #fff; }
+    .announce-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--g-bright);
+      display: inline-block;
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(230,230,230,0);
+      backdrop-filter: blur(0px) saturate(100%);
+      -webkit-backdrop-filter: blur(0px) saturate(100%);
+      border-bottom: none;
+      box-shadow: none;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(230, 230, 230, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+    .nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 60px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--g-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .logo-icon::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border: 2.5px solid #fff;
+      position: absolute;
+    }
+    .logo-icon::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--g-bright);
+      position: absolute;
+      top: 6px;
+      right: 6px;
+    }
+    .logo-wordmark {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .logo-wordmark strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--g-dark);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .logo-wordmark span {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-500);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .nav-links li a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      padding: 8px 16px;
+      display: block;
+      position: relative;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background: var(--g-main);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-links li a:hover { color: var(--g-dark); }
+    .nav-links li a:hover::after { transform: scaleX(1); }
+
+    /* Nav actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .btn-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      background: none;
+      padding: 8px 14px;
+      transition: color 0.2s;
+    }
+    .btn-text:hover { color: var(--g-dark); }
+    .btn-nav {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--g-dark);
+      padding: 9px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+      transition: gap 0.3s, color 0.35s;
+      isolation: isolate;
+    }
+    .btn-nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g-main);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+    .btn-nav:hover::before { transform: translateX(0); }
+    .btn-nav:hover { color: #DAFDA3; }
+    .btn-nav svg { transition: transform 0.2s; }
+    .btn-nav svg path { stroke: #DAFDA3; }
+    .btn-nav:hover svg { transform: translateX(2px); }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════ */
+    .hero {
+      height: var(--hero-h, 100vh);
+      min-height: var(--hero-h, 100vh);
+      max-height: var(--hero-h, 100vh);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      gap: 0;
+      align-items: stretch;
+      position: relative;
+      background: #E6E6E6;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 80px 72px 80px clamp(60px, calc((100vw - 1440px) / 2 + 60px), 380px);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      justify-content: center;
+      background: #E6E6E6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g-main);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hero-label-line {
+      width: 28px;
+      height: 1px;
+      background: var(--g-main);
+    }
+
+    .hero-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: clamp(52px, 5.5vw, 80px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: #214842;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--gray-700);
+      max-width: 420px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--g-dark);
+      padding: 14px 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+      transition: gap 0.3s;
+    }
+    .btn-hero-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g-main);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+    .btn-hero-primary:hover::before { transform: translateX(0); }
+    .btn-hero-primary:hover { gap: 12px; }
+    .btn-hero-primary svg path { stroke: #DAFDA3; }
+
+    .btn-hero-ghost {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--gray-300);
+      padding: 13px 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, color 0.35s, gap 0.3s;
+    }
+    .btn-hero-ghost::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+    .btn-hero-ghost:hover { border-color: var(--ink); color: #fff; }
+    .btn-hero-ghost:hover::before { transform: translateX(0); }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 8px;
+    }
+    .hero-trust-text {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-weight: 400;
+    }
+    .hero-trust-badges {
+      display: flex;
+      gap: 6px;
+    }
+    .trust-badge {
+      background: var(--off);
+      border: 1px solid var(--gray-100);
+      padding: 4px 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Scroll indicator ── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 4;
+    }
+    .scroll-indicator-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--g-dark);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .scroll-indicator-line {
+      width: 2px;
+      height: 80px;
+      background: rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-indicator-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--g-dark));
+      animation: scrollLine 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes scrollLine {
+      0%   { top: -100%; opacity: 1; }
+      100% { top: 100%;  opacity: 0.2; }
+    }
+
+    /* ── Hero Right / Photo ── */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      background: url('intellect/images/banner_gif.gif') center / cover no-repeat;
+    }
+    .hero-right img { display: none; }
+    .hero-img-overlay { display: none; }
+    /* Floating stat card bottom-left */
+    .hero-stat-float {
+      position: absolute;
+      bottom: 52px;
+      left: 9%;
+      z-index: 3;
+      background: rgba(8,51,17,0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 20px 28px;
+      display: flex;
+      gap: 28px;
+    }
+    .hsf-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .hsf-item + .hsf-item {
+      padding-left: 28px;
+      border-left: 1px solid rgba(255,255,255,0.12);
+    }
+    .hsf-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .hsf-value sup {
+      font-size: 0.5em;
+      color: var(--g-bright);
+      vertical-align: super;
+    }
+    .hsf-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    /* Live tag top-right */
+    .hero-live-tag {
+      position: absolute;
+      top: 44px;
+      right: 36px;
+      z-index: 3;
+      background: rgba(8,51,17,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(58,150,80,0.4);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--g-bright);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+      flex-shrink: 0;
+    }
+    .hero-live-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    /* Vertical text watermark */
+    .hero-vert-text {
+      position: absolute;
+      right: 28px;
+      bottom: 52px;
+      z-index: 3;
+      writing-mode: vertical-rl;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.2);
+      text-transform: uppercase;
+    }
+
+    .dashboard-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+    }
+
+    /* Card header */
+    .db-header {
+      background: var(--g-dark);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .db-header-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .db-header-dots {
+      display: flex;
+      gap: 5px;
+    }
+    .db-dot {
+      width: 7px;
+      height: 7px;
+      background: rgba(255,255,255,0.25);
+    }
+    .db-dot.green { background: #3a9650; }
+
+    /* Metrics row */
+    .db-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .db-metric {
+      padding: 18px 20px;
+      border-right: 1px solid var(--gray-100);
+    }
+    .db-metric:last-child { border-right: none; }
+    .db-metric-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-500);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .db-metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .db-metric-value.green { color: var(--g-main); }
+    .db-metric-change {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-bright);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* Chart area */
+    .db-chart {
+      padding: 20px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .db-chart-label {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 72px;
+    }
+    .chart-bar {
+      flex: 1;
+      background: var(--gray-100);
+      position: relative;
+      transition: background 0.2s;
+    }
+    .chart-bar.active { background: var(--g-dark); }
+    .chart-bar.mid { background: var(--g-main); opacity: 0.6; }
+    .chart-bar:hover { background: var(--g-mid); }
+
+    /* Transactions */
+    .db-transactions { padding: 0; }
+    .db-tx-header {
+      padding: 14px 20px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .db-tx-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-500);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .db-tx-view {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-main);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .db-tx-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 20px;
+      border-top: 1px solid var(--gray-50);
+      transition: background 0.15s;
+    }
+    .db-tx-item:hover { background: var(--off); }
+    .db-tx-left { display: flex; align-items: center; gap: 10px; }
+    .db-tx-icon {
+      width: 28px;
+      height: 28px;
+      background: #DAFDA3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .db-tx-icon svg { width: 13px; height: 13px; }
+    .db-tx-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .db-tx-sub {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-top: 2px;
+      font-family: 'DM Mono', monospace;
+    }
+    .db-tx-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .db-tx-amount.in { color: var(--g-main); }
+
+    /* Floating status chip */
+    .floating-chip {
+      position: absolute;
+      top: 50px;
+      right: -20px;
+      background: #fff;
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+      animation: floatY 4s ease-in-out infinite;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-6px); }
+    }
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--g-bright);
+      animation: pulse 1.5s infinite;
+    }
+    .chip-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .chip-sub {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* Second floating chip */
+    .floating-chip-2 {
+      position: absolute;
+      bottom: 80px;
+      left: -24px;
+      background: var(--g-dark);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+      animation: floatY 4s ease-in-out infinite 2s;
+    }
+    .chip-2-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .chip-2-text { color: #fff; font-size: 14px; font-weight: 600; white-space: nowrap; }
+    .chip-2-sub { color: rgba(255,255,255,0.6); font-size: 14px; }
+
+    /* ═══════════════════════════════════════════════
+       SHARED LAYOUT HELPERS
+    ═══════════════════════════════════════════════ */
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--gray-100);
+    }
+
+    /* Section label */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g-main);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .section-label-line {
+      width: 24px;
+      height: 1px;
+      background: var(--g-main);
+    }
+
+    /* Section heading */
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: clamp(36px, 3.6vw, 56px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .section-title em { font-style: normal; color: var(--g-dark); }
+
+    .section-sub {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--gray-700);
+      max-width: 520px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       CLIENTS SECTION
+    ═══════════════════════════════════════════════ */
+    .ticker-section {
+      background: var(--g-dark);
+      padding: 80px 0 80px;
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 40px;
+    }
+    .ticker-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+    .ticker-heading em {
+      font-style: normal;
+      color: #DAFDA3;
+    }
+    .ticker-meta {
+      display: flex;
+      gap: 40px;
+      flex-shrink: 0;
+      padding-bottom: 6px;
+    }
+    .ticker-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-left: 1px solid rgba(255,255,255,0.12);
+      padding-left: 28px;
+    }
+    .ticker-stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+    }
+    .ticker-stat-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    /* edge fade masks */
+    .ticker-scroll-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .ticker-scroll-wrap::before,
+    .ticker-scroll-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 200px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .ticker-scroll-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--g-dark) 10%, transparent);
+    }
+    .ticker-scroll-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--g-dark) 10%, transparent);
+    }
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: ticker 26s linear infinite;
+      width: max-content;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      padding: 28px 60px;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      height: auto;
+      transition: opacity 0.25s;
+    }
+    .ticker-item:hover { opacity: 0.9; }
+    .ticker-item img {
+      height: 48px;
+      width: auto;
+      max-width: 216px;
+      object-fit: contain;
+      filter: brightness(0) invert(1) opacity(0.55);
+      transition: filter 0.3s;
+    }
+    .ticker-item:hover img {
+      filter: brightness(0) invert(1) opacity(1);
+    }
+
+    /* ═══════════════════════════════════════════════
+       PLATFORM INTRO
+    ═══════════════════════════════════════════════ */
+    .platform-intro {
+      padding: 100px 0 80px;
+    }
+    .platform-intro-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+    .platform-intro-left {}
+    .platform-intro-right {
+      padding-bottom: 8px;
+    }
+    .platform-intro-right p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--gray-700);
+      margin-bottom: 28px;
+    }
+    .btn-outline {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-dark);
+      background: transparent;
+      border: 1.5px solid var(--g-dark);
+      padding: 11px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s, gap 0.3s;
+      isolation: isolate;
+    }
+    .btn-outline::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g-dark);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+    .btn-outline:hover { color: #fff; }
+    .btn-outline:hover::before { transform: translateX(0); }
+    .btn-outline:hover svg path { stroke: #DAFDA3; }
+
+    /* View All Customers - lime sweep on dark background */
+    .btn-outline--lime::before { background: #DAFDA3; }
+    .btn-outline--lime:hover { color: var(--g-dark) !important; }
+    .btn-outline--lime:hover svg path { stroke: var(--g-dark); }
+
+    /* Footer CTA - white sweep on dark background */
+    .footer-contact-btn {
+      color: #fff;
+      border-color: rgba(255,255,255,0.45);
+      flex-shrink: 0;
+    }
+    .footer-contact-btn::before { background: #fff; }
+    .footer-contact-btn:hover { color: var(--g-dark); }
+    .footer-contact-btn:hover svg path { stroke: var(--g-dark); }
+
+    /* ═══════════════════════════════════════════════
+       BIG FEATURE CARD (Yapay reference - blue card)
+    ═══════════════════════════════════════════════ */
+    .feature-card-big {
+      background: var(--g-dark);
+      margin: 0 40px 0;
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* subtle dot grid pattern */
+    .feature-card-big::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    .fc-left {
+      padding: 60px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .fc-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .fc-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: clamp(28px, 2.8vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+    .fc-sub {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+    }
+    .fc-cta {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 11px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .fc-cta:hover { background: rgba(255,255,255,0.2); }
+
+    .fc-right {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+    }
+    .fc-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(8,51,17,0.5) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    /* Banking segments visual */
+    .segments-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      padding: 1px;
+    }
+    .segment-tile {
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .segment-tile:hover { background: rgba(255,255,255,0.08); }
+    .segment-tile::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--g-bright);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .segment-tile:hover::after { transform: scaleX(1); }
+    .seg-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+    }
+    .seg-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .seg-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+    .seg-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .seg-icon svg { width: 15px; height: 15px; opacity: 0.8; }
+
+    /* ═══════════════════════════════════════════════
+       THREE FEATURE CARDS (Yapay 3-card row)
+    ═══════════════════════════════════════════════ */
+    .three-cards {
+      padding: 60px 0 100px;
+    }
+    .three-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+    }
+    .feat-card {
+      background: #fff;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--g-dark);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .feat-card:hover { background: var(--off); }
+    .feat-card:hover::after { transform: scaleX(1); }
+
+    .feat-card-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--gray-500);
+      letter-spacing: 0.1em;
+    }
+    .feat-card-icon {
+      width: 44px;
+      height: 44px;
+      background: #DAFDA3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .feat-card-icon svg { width: 20px; height: 20px; }
+    .feat-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .feat-card-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-700);
+    }
+    .feat-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-main);
+      margin-top: auto;
+      padding-top: 8px;
+      letter-spacing: 0.02em;
+      transition: gap 0.2s;
+    }
+    .feat-card-link:hover { gap: 10px; }
+
+    /* Image placeholder in feat card (Yapay style bottom image) */
+    .feat-card-visual {
+      margin-top: 16px;
+      height: 140px;
+      background: #DAFDA3;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .feat-card-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(8,51,17,0.06));
+    }
+
+    /* CSS visual for each card */
+    .visual-compose {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      padding: 14px;
+      height: 100%;
+    }
+    .vc-block {
+      background: rgba(8,51,17,0.08);
+      position: relative;
+    }
+    .vc-block.filled { background: var(--g-dark); }
+    .vc-block.mid { background: rgba(8,51,17,0.25); }
+
+    .visual-ai {
+      height: 100%;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .vai-bar {
+      height: 8px;
+      background: rgba(8,51,17,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .vai-fill {
+      height: 100%;
+      background: var(--g-dark);
+      animation: expand 3s ease-in-out infinite;
+    }
+    @keyframes expand {
+      0%   { width: 0; }
+      70%  { width: 100%; }
+      100% { width: 100%; }
+    }
+    .vai-bar:nth-child(2) .vai-fill { animation-delay: 0.3s; background: var(--g-main); }
+    .vai-bar:nth-child(3) .vai-fill { animation-delay: 0.6s; }
+    .vai-bar:nth-child(4) .vai-fill { animation-delay: 0.9s; background: var(--g-mid); }
+    .vai-bar:nth-child(5) .vai-fill { animation-delay: 1.2s; }
+
+    .visual-api {
+      height: 100%;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+    }
+    .api-line { color: var(--gray-500); padding: 3px 0; border-bottom: 1px solid var(--gray-50); }
+    .api-line.green { color: var(--g-main); }
+    .api-line.dark { color: var(--ink); font-weight: 500; }
+
+    /* ═══════════════════════════════════════════════
+       STATS BAR
+    ═══════════════════════════════════════════════ */
+    .stats-bar {
+      background: var(--g-dark);
+      padding: 0;
+    }
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .stat-block {
+      padding: 48px 40px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-block:hover { background: rgba(255,255,255,0.04); }
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(38px, 4vw, 60px);
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .stat-plus { color: var(--g-bright); }
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+    .stat-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       SOLUTIONS SECTION
+    ═══════════════════════════════════════════════ */
+    .solutions {
+      padding: 100px 0;
+    }
+    .solutions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      gap: 40px;
+    }
+    .solutions-header-right {
+      max-width: 380px;
+    }
+    .solutions-header-right p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-700);
+      margin-bottom: 20px;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+      margin-bottom: 1px;
+    }
+    .solutions-grid-bottom {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+      border-top: none;
+    }
+    .sol-card {
+      background: #fff;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .sol-card:hover { background: #DAFDA3; }
+    .sol-card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--g-main);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .sol-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .sol-card-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--gray-700);
+    }
+    .sol-card-arrow {
+      margin-top: auto;
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-main);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .sol-card:hover .sol-card-arrow { gap: 10px; }
+
+    /* Large bottom card */
+    .sol-card.large {
+      padding: 40px 60px;
+      background: var(--off);
+    }
+    .sol-card.large .sol-card-title {
+      font-size: 22px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       PRODUCTS SECTION
+    ═══════════════════════════════════════════════ */
+    .products {
+      padding: 100px 0;
+      background: var(--off);
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .products-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 64px;
+    }
+    .products-header .section-sub {
+      max-width: 100%;
+      margin: 16px auto 0;
+      text-align: center;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+    }
+    .prod-card {
+      background: #fff;
+      padding: 40px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      transition: background 0.2s;
+    }
+    .prod-card:hover { background: #DAFDA3; }
+    .prod-card-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: var(--g-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .prod-card-icon-wrap svg { width: 22px; height: 22px; }
+    .prod-card-body {}
+    .prod-card-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .prod-card-sub {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-main);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-family: 'DM Mono', monospace;
+    }
+    .prod-card-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--gray-700);
+    }
+    .prod-learn {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .prod-card:hover .prod-learn { gap: 9px; }
+
+    /* ═══════════════════════════════════════════════
+       INSIGHTS SECTION
+    ═══════════════════════════════════════════════ */
+    .insights {
+      padding: 100px 0;
+    }
+    .insights-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+    }
+    .insight-card {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s;
+      overflow: hidden;
+    }
+    .insight-card:hover { background: var(--off); }
+    .insight-thumb {
+      height: 180px;
+      background: var(--g-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .insight-thumb-pattern {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 1px;
+      padding: 1px;
+    }
+    .it-cell {
+      background: rgba(255,255,255,0.04);
+    }
+    .it-cell.lit { background: rgba(255,255,255,0.15); }
+    .it-cell.bright { background: var(--g-main); }
+
+    .insight-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g-main);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 20px 24px 0;
+    }
+    .insight-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      padding: 10px 24px 0;
+    }
+    .insight-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px 20px;
+      margin-top: auto;
+      border-top: 1px solid var(--gray-100);
+    }
+    .insight-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+    .insight-read {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-main);
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: gap 0.2s;
+    }
+    .insight-card:hover .insight-read { gap: 8px; }
+
+    /* ═══════════════════════════════════════════════
+       CTA BAND
+    ═══════════════════════════════════════════════ */
+    .cta-band {
+      background: var(--off);
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+      padding: 80px 0;
+    }
+    .cta-band-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+    }
+    .cta-band-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: clamp(32px, 3.5vw, 52px);
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+    .cta-band-title em { color: var(--g-dark); font-style: normal; }
+    .cta-band-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .btn-cta-main {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--g-dark);
+      padding: 15px 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      transition: gap 0.3s;
+    }
+    .btn-cta-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g-main);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+    .btn-cta-main:hover::before { transform: translateX(0); }
+    .btn-cta-main svg path { stroke: #DAFDA3; }
+    .btn-cta-secondary {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g-main);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px;
+      transition: color 0.2s;
+    }
+    .btn-cta-secondary:hover { color: var(--g-dark); }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════ */
+    /* ── FOOTER ── */
+    footer {
+      background: url('intellect/images/footer_bg.jpg') center / cover no-repeat;
+      color: rgba(255,255,255,0.6);
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 49, 44, 0.55);
+      pointer-events: none;
+      z-index: 0;
+    }
+    footer > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Statement band */
+    .footer-statement {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 100px 60px 80px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-last-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .footer-statement-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 3.6vw, 56px);
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      max-width: 900px;
+    }
+    .footer-statement-headline em {
+      font-style: normal;
+      color: #DAFDA3;
+    }
+    .footer-statement-cta {
+      flex-shrink: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-dark);
+      background: #fff;
+      padding: 16px 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.25s, color 0.25s;
+    }
+    .footer-statement-cta:hover { background: var(--g-bright); color: #fff; }
+
+    /* Middle row: logo + L1 nav */
+    .footer-mid {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 40px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .footer-l1-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      position: static;
+    }
+    .footer-l1-nav a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      padding: 0 28px;
+      transition: color 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .footer-l1-nav a:first-child { padding-left: 0; }
+    .footer-l1-nav a:hover { color: #fff; }
+
+    /* Bottom bar */
+    .footer-bottom {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-copy {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 0;
+    }
+    .footer-legal a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      padding: 0 16px;
+      border-left: 1px solid rgba(255,255,255,0.2);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .footer-legal a:first-child { border-left: none; padding-left: 0; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.65); }
+
+    /* ═══════════════════════════════════════════════
+       ANIMATIONS & REVEAL
+    ═══════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* number counter */
+    .count-up { display: inline; }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════ */
+    /* ── Hamburger button ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1000;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--g-dark);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Mobile nav drawer ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #E6E6E6;
+      z-index: 899;
+      padding: 100px 32px 48px;
+      flex-direction: column;
+      gap: 0;
+      overflow-y: auto;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      text-decoration: none;
+    }
+    .mobile-nav a:hover { color: var(--g-dark); }
+    .mobile-nav-cta {
+      margin-top: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff !important;
+      background: var(--g-dark);
+      padding: 16px 28px;
+      border: none !important;
+    }
+
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 72px 40px 100px; }
+      .hero-right { display: none; }
+      .platform-intro-inner { grid-template-columns: 1fr; gap: 32px; }
+      .feature-card-big { grid-template-columns: 1fr; margin: 0 24px; }
+      .fc-right { min-height: 260px; }
+      .three-cards-grid { grid-template-columns: 1fr; }
+      .solutions-grid { grid-template-columns: 1fr 1fr; }
+      .solutions-grid-bottom { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .insights-grid { grid-template-columns: 1fr 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-nav { grid-template-columns: repeat(2, 1fr); }
+      /* Products tabs - horizontal on all breakpoints */
+      .pt-tab-btn { flex: 0 0 auto; padding: 16px 20px; }
+      .pt-tab-indicator { display: none; }
+      /* eMACH */
+      .emach-top { grid-template-columns: 1fr; gap: 24px; }
+      .emach-letter-nav { grid-template-columns: repeat(5, 1fr); }
+      .emach-panel-left { padding: 20px 0 20px 0; }
+      /* Ticker */
+      .ticker-top { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .ticker-heading { font-size: 36px; }
+      /* Purple Fabric */
+      .pf-top { grid-template-columns: 1fr; gap: 24px; }
+      /* Awards */
+      .awards-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      /* Analyst */
+      .analyst-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      /* Newsroom */
+      .newsroom-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      /* Footer */
+      .footer-statement { flex-direction: column; gap: 32px; padding: 64px 40px 48px; }
+      .footer-mid { padding: 32px 40px; flex-wrap: wrap; gap: 24px; }
+      .footer-bottom { padding: 20px 40px; }
+    }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-links { display: none; }
+      .nav-actions { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-inner { padding: 0 24px; }
+      /* General */
+      .container { padding: 0 24px; }
+      .announce { font-size: 13px; padding: 10px 16px; }
+      /* Hero */
+      .hero-left { padding: 60px 24px 100px; }
+      .hero-headline { font-size: clamp(38px, 9vw, 52px); }
+      .hero-dots { left: 24px; bottom: 32px; }
+      .scroll-indicator { display: none; }
+      /* eMACH */
+      .emach-inner { padding: 0 24px; }
+      .emach-letter-nav { grid-template-columns: repeat(5, 1fr); }
+      .emach-letter-btn { padding: 14px 10px; gap: 6px; }
+      .emach-letter-btn .em-letter { font-size: 32px; }
+      .emach-letter-btn .em-word { font-size: 10px; }
+      .emach-panel.active { grid-template-columns: 1fr; }
+      .emach-principle-label { font-size: clamp(32px, 8vw, 52px); }
+      /* Products */
+      .products-tabs-sidebar { overflow-x: auto; }
+      .pt-tab-btn { padding: 16px 18px; }
+      .pt-panel.active { grid-template-columns: 1fr; }
+      .pt-card { padding: 24px; }
+      .pt-card:nth-last-child(-n+2) { border-bottom: 1px solid #e8e8e4; }
+      .pt-card:last-child { border-bottom: none; }
+      /* Ticker */
+      .ticker-section { padding: 56px 0; }
+      .ticker-heading { font-size: 28px; }
+      .ticker-scroll-wrap::before, .ticker-scroll-wrap::after { width: 80px; }
+      /* Impact bar */
+      .impact-inner { grid-template-columns: 1fr; }
+      .impact-item { border-right: none; border-bottom: 1px solid var(--gray-100); padding: 32px 24px; }
+      .impact-item:last-child { border-bottom: none; }
+      /* Purple fabric */
+      .purple-fabric { padding: 64px 0; }
+      .pf-top { grid-template-columns: 1fr; gap: 20px; }
+      /* Segments */
+      .segments-section { padding: 64px 0 80px; }
+      .segments-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .seg-card { flex: 0 0 calc(100% - 24px); }
+      .seg-card:nth-child(even) { margin-top: 0; }
+      /* Awards */
+      .awards-section .container { padding: 64px 24px; }
+      .award-img { height: 160px; }
+      .award-card-body { padding: 24px; }
+      /* Analyst */
+      .analyst { padding: 64px 0; }
+      .analyst-card { padding: 28px 24px; }
+      /* Analyst desc always visible on touch */
+      .analyst-desc {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        background: none;
+        padding: 0;
+        display: block;
+        inset: auto;
+      }
+      /* Newsroom */
+      .newsroom { padding: 64px 0; }
+      .newsroom-grid { grid-template-columns: 1fr; }
+      /* Footer */
+      .footer-statement { padding: 48px 24px 40px; gap: 28px; }
+      .footer-mid { padding: 28px 24px; flex-direction: column; gap: 20px; }
+      .footer-l1-nav { flex-wrap: wrap; gap: 4px; }
+      .footer-l1-nav a { padding: 8px 12px; font-size: 13px; }
+      .footer-bottom { padding: 16px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
+      /* Products header */
+      .products-full-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .products-full-header-right { max-width: 100%; }
+      /* Solutions */
+      .solutions-header { flex-direction: column; align-items: flex-start; }
+      .solutions-grid { grid-template-columns: 1fr; }
+      .insights-grid { grid-template-columns: 1fr; }
+      .cta-band-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO SLIDES
+    ═══════════════════════════════════════════════ */
+    .hero-slide { display: none; flex-direction: column; gap: 32px; }
+    .hero-slide.active { display: flex; }
+
+    /* Clip-path curtain - enter: left → right */
+    @keyframes heroReveal {
+      from { clip-path: inset(0 100% 0 0); }
+      to   { clip-path: inset(0 0%   0 0); }
+    }
+    /* Clip-path curtain - exit: right → left */
+    @keyframes heroExit {
+      from { clip-path: inset(0 0%   0 0); }
+      to   { clip-path: inset(0 0% 0 100%); }
+    }
+
+    /* Enter */
+    .hero-slide.active .hero-label    { animation: heroReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1)   0ms both; }
+    .hero-slide.active .hero-headline { animation: heroReveal 0.9s  cubic-bezier(0.16, 1, 0.3, 1)  90ms both; }
+    .hero-slide.active .hero-sub      { animation: heroReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 240ms both; }
+    .hero-slide.active .hero-actions  { animation: heroReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 380ms both; }
+
+    /* Exit */
+    .hero-slide.exiting .hero-label    { animation: heroExit 0.35s cubic-bezier(0.4, 0, 1, 1)   0ms both; }
+    .hero-slide.exiting .hero-headline { animation: heroExit 0.4s  cubic-bezier(0.4, 0, 1, 1)  40ms both; }
+    .hero-slide.exiting .hero-sub      { animation: heroExit 0.35s cubic-bezier(0.4, 0, 1, 1)  80ms both; }
+    .hero-slide.exiting .hero-actions  { animation: heroExit 0.3s  cubic-bezier(0.4, 0, 1, 1) 110ms both; }
+    .hero-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      bottom: 40px;
+      left: clamp(60px, calc((100vw - 1440px) / 2 + 60px), 380px);
+    }
+    .hero-dot {
+      width: 24px;
+      height: 3px;
+      background: var(--gray-300);
+      cursor: pointer;
+      transition: background 0.3s, width 0.3s;
+      border: none;
+      padding: 0;
+    }
+    .hero-dot.active { background: var(--g-dark); width: 40px; }
+
+    /* ═══════════════════════════════════════════════
+       IMPACT BAR
+    ═══════════════════════════════════════════════ */
+    .impact-bar {
+      background: #DAFDA3;
+      border-top: none;
+      border-bottom: none;
+    }
+    .impact-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .impact-item {
+      padding: 56px 48px;
+      border-right: 1px solid rgba(10, 49, 44, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .impact-item:last-child { border-right: none; }
+    .impact-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(52px, 5vw, 80px);
+      font-weight: 400;
+      color: var(--g-dark);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .impact-number sup {
+      font-size: 0.45em;
+      color: var(--g-bright);
+      vertical-align: super;
+      font-weight: 600;
+    }
+    .impact-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .impact-sublabel {
+      font-size: 14px;
+      color: var(--g-dark);
+      font-weight: 400;
+      opacity: 0.65;
+    }
+
+    /* ═══════════════════════════════════════════════
+       PRODUCTS FULL (24 products)
+    ═══════════════════════════════════════════════ */
+    .products-full {
+      padding: 100px 0;
+      background: var(--off);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .products-full-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      gap: 40px;
+    }
+    .products-full-header-right {
+      max-width: 520px;
+      padding-bottom: 4px;
+    }
+    .products-full-header-right p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-700);
+      margin-bottom: 20px;
+    }
+    /* ═══════════════════════════════════════════════
+       PRODUCT TABS - Typographic Register
+    ═══════════════════════════════════════════════ */
+    @keyframes ptRowIn {
+      from { opacity: 0; transform: translateX(-12px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .products-tabs {
+      display: flex;
+      flex-direction: column;
+      margin-top: 100px;
+    }
+
+    /* ── Tab navigation (horizontal) ── */
+    .products-tabs-sidebar {
+      background: #192f2d;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    /* Sliding right-edge indicator (hidden) */
+    .pt-tab-indicator {
+      display: none;
+    }
+
+    .pt-tab-btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 28px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-right: 1px solid rgba(255,255,255,0.18);
+      border-bottom: none;
+      position: relative;
+      text-align: left;
+      white-space: nowrap;
+      flex: 1 1 auto;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .pt-tab-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #214842;
+      transform: translateX(-101%);
+      transition: transform 0.42s cubic-bezier(0.77, 0, 0.18, 1);
+      z-index: -1;
+    }
+    .pt-tab-btn:hover:not(.active)::before { transform: translateX(0); }
+    .pt-tab-btn:last-child { border-right: none; }
+    .pt-tab-btn.active { background: #DAFDA3; }
+
+    /* Icon */
+    .pt-tab-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+    .pt-tab-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: rgba(255,255,255,0.7);
+      fill: none;
+      stroke-width: 1.3;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+      transition: stroke 0.3s, filter 0.3s,
+                  transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .pt-tab-btn:hover:not(.active) .pt-tab-icon svg {
+      stroke: #DAFDA3;
+      transform: translateY(-2px);
+    }
+    .pt-tab-btn.active .pt-tab-icon svg {
+      stroke: var(--g-dark);
+      filter: none;
+    }
+
+    /* Tab label + sub-label */
+    .pt-tab-inner {
+      display: flex;
+      flex-direction: column;
+    }
+    .pt-tab-num { display: none; }
+
+    .pt-tab-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      transition: color 0.25s;
+    }
+    .pt-tab-btn:hover:not(.active) .pt-tab-name { color: rgba(255,255,255,0.9); }
+    .pt-tab-btn.active .pt-tab-name { color: var(--g-dark); }
+    .pt-tab-count { display: none; }
+    /* Fill accents inside icons */
+    .pt-tab-icon svg .icon-fill {
+      fill: rgba(255,255,255,0.2);
+      stroke: none;
+      transition: fill 0.3s;
+    }
+    .pt-tab-btn:hover:not(.active) .pt-tab-icon svg .icon-fill { fill: rgba(255,255,255,0.3); }
+    .pt-tab-btn.active .pt-tab-icon svg .icon-fill { fill: rgba(10,49,44,0.3); }
+
+    /* ── Content ── */
+    .products-tabs-content { background: #fff; width: 100%; }
+    .pt-panel { display: none; }
+    .pt-panel.active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── Product cards - 2×2 grid ── */
+    .pt-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 72px 40px 28px;
+      border-bottom: 1px solid #e8e8e4;
+      border-right: 1px solid #e8e8e4;
+      cursor: pointer;
+      position: relative;
+      background: #fff;
+      transition: background 0.25s;
+      overflow: hidden;
+    }
+    /* Even cards - no right border */
+    .pt-card:nth-child(2n) { border-right: none; }
+    /* Last two cards - no bottom border */
+    .pt-card:nth-last-child(-n+2) { border-bottom: none; }
+    .pt-card:hover { background: #DAFDA3; }
+
+    /* Stagger on tab switch */
+    .pt-panel.active .pt-card:nth-child(1) { animation: ptRowIn 0.45s 0ms   cubic-bezier(0.2,0,0,1) both; }
+    .pt-panel.active .pt-card:nth-child(2) { animation: ptRowIn 0.45s 80ms  cubic-bezier(0.2,0,0,1) both; }
+    .pt-panel.active .pt-card:nth-child(3) { animation: ptRowIn 0.45s 160ms cubic-bezier(0.2,0,0,1) both; }
+    .pt-panel.active .pt-card:nth-child(4) { animation: ptRowIn 0.45s 240ms cubic-bezier(0.2,0,0,1) both; }
+
+    /* Right bar removed */
+
+    /* Hairline extender removed */
+
+    /* Ordinal */
+    .pt-card-num { display: none; }
+
+    /* Family badge - hidden */
+    .pt-card-family { display: none; }
+
+    /* Product name - the hero */
+    .pt-card-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.045em;
+      line-height: 1.0;
+      transition: color 0.25s;
+      margin-bottom: 16px;
+    }
+    .pt-card:hover .pt-card-name { color: var(--g-dark); }
+
+    /* Description */
+    .pt-card-desc {
+      font-size: 14px;
+      line-height: 1.72;
+      color: #aaa;
+      transition: color 0.25s;
+      flex: 1;
+      margin-bottom: 32px;
+    }
+    .pt-card:hover .pt-card-desc { color: #666; }
+
+    /* CTA link - outlined button with sweep */
+    .pt-card-link {
+      align-self: flex-start;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border: 1.5px solid var(--g-dark);
+      padding: 13px 22px;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s, gap 0.3s;
+      z-index: 0;
+    }
+    .pt-card-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g-dark);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+    .pt-card:hover .pt-card-link { color: #fff; gap: 16px; }
+    .pt-card:hover .pt-card-link::before { transform: translateX(0); }
+    .pt-card-link svg { width: 13px; height: 13px; position: relative; z-index: 1; }
+
+    /* ═══════════════════════════════════════════════
+       eMACH.ai SECTION
+    ═══════════════════════════════════════════════ */
+    .emach {
+      background: #E6E6E6;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .emach-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+
+    /* Top header band */
+    .emach-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      padding: 96px 0 80px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .emach-top-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--g-bright);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .emach-top-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--g-bright);
+    }
+    .emach-top-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 4.5vw, 64px);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+    }
+    .emach-top-title em {
+      font-style: normal;
+      color: var(--g-dark);
+    }
+    .emach-top-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0;
+    }
+    .emach-top-desc {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--gray-700);
+      max-width: 480px;
+      margin-bottom: 0;
+    }
+
+    /* Letter nav grid */
+    .emach-letter-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .emach-letter-btn {
+      padding: 20px 32px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      position: relative;
+      background: #fff;
+      overflow: hidden;
+      text-align: left;
+    }
+    /* Sweep layer - slides in from left on hover */
+    .emach-letter-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #DAFDA3;
+      transform: translateX(-101%);
+      transition: transform 0.42s cubic-bezier(0.77, 0, 0.18, 1);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .emach-letter-btn:hover:not(.active)::before {
+      transform: translateX(0);
+    }
+    /* Active - instant solid fill, no sweep */
+    .emach-letter-btn.active {
+      background: var(--g-dark);
+    }
+    .emach-letter-btn.active::before {
+      display: none;
+    }
+    .emach-letter-btn:last-child { border-right: none; }
+    /* Keep background white so sweep is visible; text sits above via z-index */
+    .emach-letter-btn .em-letter {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--g-dark);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      transition: color 0.28s ease;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .emach-letter-btn .em-word {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
+      color: rgba(0,0,0,0.35);
+      transition: color 0.28s ease;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .emach-letter-btn.active .em-letter { color: #fff; }
+    .emach-letter-btn.active .em-word { color: #DAFDA3; }
+    .emach-letter-btn:hover:not(.active) .em-letter { color: var(--g-dark); }
+    .emach-letter-btn:hover:not(.active) .em-word { color: var(--g-dark); }
+
+    /* Sliding bottom indicator */
+    .emach-indicator {
+      position: absolute;
+      bottom: -1px;
+      height: 2px;
+      background: var(--g-bright);
+      transition: left 0.45s cubic-bezier(0.4, 0, 0.2, 1), width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
+    }
+
+    /* Content panel */
+    /* eMACH panel - enter: left → right */
+    @keyframes emachReveal {
+      from { clip-path: inset(0 100% 0 0); }
+      to   { clip-path: inset(0 0%   0 0); }
+    }
+    /* eMACH panel - exit: right → left */
+    @keyframes emachExit {
+      from { clip-path: inset(0 0%   0 0); }
+      to   { clip-path: inset(0 0% 0 100%); }
+    }
+
+    .emach-panel { display: none; }
+
+    /* Enter */
+    .emach-panel.active .emach-ghost-letter    { animation: emachReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1)   0ms both; }
+    .emach-panel.active .emach-principle-label { animation: emachReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1)  60ms both; }
+    .emach-panel.active .emach-principle-desc  { animation: emachReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 180ms both; }
+    .emach-panel.active .emach-panel-right     { animation: emachReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 120ms both; }
+
+    /* Exit */
+    .emach-panel.exiting {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      min-height: 160px;
+    }
+    .emach-panel.exiting .emach-ghost-letter    { animation: emachExit 0.3s cubic-bezier(0.4, 0, 1, 1)   0ms both; }
+    .emach-panel.exiting .emach-principle-label { animation: emachExit 0.35s cubic-bezier(0.4, 0, 1, 1) 30ms both; }
+    .emach-panel.exiting .emach-principle-desc  { animation: emachExit 0.3s cubic-bezier(0.4, 0, 1, 1)  70ms both; }
+    .emach-panel.exiting .emach-panel-right     { animation: emachExit 0.3s cubic-bezier(0.4, 0, 1, 1)  50ms both; }
+    .emach-panel.active {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      min-height: 160px;
+      animation: emachIn 0.5s cubic-bezier(0.2,0,0,1) both;
+    }
+    @keyframes emachIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Left: hero content */
+    .emach-panel-left {
+      padding: 20px 72px 40px 0;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      justify-content: flex-end;
+    }
+    .emach-ghost-letter {
+      position: absolute;
+      right: -16px;
+      top: -32px;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(200px, 22vw, 320px);
+      font-weight: 400;
+      color: rgba(0,0,0,0.05);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      pointer-events: none;
+      user-select: none;
+      line-height: 0.85;
+    }
+    .emach-principle-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(48px, 5.5vw, 76px);
+      font-weight: 400;
+      background: linear-gradient(135deg, var(--g-bright) 0%, var(--g-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.045em;
+      line-height: 1.0;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .emach-principle-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g-bright);
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .emach-principle-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--gray-700);
+      max-width: 400px;
+      position: relative;
+      padding-bottom: 40px;
+    }
+    .emach-letter { display: none; }
+
+    /* Right: benefits */
+    .emach-panel-right {
+      padding: 20px 0 40px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0;
+    }
+    .emach-benefit {
+      padding: 28px 0;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      align-items: start;
+      transition: padding-left 0.3s ease;
+    }
+    .emach-benefit:hover { padding-left: 8px; }
+    .emach-benefit-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--g-bright);
+      letter-spacing: 0.1em;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+    .emach-benefit-body {}
+    .emach-benefit-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .emach-benefit-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-700);
+    }
+
+    /* ═══════════════════════════════════════════════
+       PURPLE FABRIC
+    ═══════════════════════════════════════════════ */
+    /* ── Purple Fabric icon glow pulse ── */
+    @keyframes iconGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(178,100,255,0.7))
+                drop-shadow(0 0 2px rgba(255,255,255,0.5));
+      }
+      50% {
+        filter: drop-shadow(0 0 16px rgba(200,130,255,1))
+                drop-shadow(0 0 6px rgba(255,255,255,0.85));
+      }
+    }
+
+    .purple-fabric {
+      background: #07000f;
+      padding: 120px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Silk image - screen blend makes glowing streaks appear on dark void */
+    .pf-bg-img {
+      position: absolute;
+      inset: -30% 0;
+      background-image: url('intellect/images/aiplatform.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      background-repeat: no-repeat;
+      opacity: 0.75;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform;
+    }
+    /* Atmospheric vignette overlay */
+    .purple-fabric::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 65% 45%, rgba(90,0,200,0.18) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(7,0,15,0.55) 0%, rgba(7,0,15,0.4) 50%, rgba(7,0,15,0.72) 100%),
+        linear-gradient(to right, rgba(7,0,15,0.6) 0%, transparent 35%, transparent 65%, rgba(7,0,15,0.5) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .purple-fabric-inner {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+    }
+    /* Top section: 2-col, both flush to top */
+    .pf-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 80px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .pf-top-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .pf-top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .pf-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(200,160,255,0.75); /* ~5:1 on #07000f - AA ✓ */
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .pf-label-line {
+      width: 32px; height: 1px;
+      background: linear-gradient(to right, rgba(160,80,255,0.8), transparent);
+    }
+    .pf-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: clamp(40px, 4.5vw, 68px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #fff; /* on #07000f → 21:1 - AA ✓ */
+      margin-bottom: 28px;
+    }
+    .pf-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c084fc 0%, #e879f9 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pf-desc {
+      font-size: 15px;
+      line-height: 1.78;
+      color: rgba(210,185,255,0.82); /* ~6:1 on #07000f - AA ✓ */
+      margin-bottom: 40px;
+    }
+    .pf-cta {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 14px 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, gap 0.3s;
+    }
+    .pf-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+    .pf-cta:hover { border-color: rgba(255,255,255,0.7); gap: 16px; }
+    .pf-cta:hover::before { transform: translateX(0); }
+    /* Pillar strip - full width, 4 columns, no boxes */
+    .pf-pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 0;
+      background: transparent;
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 56px;
+    }
+    .pf-pillar {
+      background: transparent;
+      padding: 0 48px 0 0;
+      position: relative;
+      transition: none;
+    }
+    .pf-pillar:first-child { padding-left: 0; }
+    .pf-pillar:not(:first-child) { padding-left: 48px; }
+    .pf-pillar:last-child { padding-right: 0; }
+    /* Vertical hairline dividers */
+    .pf-pillar:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+    }
+    /* Icon - no box, raw glowing SVG */
+    .pf-pillar-icon {
+      background: none;
+      border: none;
+      width: auto;
+      height: auto;
+      display: block;
+      padding: 0;
+      margin-bottom: 28px;
+    }
+    .pf-pillar-icon svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+      animation: iconGlow 3s ease-in-out infinite;
+    }
+    .pf-pillar:nth-child(1) .pf-pillar-icon svg { animation-delay: 0s;    }
+    .pf-pillar:nth-child(2) .pf-pillar-icon svg { animation-delay: 0.75s; }
+    .pf-pillar:nth-child(3) .pf-pillar-icon svg { animation-delay: 1.5s;  }
+    .pf-pillar:nth-child(4) .pf-pillar-icon svg { animation-delay: 2.25s; }
+    .pf-pillar:hover .pf-pillar-icon svg {
+      animation: none;
+      filter: drop-shadow(0 0 20px rgba(210,140,255,1))
+              drop-shadow(0 0 8px rgba(255,255,255,0.9));
+    }
+    .pf-pillar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff; /* on #07000f → 21:1 - AA ✓ */
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .pf-pillar-desc {
+      font-size: 14px;
+      line-height: 1.72;
+      color: rgba(185,155,240,0.82); /* ~5.5:1 on #07000f - AA ✓ */
+    }
+
+    /* ═══════════════════════════════════════════════
+       SEGMENTS
+    ═══════════════════════════════════════════════ */
+    .segments-section {
+      padding: 120px 0 160px;
+      background: #fff;
+      border-top: 1px solid var(--gray-100);
+    }
+    .segments-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 72px;
+      gap: 40px;
+    }
+    .segments-header-right {
+      max-width: 50%;
+      padding-bottom: 4px;
+    }
+    .segments-header-right p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-700);
+      padding-top: 40px;
+      margin-bottom: 20px;
+    }
+    /* ── Segments: single 4-up carousel ── */
+    .segments-full-grid {
+      overflow: visible;
+      padding-bottom: 80px;
+      margin-bottom: -80px;
+    }
+    .seg-carousel-track {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .seg-card {
+      flex: 0 0 calc((100% - 72px) / 4);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      background: transparent;
+      position: relative;
+    }
+    /* Stagger every even card downward */
+    .seg-card:nth-child(even) {
+      margin-top: 80px;
+    }
+    /* Full-bleed image with zoom on hover */
+    .seg-card-img-wrap {
+      overflow: hidden;
+      width: 100%;
+      height: 280px;
+      background: var(--gray-100);
+      flex-shrink: 0;
+      transition: height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .seg-card-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g-dark);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+    .seg-card:hover .seg-card-img-wrap {
+      height: 200px;
+    }
+    .seg-card:hover .seg-card-img-wrap::after {
+      opacity: 0.5;
+    }
+    .seg-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .seg-card:hover .seg-card-img-wrap img {
+      transform: scale(1.06);
+    }
+    /* Text body below image */
+    .seg-card-body {
+      padding: 20px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .seg-card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g-main);
+      opacity: 0.75;
+    }
+    .seg-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      transition: color 0.3s;
+    }
+    .seg-card:hover .seg-card-title { color: var(--g-main); }
+    .seg-card-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--gray-700);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease 0.1s;
+    }
+    .seg-card:hover .seg-card-desc {
+      max-height: 150px;
+      opacity: 1;
+    }
+    .seg-card-link {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      border: 1.5px solid var(--g-dark);
+      padding: 11px 20px;
+      align-self: flex-start;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.35s, gap 0.3s;
+    }
+    .seg-card-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--g-dark);
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+    .seg-card:hover .seg-card-link { color: #fff; gap: 12px; }
+    .seg-card:hover .seg-card-link::before { transform: translateX(0); }
+    .seg-card-link svg { position: relative; z-index: 1; }
+
+    /* ── Segments carousel nav ── */
+    .seg-carousel-counter { display: none; }
+    .seg-carousel-nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 20px;
+      justify-content: flex-end;
+    }
+    .seg-carousel-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--g-dark);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.35s;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .seg-carousel-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #000;
+      transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+    .seg-carousel-btn:hover:not(:disabled) { border-color: #000; }
+    .seg-carousel-btn:hover:not(:disabled)::before { transform: translateX(0); }
+    .seg-carousel-btn:hover:not(:disabled) svg { stroke: #fff; }
+    .seg-carousel-btn:disabled { opacity: 0.22; cursor: default; }
+    .seg-carousel-btn svg { stroke: var(--g-dark); transition: stroke 0.2s; position: relative; z-index: 1; }
+
+    /* ═══════════════════════════════════════════════
+       CUSTOMERS (tabbed geography)
+    ═══════════════════════════════════════════════ */
+    .customers {
+      padding: 100px 0;
+      background: #fff;
+    }
+    .customers-header {
+      margin-bottom: 48px;
+    }
+    .geo-nav {
+      display: flex;
+      gap: 2px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      background: var(--gray-50);
+      padding: 4px;
+      width: fit-content;
+    }
+    .geo-btn {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-700);
+      background: transparent;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .geo-btn.active {
+      background: var(--g-dark);
+      color: #fff;
+      font-weight: 600;
+    }
+    .geo-btn:hover:not(.active) { background: var(--gray-100); }
+    .geo-panel { display: none; }
+    .geo-panel.active { display: block; animation: slideFadeIn 0.35s ease; }
+    .geo-panel-inner {
+      padding-top: 48px;
+      border-top: 1px solid var(--gray-100);
+      margin-top: 4px;
+    }
+    .geo-clients-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+    }
+    .geo-client {
+      background: #fff;
+      padding: 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .geo-client:hover { background: #DAFDA3; }
+    .geo-client-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .geo-client-country {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+    .geo-client-type {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-main);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════
+       AWARDS
+    ═══════════════════════════════════════════════ */
+    .awards-section {
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .awards-bg {
+      position: absolute;
+      inset: -30% 0;
+      background: url('intellect/images/green_bg2.jpg') center / cover no-repeat;
+      will-change: transform;
+      z-index: 0;
+    }
+    .awards-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 49, 44, 0.32);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .awards-section .container {
+      position: relative;
+      z-index: 2;
+    }
+    .awards-header {
+      margin-bottom: 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .awards-header .section-label {
+      color: rgba(255,255,255,0.5);
+    }
+    .awards-header .section-label-line { background: rgba(255,255,255,0.3); }
+    .awards-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: clamp(36px, 3.6vw, 56px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+    .awards-title em { font-style: normal; color: #DAFDA3; }
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.06);
+    }
+    .award-card {
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .award-card:hover { background: #DAFDA3; }
+    .award-card:hover .award-year { color: var(--g-dark); }
+    .award-card:hover .award-name { color: var(--g-dark); }
+    .award-card:hover .award-category { color: rgba(10,49,44,0.7); }
+    .award-card:hover .award-org { color: rgba(10,49,44,0.55); }
+    .award-img {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .award-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .award-card:hover .award-img img { transform: scale(1.04); }
+    .award-card-body {
+      padding: 32px 36px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+    .award-trophy { display: none; }
+    .award-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--g-bright);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .award-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .award-category {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+    }
+    .award-org {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ═══════════════════════════════════════════════
+       ANALYST RECOGNITIONS
+    ═══════════════════════════════════════════════ */
+    .analyst {
+      padding: 100px 0;
+      background: var(--off);
+      border-top: 1px solid var(--gray-100);
+    }
+    .analyst-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+    .analyst-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+    }
+    .analyst-card {
+      background: #fff;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+    .analyst-card:hover { background: #DAFDA3; }
+    .analyst-badge {
+      display: none;
+    }
+    .analyst-img {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      margin-bottom: 24px;
+    }
+    .analyst-img img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      object-position: left center;
+      display: block;
+    }
+    .analyst-firm {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g-main);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .analyst-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .analyst-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--gray-700);
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      inset: 0;
+      bottom: 57px; /* sits above the date border */
+      background: #DAFDA3;
+      padding: 40px 36px;
+      display: flex;
+      align-items: center;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 2;
+    }
+    .analyst-card:hover .analyst-desc {
+      opacity: 1;
+      visibility: visible;
+    }
+    .analyst-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    /* ═══════════════════════════════════════════════
+       NEWSROOM
+    ═══════════════════════════════════════════════ */
+    .newsroom {
+      padding: 100px 0;
+      background: #fff;
+    }
+    .newsroom-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+    .newsroom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+    }
+    .news-card {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s;
+      overflow: hidden;
+    }
+    .news-card:hover { background: var(--off); }
+    .news-thumb {
+      height: 200px;
+      background: var(--g-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .news-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .news-card:hover .news-thumb img { transform: scale(1.05); }
+    .news-thumb-inner {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 1px;
+      padding: 1px;
+    }
+    .nt-cell { background: rgba(255,255,255,0.04); }
+    .nt-cell.lit { background: rgba(255,255,255,0.12); }
+    .nt-cell.bright { background: var(--g-main); }
+    .news-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g-main);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 20px 24px 0;
+    }
+    .news-title {
+      font-family: 'Figtree', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      padding: 10px 24px 24px;
+    }
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px 20px;
+      margin-top: auto;
+      border-top: 1px solid var(--gray-100);
+      transition: background 0.25s;
+    }
+    .news-card:hover .news-meta { background: #DAFDA3; }
+    .news-card:hover .news-date { color: var(--g-dark); }
+    .news-card:hover .news-read { color: var(--g-dark); gap: 8px; }
+    .news-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+    .news-read {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g-main);
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: gap 0.2s;
+    }
+
+    /* ── Scroll progress bar ── */
+    .scroll-progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--g-bright);
+      z-index: 99995;
+      pointer-events: none;
+      transition: width 0.08s linear;
+    }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE ADDITIONS
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .products-cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .pf-pillars { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+      .pf-pillar:not(:last-child)::after { display: none; }
+      .pf-pillar { padding: 0 24px 0 0 !important; }
+      .seg-card { flex: 0 0 calc((100% - 48px) / 3); }
+      .seg-card:nth-child(even) { margin-top: 56px; }
+      .awards-grid { grid-template-columns: 1fr 1fr; }
+      .analyst-grid { grid-template-columns: 1fr 1fr; }
+      .newsroom-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .products-cat-grid { grid-template-columns: 1fr 1fr; }
+      .pf-pillars { grid-template-columns: 1fr; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .analyst-grid { grid-template-columns: 1fr; }
+      .newsroom-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ══════════════ ANNOUNCEMENT BAR ══════════════ -->
+  <div class="announce" id="announce-bar">
+    <span class="announce-dot"></span>
+    <strong>New:</strong>
+    Intellect recognized as a Leader in <strong>2026 Gartner Magic Quadrant™</strong> for Banking Payment Hub Platforms.
+    <a href="#" class="announce-link">Read more →</a>
+    <button class="announce-close" id="announce-close" aria-label="Close announcement">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 2L12 12M12 2L2 12"/></svg>
+    </button>
+  </div>
+
+  <!-- ══════════════ NAVIGATION ══════════════ -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <img src="intellect/images/Intellect-logo.svg" alt="Intellect Design Arena" style="height:36px;width:auto;display:block;">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Technology</a></li>
+        <li><a href="#">Segment</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#" class="btn-nav">
+          Contact Us
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          </svg>
+        </a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#">Products</a>
+    <a href="#">Technology</a>
+    <a href="#">Segment</a>
+    <a href="#">Partners</a>
+    <a href="#">Resources</a>
+    <a href="#">About Us</a>
+    <a href="#" class="mobile-nav-cta">Contact Us →</a>
+  </div>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <script>
+    (function(){
+      var nav = document.querySelector('nav');
+      var h = nav ? window.innerHeight - nav.getBoundingClientRect().bottom : window.innerHeight;
+      document.documentElement.style.setProperty('--hero-h', h + 'px');
+    })();
+  </script>
+  <section>
+    <div class="hero">
+
+      <div class="hero-left">
+
+        <!-- Slide 1 -->
+        <div class="hero-slide active" id="hero-slide-0">
+          <div class="hero-label">
+            <span class="hero-label-line"></span>
+            Future Ready Multiproduct Fintech Platform
+          </div>
+          <h1 class="hero-headline">
+            Banking, Rebuilt<br/>
+            from <em>First</em><br/>
+            Principles.
+          </h1>
+          <p class="hero-sub">
+            We help the world's leading financial institutions design their future, not just digitize their past.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn-hero-primary">
+              Explore Platform
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide" id="hero-slide-1">
+          <div class="hero-label">
+            <span class="hero-label-line"></span>
+            Design. Think. Transform.
+          </div>
+          <h1 class="hero-headline">
+            Design Thinking<br/>
+            Meets <em>Financial</em><br/>
+            Power.
+          </h1>
+          <p class="hero-sub">
+            Enterprise-grade composable architecture built on eMACH.ai principles - delivering agility, flexibility and innovation freedom.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn-hero-primary">
+              Explore eMACH.ai
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="hero-slide" id="hero-slide-2">
+          <div class="hero-label">
+            <span class="hero-label-line"></span>
+            Transformation Partner of Choice
+          </div>
+          <h1 class="hero-headline">
+            Enterprise<br/>
+            <em>Transformation</em><br/>
+            At Scale.
+          </h1>
+          <p class="hero-sub">
+            Trusted by 500+ financial institutions across 61+ countries to deliver measurable business impact through intelligent banking platforms.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn-hero-primary">
+              Our Customers
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Slide dots -->
+        <div class="hero-dots">
+          <button class="hero-dot active" data-slide="0"></button>
+          <button class="hero-dot" data-slide="1"></button>
+          <button class="hero-dot" data-slide="2"></button>
+        </div>
+      </div>
+
+      <!-- Hero Right: floating UI elements over full-bleed bg -->
+      <div class="hero-right">
+
+        <div class="scroll-indicator">
+          <span class="scroll-indicator-label">Scroll</span>
+          <div class="scroll-indicator-line"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CLIENTS ══════════════ -->
+  <div class="ticker-section">
+    <div class="container">
+    <div class="ticker-top">
+      <h2 class="ticker-heading">Trusted by <em>270+ banks</em><br>across 90 countries.</h2>
+      <a href="#" class="btn-outline btn-outline--lime" style="color:#fff; border-color:rgba(255,255,255,0.35); white-space:nowrap;">View All Customers
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H11M11 6.5L7.5 3M11 6.5L7.5 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg>
+      </a>
+    </div>
+    </div><!-- /.container -->
+    <div class="ticker-scroll-wrap">
+      <div class="ticker-track">
+        <!-- Set 1 -->
+        <div class="ticker-item"><img src="intellect/logos/HDFC_Bank_Logo.svg.png" alt="HDFC Bank"></div>
+        <div class="ticker-item"><img src="intellect/logos/Standard_Chartered.png" alt="Standard Chartered"></div>
+        <div class="ticker-item"><img src="intellect/logos/emirates.png" alt="Emirates NBD"></div>
+        <div class="ticker-item"><img src="intellect/logos/First_Abu_Dhabi_Bank_Logo.svg.png" alt="First Abu Dhabi Bank"></div>
+        <div class="ticker-item"><img src="intellect/logos/Bangkok_Bank_2023_(English_version).svg.png" alt="Bangkok Bank"></div>
+        <div class="ticker-item"><img src="intellect/logos/NBE_logo.png" alt="National Bank of Egypt"></div>
+        <div class="ticker-item"><img src="intellect/logos/Doha_Bank.png" alt="Doha Bank"></div>
+        <!-- Set 2 - duplicate for seamless loop -->
+        <div class="ticker-item"><img src="intellect/logos/HDFC_Bank_Logo.svg.png" alt="HDFC Bank"></div>
+        <div class="ticker-item"><img src="intellect/logos/Standard_Chartered.png" alt="Standard Chartered"></div>
+        <div class="ticker-item"><img src="intellect/logos/emirates.png" alt="Emirates NBD"></div>
+        <div class="ticker-item"><img src="intellect/logos/First_Abu_Dhabi_Bank_Logo.svg.png" alt="First Abu Dhabi Bank"></div>
+        <div class="ticker-item"><img src="intellect/logos/Bangkok_Bank_2023_(English_version).svg.png" alt="Bangkok Bank"></div>
+        <div class="ticker-item"><img src="intellect/logos/NBE_logo.png" alt="National Bank of Egypt"></div>
+        <div class="ticker-item"><img src="intellect/logos/Doha_Bank.png" alt="Doha Bank"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ IMPACT BAR ══════════════ -->
+  <div class="impact-bar">
+    <div class="impact-inner">
+      <div class="impact-item">
+        <div class="impact-number"><span class="count-up" data-target="500">500</span><sup>+</sup></div>
+        <div class="impact-label">Financial Institutions Worldwide</div>
+        <div class="impact-sublabel">Banks, NBFCs, insurers and wealth firms</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number"><span class="count-up" data-target="30">30</span><sup>+</sup></div>
+        <div class="impact-label">Years in FinTech Innovation</div>
+        <div class="impact-sublabel">Deep domain expertise since 1991</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number"><span class="count-up" data-target="61">61</span><sup>+</sup></div>
+        <div class="impact-label">Countries of Operation</div>
+        <div class="impact-sublabel">Americas, Europe, MEA, Asia Pacific</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PRODUCTS PORTFOLIO ══════════════ -->
+  <section class="products-full">
+    <div class="container">
+      <div class="products-full-header reveal">
+        <div>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            Our Products Portfolio
+          </div>
+          <h2 class="section-title">
+            The world's most<br/>
+            comprehensive <em>open</em><br/>
+            finance platform.
+          </h2>
+        </div>
+        <div class="products-full-header-right">
+          <p>The world's most comprehensive, composable and intelligent open finance platform - 24 products built on eMACH.ai architecture, designed from first principles thinking.</p>
+          <a href="#" class="btn-outline">View All Products
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H11M11 6.5L7.5 3M11 6.5L7.5 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Product Tabs -->
+      <div class="products-tabs reveal">
+        <div class="products-tabs-sidebar">
+          <div class="pt-tab-indicator" id="pt-indicator"></div>
+
+          <!-- Core Banking -->
+          <button class="pt-tab-btn active" data-ptab="core">
+            <span class="pt-tab-icon">
+              <svg viewBox="0 0 20 20"><path d="M2 8L10 3L18 8"/><path d="M4 15H16"/><line x1="5.5" y1="8.5" x2="5.5" y2="14.5"/><line x1="10" y1="8.5" x2="10" y2="14.5"/><line x1="14.5" y1="8.5" x2="14.5" y2="14.5"/></svg>
+            </span>
+            <span class="pt-tab-inner">
+              <span class="pt-tab-num">01</span>
+              <span class="pt-tab-name">Core Banking</span>
+            </span>
+          </button>
+
+          <!-- Lending & Cards -->
+          <button class="pt-tab-btn" data-ptab="lending">
+            <span class="pt-tab-icon">
+              <svg viewBox="0 0 20 20"><rect x="1" y="5" width="18" height="12"/><path d="M1 9.5H19"/><rect class="icon-fill" x="3.5" y="12" width="4" height="2"/></svg>
+            </span>
+            <span class="pt-tab-inner">
+              <span class="pt-tab-num">02</span>
+              <span class="pt-tab-name">Lending &amp; Cards</span>
+            </span>
+          </button>
+
+          <!-- Payments & Transaction Banking -->
+          <button class="pt-tab-btn" data-ptab="payments">
+            <span class="pt-tab-icon">
+              <svg viewBox="0 0 20 20"><path d="M3 7H15M15 7L12 4M15 7L12 10"/><path d="M17 13H5M5 13L8 10M5 13L8 16"/></svg>
+            </span>
+            <span class="pt-tab-inner">
+              <span class="pt-tab-num">03</span>
+              <span class="pt-tab-name">Payments &amp; Transaction Banking</span>
+            </span>
+          </button>
+
+          <!-- Treasury, Risk & Capital Markets -->
+          <button class="pt-tab-btn" data-ptab="treasury">
+            <span class="pt-tab-icon">
+              <svg viewBox="0 0 20 20"><path d="M2 14.5L6.5 9.5L10 12L14 7L18 3.5"/><path d="M2 17.5H18"/><circle class="icon-fill" cx="18" cy="3.5" r="2" stroke-width="0"/></svg>
+            </span>
+            <span class="pt-tab-inner">
+              <span class="pt-tab-num">04</span>
+              <span class="pt-tab-name">Treasury, Risk &amp; Capital Markets</span>
+            </span>
+          </button>
+
+          <!-- Wealth, Insurance & AI -->
+          <button class="pt-tab-btn" data-ptab="wealth">
+            <span class="pt-tab-icon">
+              <svg viewBox="0 0 20 20"><path d="M10 2L18 6V10C18 14.5 14.5 18 10 19.5C5.5 18 2 14.5 2 10V6L10 2Z" stroke-linejoin="round"/><path class="icon-fill" d="M10 7L11.2 9.8L14 10L11.8 12.2L12.4 15L10 13.5L7.6 15L8.2 12.2L6 10L8.8 9.8L10 7Z" stroke-width="0"/></svg>
+            </span>
+            <span class="pt-tab-inner">
+              <span class="pt-tab-num">05</span>
+              <span class="pt-tab-name">Wealth, Insurance &amp; AI</span>
+            </span>
+          </button>
+
+        </div>
+        <div class="products-tabs-content">
+
+          <!-- Core Banking panel -->
+          <div class="pt-panel active" id="ptab-core">
+            <div class="pt-card">
+              <div class="pt-card-num">01</div>
+              <div class="pt-card-family">iGCB</div>
+              <div class="pt-card-name">Consumer Core Banking</div>
+              <div class="pt-card-desc">End-to-end retail banking platform covering accounts, deposits, and customer lifecycle management on eMACH.ai architecture.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">02</div>
+              <div class="pt-card-family">iGCB</div>
+              <div class="pt-card-name">Corporate Core Banking</div>
+              <div class="pt-card-desc">Modular corporate banking suite enabling real-time processing for global commercial and institutional banking operations.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">03</div>
+              <div class="pt-card-family">iGCB</div>
+              <div class="pt-card-name">Central Banking Platform</div>
+              <div class="pt-card-desc">Purpose-built for central banks and development finance institutions with reserve management and monetary policy tools.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">04</div>
+              <div class="pt-card-family">iGCB</div>
+              <div class="pt-card-name">Neo Bank Platform</div>
+              <div class="pt-card-desc">Cloud-native, API-first banking platform designed for digital-only banks and embedded finance providers at scale.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Lending & Cards panel -->
+          <div class="pt-panel" id="ptab-lending">
+            <div class="pt-card">
+              <div class="pt-card-num">01</div>
+              <div class="pt-card-family">Quantum</div>
+              <div class="pt-card-name">Retail Lending</div>
+              <div class="pt-card-desc">AI-powered origination, underwriting and servicing for personal, home, and auto loans with real-time decisioning.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">02</div>
+              <div class="pt-card-family">Quantum</div>
+              <div class="pt-card-name">SME Lending</div>
+              <div class="pt-card-desc">Streamlined small and mid-market lending with automated credit scoring, document processing, and portfolio analytics.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">03</div>
+              <div class="pt-card-family">Quantum</div>
+              <div class="pt-card-name">Loan Management System</div>
+              <div class="pt-card-desc">Comprehensive loan lifecycle management covering disbursements, repayments, restructuring, and end-of-life processing.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">04</div>
+              <div class="pt-card-family">iGCB</div>
+              <div class="pt-card-name">Collections Management</div>
+              <div class="pt-card-desc">Intelligent delinquency and collections platform with omni-channel outreach, legal workflow, and recovery optimization.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Payments & Transaction Banking panel -->
+          <div class="pt-panel" id="ptab-payments">
+            <div class="pt-card">
+              <div class="pt-card-num">01</div>
+              <div class="pt-card-family">iGTB</div>
+              <div class="pt-card-name">Payments Hub</div>
+              <div class="pt-card-desc">Unified payments orchestration for SWIFT, SEPA, RTP, and domestic rails with ISO 20022-native processing.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">02</div>
+              <div class="pt-card-family">iGTB</div>
+              <div class="pt-card-name">Cash Management</div>
+              <div class="pt-card-desc">Real-time cash visibility, pooling, and sweeping for corporate treasurers across multi-bank, multi-currency environments.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">03</div>
+              <div class="pt-card-family">iGTB</div>
+              <div class="pt-card-name">Trade Finance</div>
+              <div class="pt-card-desc">Digital trade platform for letters of credit, guarantees, and open-account financing with blockchain-enabled document verification.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">04</div>
+              <div class="pt-card-family">iGTB</div>
+              <div class="pt-card-name">Supply Chain Finance</div>
+              <div class="pt-card-desc">Buyer-led and supplier-led SCF programs with dynamic discounting, receivables finance, and working capital optimization.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Treasury, Risk & Capital Markets panel -->
+          <div class="pt-panel" id="ptab-treasury">
+            <div class="pt-card">
+              <div class="pt-card-num">01</div>
+              <div class="pt-card-family">Apex</div>
+              <div class="pt-card-name">Treasury Management System</div>
+              <div class="pt-card-desc">Integrated front-to-back treasury platform for FX, money markets, fixed income, and derivatives with real-time P&amp;L.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">02</div>
+              <div class="pt-card-family">Apex</div>
+              <div class="pt-card-name">ALM &amp; Balance Sheet Management</div>
+              <div class="pt-card-desc">Asset and liability management with behavioral modeling, NII optimization, and regulatory reporting across IRRBB frameworks.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">03</div>
+              <div class="pt-card-family">Apex</div>
+              <div class="pt-card-name">Market Risk Management</div>
+              <div class="pt-card-desc">Intraday VaR, stress testing, and limit monitoring across trading books with FRTB-compliant capital calculations.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">04</div>
+              <div class="pt-card-family">iGTB</div>
+              <div class="pt-card-name">Liquidity Management</div>
+              <div class="pt-card-desc">Intraday liquidity monitoring, LCR/NSFR management, and collateral optimization for Basel III/IV compliance.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+          </div>
+
+          <!-- Wealth, Insurance & AI Platform panel -->
+          <div class="pt-panel" id="ptab-wealth">
+            <div class="pt-card">
+              <div class="pt-card-num">01</div>
+              <div class="pt-card-family">IDW</div>
+              <div class="pt-card-name">Wealth Management Platform</div>
+              <div class="pt-card-desc">Unified wealth platform spanning advisory, discretionary, and digital channels with goal-based planning and portfolio construction.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">02</div>
+              <div class="pt-card-family">IDW</div>
+              <div class="pt-card-name">Brokerage &amp; Custody</div>
+              <div class="pt-card-desc">Full-service brokerage and custody operations covering order management, settlement, corporate actions, and reporting.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">03</div>
+              <div class="pt-card-family">iGIS</div>
+              <div class="pt-card-name">Insurance Suite</div>
+              <div class="pt-card-desc">Bancassurance and general insurance platform with policy administration, claims processing, and embedded distribution.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+            <div class="pt-card">
+              <div class="pt-card-num">04</div>
+              <div class="pt-card-family">AI Platform</div>
+              <div class="pt-card-name">Purple Fabric</div>
+              <div class="pt-card-desc">The AI-native orchestration layer powering intelligence across all Intellect products - models, agents, and explainability built in.</div>
+              <a href="#" class="pt-card-link">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ eMACH.ai ══════════════ -->
+  <section class="emach">
+    <div class="emach-inner">
+
+      <!-- Top header -->
+      <div class="emach-top reveal">
+        <div>
+          <div class="emach-top-label">Architecture Principles</div>
+          <h2 class="emach-top-title">eMACH.ai -<br/>Built for <em>Infinite</em><br/>Possibility.</h2>
+        </div>
+        <div class="emach-top-right">
+          <p class="emach-top-desc">Every Intellect product is built on eMACH.ai architecture principles - a framework that delivers agility, flexibility, composability and customer-centricity at enterprise scale.</p>
+        </div>
+      </div>
+
+      <!-- Letter nav -->
+      <div class="emach-letter-nav" id="emach-letter-nav">
+        <button class="emach-letter-btn active" data-tab="e">
+          <span class="em-letter">E</span>
+          <span class="em-word">Events</span>
+        </button>
+        <button class="emach-letter-btn" data-tab="m">
+          <span class="em-letter">M</span>
+          <span class="em-word">Microservices</span>
+        </button>
+        <button class="emach-letter-btn" data-tab="a">
+          <span class="em-letter">A</span>
+          <span class="em-word">API First</span>
+        </button>
+        <button class="emach-letter-btn" data-tab="c">
+          <span class="em-letter">C</span>
+          <span class="em-word">Cloud Native</span>
+        </button>
+        <button class="emach-letter-btn" data-tab="h">
+          <span class="em-letter">H</span>
+          <span class="em-word">Headless</span>
+        </button>
+        <div class="emach-indicator" id="emach-indicator"></div>
+      </div>
+
+      <!-- E Panel -->
+      <div class="emach-panel active" id="emach-e">
+        <div class="emach-panel-left">
+          <div class="emach-ghost-letter">e</div>
+          <div class="emach-principle-label">Event-Driven Architecture</div>
+          <div class="emach-principle-desc">Real-time event processing enabling instant response to business events across the entire banking ecosystem - from payments to risk decisions.</div>
+        </div>
+        <div class="emach-panel-right">
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">01</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Real-Time Processing</div>
+              <div class="emach-benefit-desc">Process millions of events per second with sub-millisecond latency for instant business outcomes.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">02</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Loosely Coupled Integration</div>
+              <div class="emach-benefit-desc">Event streams decouple producers and consumers, enabling independent scaling and evolution.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">03</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Complete Audit Trail</div>
+              <div class="emach-benefit-desc">Every business event is captured, enabling full auditability, regulatory compliance and real-time analytics.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- M Panel -->
+      <div class="emach-panel" id="emach-m">
+        <div class="emach-panel-left">
+          <div class="emach-ghost-letter">m</div>
+          <div class="emach-principle-label">750+ Independent Microservices</div>
+          <div class="emach-principle-desc">Independently deployable microservices for isolation, rapid innovation, independent scaling and technology freedom.</div>
+        </div>
+        <div class="emach-panel-right">
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">01</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Independent Deployment</div>
+              <div class="emach-benefit-desc">Deploy and update individual services without impacting the broader system - continuous delivery at scale.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">02</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Composable Business Capabilities</div>
+              <div class="emach-benefit-desc">Assemble banking capabilities from proven microservices - build exactly what your institution needs.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">03</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Technology Freedom</div>
+              <div class="emach-benefit-desc">Each microservice can use the best technology for its purpose - no lock-in, maximum flexibility.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A Panel -->
+      <div class="emach-panel" id="emach-a">
+        <div class="emach-panel-left">
+          <div class="emach-ghost-letter">a</div>
+          <div class="emach-principle-label">2000+<br>Open APIs</div>
+          <div class="emach-principle-desc">Open API-first design enabling seamless ecosystem connectivity - connect to fintechs, partners and regulators with ease.</div>
+        </div>
+        <div class="emach-panel-right">
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">01</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Open Banking Ready</div>
+              <div class="emach-benefit-desc">Pre-built compliance with PSD2, Open Banking UK and regional open finance standards.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">02</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Developer Marketplace</div>
+              <div class="emach-benefit-desc">Full API documentation, SDKs and sandbox environments for rapid third-party integration.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">03</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Ecosystem Monetization</div>
+              <div class="emach-benefit-desc">Built-in API management and monetization tools to create new revenue streams from your data.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C Panel -->
+      <div class="emach-panel" id="emach-c">
+        <div class="emach-panel-left">
+          <div class="emach-ghost-letter">c</div>
+          <div class="emach-principle-label">Multi-Cloud by Design</div>
+          <div class="emach-principle-desc">Cloud-native infrastructure with containerization and orchestration - deploy on AWS, Azure, GCP or private cloud.</div>
+        </div>
+        <div class="emach-panel-right">
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">01</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Elastic Scalability</div>
+              <div class="emach-benefit-desc">Scale up or down in real time based on demand - handle peak transaction volumes without over-provisioning.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">02</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Infrastructure Agnostic</div>
+              <div class="emach-benefit-desc">Run on any cloud or on-premise infrastructure with consistent performance and security posture.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">03</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Resilience by Default</div>
+              <div class="emach-benefit-desc">Built-in high availability, disaster recovery and business continuity - 99.99% uptime SLA.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- H Panel -->
+      <div class="emach-panel" id="emach-h">
+        <div class="emach-panel-left">
+          <div class="emach-ghost-letter">h</div>
+          <div class="emach-principle-label">Any Channel,<br/>Any Experience</div>
+          <div class="emach-principle-desc">Fully decoupled front-end architecture enabling any channel, any device, any experience - with the customer at the center.</div>
+        </div>
+        <div class="emach-panel-right">
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">01</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Omnichannel Delivery</div>
+              <div class="emach-benefit-desc">One banking platform powering web, mobile, branch, ATM and emerging channels from a single source of truth.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">02</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Experience Freedom</div>
+              <div class="emach-benefit-desc">Design and deploy any UX without backend constraints - iterate on experience without touching core banking logic.</div>
+            </div>
+          </div>
+          <div class="emach-benefit">
+            <div class="emach-benefit-num">03</div>
+            <div class="emach-benefit-body">
+              <div class="emach-benefit-title">Personalization at Scale</div>
+              <div class="emach-benefit-desc">AI-powered personalization engines deliver contextual, relevant experiences to every customer.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ PURPLE FABRIC ══════════════ -->
+  <div class="purple-fabric">
+    <div class="pf-bg-img" id="pf-bg-img"></div>
+    <div class="container">
+      <div class="purple-fabric-inner">
+        <div class="pf-top reveal">
+          <div class="pf-top-left">
+            <div class="pf-label">
+              <span class="pf-label-line"></span>
+              AI Platform
+            </div>
+            <h2 class="pf-title">
+              Purple Fabric -<br/>
+              Open Business<br/>
+              <em>Impact AI.</em>
+            </h2>
+          </div>
+          <div class="pf-top-right">
+            <p class="pf-desc">
+              An enterprise-grade Open Business Impact AI platform that delivers secure, decision-grade intelligence with measurable business impact across lending, risk, compliance and customer experience.
+            </p>
+            <a href="#" class="pf-cta">
+              Explore Purple Fabric
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H11M11 6.5L7.5 3M11 6.5L7.5 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="pf-pillars reveal">
+          <div class="pf-pillar">
+            <div class="pf-pillar-icon">
+              <svg width="26" height="26" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" stroke="white" stroke-width="1.2"/><rect x="10" y="2" width="6" height="6" stroke="white" stroke-width="1.2"/><rect x="2" y="10" width="6" height="6" stroke="white" stroke-width="1.2"/><rect x="10" y="10" width="6" height="6" stroke="white" stroke-width="1.2"/></svg>
+            </div>
+            <div class="pf-pillar-title">Decision Intelligence</div>
+            <div class="pf-pillar-desc">AI-powered decisioning for credit, risk and compliance with full explainability.</div>
+          </div>
+          <div class="pf-pillar">
+            <div class="pf-pillar-icon">
+              <svg width="26" height="26" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="white" stroke-width="1.2"/><path d="M9 5.5V9L11.5 11" stroke="white" stroke-width="1.2" stroke-linecap="square"/></svg>
+            </div>
+            <div class="pf-pillar-title">Predictive Analytics</div>
+            <div class="pf-pillar-desc">Real-time forecasting for customer behaviour, churn, fraud and market movements.</div>
+          </div>
+          <div class="pf-pillar">
+            <div class="pf-pillar-icon">
+              <svg width="26" height="26" viewBox="0 0 18 18" fill="none"><path d="M3 3L15 15M15 3L9 9M9 9L3 15M9 9H15" stroke="white" stroke-width="1.2" stroke-linecap="square"/></svg>
+            </div>
+            <div class="pf-pillar-title">Generative AI</div>
+            <div class="pf-pillar-desc">LLM-powered assistants for relationship managers, compliance teams and operations.</div>
+          </div>
+          <div class="pf-pillar">
+            <div class="pf-pillar-icon">
+              <svg width="26" height="26" viewBox="0 0 18 18" fill="none"><path d="M9 2L2 6V12L9 16L16 12V6L9 2Z" stroke="white" stroke-width="1.2"/><path d="M9 7V11M9 11L7 9M9 11L11 9" stroke="white" stroke-width="1.2" stroke-linecap="square"/></svg>
+            </div>
+            <div class="pf-pillar-title">Secure & Responsible AI</div>
+            <div class="pf-pillar-desc">Enterprise-grade data governance, model risk management and regulatory compliance built-in.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SEGMENTS ══════════════ -->
+  <section class="segments-section">
+    <div class="container">
+      <div class="segments-header reveal">
+        <div>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            Segments
+          </div>
+          <h2 class="section-title">
+            Tailored for every<br/>
+            financial <em>institution.</em>
+          </h2>
+        </div>
+        <div class="segments-header-right">
+          <p>Industry-specific capabilities designed for your unique needs - from consumer banks to central banks, wealth managers, NBFCs, insurers and development finance institutions.</p>
+          <div class="seg-carousel-nav">
+            <button class="seg-carousel-btn" id="seg-prev" disabled aria-label="Previous">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="1.5" stroke-linecap="square"><path d="M9 2L4 7L9 12"/></svg>
+            </button>
+            <button class="seg-carousel-btn" id="seg-next" aria-label="Next">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="1.5" stroke-linecap="square"><path d="M5 2L10 7L5 12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Single unified carousel: 4 visible, 9 total -->
+      <div class="segments-full-grid">
+        <div class="seg-carousel-track" id="seg-track">
+
+          <!-- 01 Consumer Banks -->
+          <div class="seg-card reveal">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles.jpg" alt="Consumer Banks" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Consumer Banks</div>
+              <div class="seg-card-desc">Hyper-personalized, secure and frictionless digital experiences for the modern banking consumer.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 02 Wholesale Banks -->
+          <div class="seg-card reveal">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles2.jpg" alt="Wholesale Banks" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Wholesale Banks</div>
+              <div class="seg-card-desc">Corporate and transaction banking - from corporate core, lending, payment, liquidity to treasury.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 03 Central Banks -->
+          <div class="seg-card reveal">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles3.jpg" alt="Central Banks" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Central Banks</div>
+              <div class="seg-card-desc">Digital infrastructure for monetary authorities - CBDC, core banking, regulatory reporting and payment systems.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 04 Neo & Digital Banks -->
+          <div class="seg-card reveal">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles4.jpg" alt="Neo & Digital Banks" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Neo &amp; Digital Banks</div>
+              <div class="seg-card-desc">Cloud-native banking stack for digital-first institutions - rapid launch, extreme scalability and innovation freedom.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 05 NBFCs -->
+          <div class="seg-card">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles2.jpg" alt="NBFCs" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">NBFCs</div>
+              <div class="seg-card-desc">End-to-end lending and collections platform - originations, loan management, collections and compliance at scale.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 06 Wealth Management -->
+          <div class="seg-card">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles3.jpg" alt="Wealth Management" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Wealth Management</div>
+              <div class="seg-card-desc">Integrated wealth and investment platforms for private banks, wealth managers and asset managers.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 07 Insurance -->
+          <div class="seg-card">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles4.jpg" alt="Insurance" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Insurance</div>
+              <div class="seg-card-desc">Core and digital insurance platforms - policy administration, claims management and distribution for life, general and health insurers.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 08 Capital Markets -->
+          <div class="seg-card">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles2.jpg" alt="Capital Markets" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Capital Markets</div>
+              <div class="seg-card-desc">Trading, settlement and custody solutions - equities, fixed income, derivatives and digital assets.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 09 Development Finance -->
+          <div class="seg-card">
+            <div class="seg-card-img-wrap">
+              <img src="intellect/images/cards_titles3.jpg" alt="Development Finance Institutions" loading="lazy"/>
+            </div>
+            <div class="seg-card-body">
+              <div class="seg-card-title">Development Finance Institutions</div>
+              <div class="seg-card-desc">Specialized digital platforms for development banks - project finance, developmental lending and impact measurement.</div>
+              <div class="seg-card-link">Explore <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ OUR CUSTOMERS (removed) ══════════════ -->
+  <section class="customers" style="display:none;">
+    <div class="container">
+      <div class="customers-header">
+        <div class="section-label reveal">
+          <span class="section-label-line"></span>
+          Our Customers
+        </div>
+        <h2 class="section-title reveal" style="max-width:560px;">
+          Trusted by Financial<br/>
+          Leaders <em>Worldwide.</em>
+        </h2>
+        <div class="geo-nav">
+          <button class="geo-btn active" data-geo="americas">Americas</button>
+          <button class="geo-btn" data-geo="europe">Europe / UK</button>
+          <button class="geo-btn" data-geo="me">Middle East</button>
+          <button class="geo-btn" data-geo="africa">Africa</button>
+          <button class="geo-btn" data-geo="india">India</button>
+          <button class="geo-btn" data-geo="apac">APAC / ANZ</button>
+        </div>
+      </div>
+
+      <div class="geo-panel active" id="geo-americas">
+        <div class="geo-panel-inner">
+          <div class="geo-clients-grid">
+            <div class="geo-client"><div class="geo-client-name">Citibank</div><div class="geo-client-country">United States</div><div class="geo-client-type">Global Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">BNY Mellon</div><div class="geo-client-country">United States</div><div class="geo-client-type">Custody & Investment</div></div>
+            <div class="geo-client"><div class="geo-client-name">Banorte</div><div class="geo-client-country">Mexico</div><div class="geo-client-type">Consumer Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Itaú Unibanco</div><div class="geo-client-country">Brazil</div><div class="geo-client-type">Retail Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Banco de Bogotá</div><div class="geo-client-country">Colombia</div><div class="geo-client-type">Commercial Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Bancolombia</div><div class="geo-client-country">Colombia</div><div class="geo-client-type">Retail Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Scotiabank</div><div class="geo-client-country">Canada</div><div class="geo-client-type">Global Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Banco Davivienda</div><div class="geo-client-country">Colombia</div><div class="geo-client-type">Commercial Bank</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="geo-panel" id="geo-europe">
+        <div class="geo-panel-inner">
+          <div class="geo-clients-grid">
+            <div class="geo-client"><div class="geo-client-name">Standard Chartered</div><div class="geo-client-country">United Kingdom</div><div class="geo-client-type">Global Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Barclays</div><div class="geo-client-country">United Kingdom</div><div class="geo-client-type">Retail & Investment Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">HSBC</div><div class="geo-client-country">United Kingdom</div><div class="geo-client-type">Global Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Deutsche Bank</div><div class="geo-client-country">Germany</div><div class="geo-client-type">Investment Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Société Générale</div><div class="geo-client-country">France</div><div class="geo-client-type">Universal Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">ABN AMRO</div><div class="geo-client-country">Netherlands</div><div class="geo-client-type">Commercial Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">ING Bank</div><div class="geo-client-country">Netherlands</div><div class="geo-client-type">Retail Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Lloyds Banking Group</div><div class="geo-client-country">United Kingdom</div><div class="geo-client-type">Retail Bank</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="geo-panel" id="geo-me">
+        <div class="geo-panel-inner">
+          <div class="geo-clients-grid">
+            <div class="geo-client"><div class="geo-client-name">Emirates NBD</div><div class="geo-client-country">UAE</div><div class="geo-client-type">Retail & Corporate Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">First Abu Dhabi Bank</div><div class="geo-client-country">UAE</div><div class="geo-client-type">Largest UAE Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Doha Bank</div><div class="geo-client-country">Qatar</div><div class="geo-client-type">Commercial Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Qatar National Bank</div><div class="geo-client-country">Qatar</div><div class="geo-client-type">Largest MEA Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Kuwait Finance House</div><div class="geo-client-country">Kuwait</div><div class="geo-client-type">Islamic Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Arab Banking Corporation</div><div class="geo-client-country">Bahrain</div><div class="geo-client-type">Wholesale Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Riyad Bank</div><div class="geo-client-country">Saudi Arabia</div><div class="geo-client-type">Retail Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Bank Muscat</div><div class="geo-client-country">Oman</div><div class="geo-client-type">Leading Omani Bank</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="geo-panel" id="geo-africa">
+        <div class="geo-panel-inner">
+          <div class="geo-clients-grid">
+            <div class="geo-client"><div class="geo-client-name">National Bank of Egypt</div><div class="geo-client-country">Egypt</div><div class="geo-client-type">State-Owned Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Standard Bank</div><div class="geo-client-country">South Africa</div><div class="geo-client-type">Pan-African Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Stanbic Bank</div><div class="geo-client-country">Multiple Countries</div><div class="geo-client-type">Commercial Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Ecobank</div><div class="geo-client-country">Pan-Africa</div><div class="geo-client-type">Pan-African Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Banque Misr</div><div class="geo-client-country">Egypt</div><div class="geo-client-type">State-Owned Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Commercial Bank of Ethiopia</div><div class="geo-client-country">Ethiopia</div><div class="geo-client-type">Development Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Kenya Commercial Bank</div><div class="geo-client-country">Kenya</div><div class="geo-client-type">Retail Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">First National Bank</div><div class="geo-client-country">South Africa</div><div class="geo-client-type">Retail Bank</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="geo-panel" id="geo-india">
+        <div class="geo-panel-inner">
+          <div class="geo-clients-grid">
+            <div class="geo-client"><div class="geo-client-name">HDFC Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Largest Private Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">ICICI Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Private Sector Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Axis Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Private Sector Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Kotak Mahindra Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Private Sector Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Yes Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Private Sector Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">IndusInd Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Private Sector Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Federal Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Private Sector Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Punjab National Bank</div><div class="geo-client-country">India</div><div class="geo-client-type">Public Sector Bank</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="geo-panel" id="geo-apac">
+        <div class="geo-panel-inner">
+          <div class="geo-clients-grid">
+            <div class="geo-client"><div class="geo-client-name">Bangkok Bank</div><div class="geo-client-country">Thailand</div><div class="geo-client-type">Retail Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">DBS Bank</div><div class="geo-client-country">Singapore</div><div class="geo-client-type">Digital Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">OCBC Bank</div><div class="geo-client-country">Singapore</div><div class="geo-client-type">Retail & Corporate Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Maybank</div><div class="geo-client-country">Malaysia</div><div class="geo-client-type">Largest Malaysian Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Bank of Philippines</div><div class="geo-client-country">Philippines</div><div class="geo-client-type">Commercial Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">ANZ Bank</div><div class="geo-client-country">Australia</div><div class="geo-client-type">Global Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Bank of China</div><div class="geo-client-country">China / HK</div><div class="geo-client-type">Global Bank</div></div>
+            <div class="geo-client"><div class="geo-client-name">Westpac Banking</div><div class="geo-client-country">Australia</div><div class="geo-client-type">Retail Bank</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ AWARDS ══════════════ -->
+  <div class="awards-section">
+    <div class="awards-bg" id="awards-bg"></div>
+    <div class="container">
+      <div class="awards-header">
+        <div>
+          <div class="section-label" style="color:rgba(255,255,255,0.5)">
+            <span class="section-label-line" style="background:rgba(255,255,255,0.3)"></span>
+            Awards & Recognition
+          </div>
+          <h2 class="awards-title reveal">
+            Industry Recognized<br/>
+            for <em>Excellence.</em>
+          </h2>
+        </div>
+        <a href="#" class="btn-outline" style="flex-shrink:0;color:#fff;border-color:rgba(255,255,255,0.35);padding:13px 28px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:10px;text-decoration:none;position:relative;overflow:hidden;transition:color 0.35s,gap 0.3s;">
+          View All
+          <svg width="13" height="13" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#DAFDA3" stroke-width="1.4" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+      <div class="awards-grid">
+        <div class="award-card reveal">
+          <div class="award-img">
+            <img src="intellect/images/awards/1.jpg" alt="National AI Awards 2025"/>
+          </div>
+          <div class="award-card-body">
+            <div class="award-year">2025</div>
+            <div class="award-name">National AI Awards 2025</div>
+            <div class="award-category">Best AI Implementation in Financial Services - recognized for transformative AI deployment across banking operations and customer experience.</div>
+            <div class="award-org">National AI Awards · United Kingdom</div>
+          </div>
+        </div>
+        <div class="award-card reveal reveal-delay-1">
+          <div class="award-img">
+            <img src="intellect/images/awards/2.jpg" alt="Datos Impact Awards 2025"/>
+          </div>
+          <div class="award-card-body">
+            <div class="award-year">2025</div>
+            <div class="award-name">Datos Impact Awards 2025</div>
+            <div class="award-category">FinTech Innovation of the Year - honoring outstanding contribution to financial technology through product innovation and customer impact at scale.</div>
+            <div class="award-org">Datos Insights · Global</div>
+          </div>
+        </div>
+        <div class="award-card reveal reveal-delay-2">
+          <div class="award-img">
+            <img src="intellect/images/awards/3.jpg" alt="Global Private Banker MEA Awards"/>
+          </div>
+          <div class="award-card-body">
+            <div class="award-year">2025</div>
+            <div class="award-name">Global Private Banker MEA Awards</div>
+            <div class="award-category">Best Wealth Technology Provider - MEA region recognition for exceptional wealth management technology and platform innovation.</div>
+            <div class="award-org">Global Private Banker · MEA Region</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ANALYST RECOGNITIONS ══════════════ -->
+  <section class="analyst">
+    <div class="container">
+      <div class="analyst-header">
+        <div>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            Analyst Recognitions
+          </div>
+          <h2 class="section-title reveal">
+            Recognized by the<br/>
+            World's Leading <em>Analysts.</em>
+          </h2>
+        </div>
+        <a href="#" class="btn-outline">All Recognitions
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H11M11 6.5L7.5 3M11 6.5L7.5 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+      <div class="analyst-grid">
+        <div class="analyst-card reveal">
+          <div class="analyst-img">
+            <img src="intellect/images/analyst/Gartner_logo.png" alt="Gartner"/>
+          </div>
+          <div class="analyst-title">Leader - Magic Quadrant™ for Banking Payment Hub Platforms</div>
+          <div class="analyst-desc">Positioned as a Leader for completeness of vision and ability to execute in the global payments technology landscape.</div>
+          <div class="analyst-date">Published March 2026 · Global Coverage</div>
+        </div>
+        <div class="analyst-card reveal reveal-delay-1">
+          <div class="analyst-img">
+            <img src="intellect/images/analyst/chartis.png" alt="Chartis Research"/>
+          </div>
+          <div class="analyst-title">Top Performer - RiskTech100 Credit Risk Technology</div>
+          <div class="analyst-desc">Industry-recognized strength in credit risk management modernization, stress testing and regulatory compliance solutions.</div>
+          <div class="analyst-date">Published January 2025 · Global Coverage</div>
+        </div>
+        <div class="analyst-card reveal reveal-delay-2">
+          <div class="analyst-img">
+            <img src="intellect/images/analyst/chartis.png" alt="Chartis Research"/>
+          </div>
+          <div class="analyst-title">Category Leader - FinTech100 Financial Crime Technology</div>
+          <div class="analyst-desc">Ranked among global leaders shaping the future of financial crime prevention, AML and fraud detection technology.</div>
+          <div class="analyst-date">Published January 2025 · Global Coverage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ NEWSROOM ══════════════ -->
+  <section class="newsroom">
+    <div class="container">
+      <div class="newsroom-header">
+        <div>
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            Newsroom
+          </div>
+          <h2 class="section-title reveal">
+            Latest from<br/>
+            <em>Intellect.</em>
+          </h2>
+        </div>
+        <a href="#" class="btn-outline">All News
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5H11M11 6.5L7.5 3M11 6.5L7.5 10" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+      <div class="newsroom-grid">
+        <div class="news-card reveal">
+          <div class="news-thumb">
+            <img src="intellect/images/cards_titles.jpg" alt="Analyst Recognition" loading="lazy"/>
+          </div>
+          <div class="news-type">Analyst Recognition</div>
+          <div class="news-title">Intellect Recognized as a Leader in 2026 Gartner Magic Quadrant™ for Banking Payment Hub Platforms</div>
+          <div class="news-meta">
+            <span class="news-date">Mar 2026</span>
+            <span style="color:var(--gray-300)">·</span>
+            <span style="font-size:14px;color:var(--gray-500)">Press Release</span>
+            <a href="#" class="news-read">Read →</a>
+          </div>
+        </div>
+        <div class="news-card reveal reveal-delay-1">
+          <div class="news-thumb">
+            <img src="intellect/images/cards_titles2.jpg" alt="Product Launch" loading="lazy"/>
+          </div>
+          <div class="news-type">Product Launch</div>
+          <div class="news-title">Intellect Launches Purple Fabric 3.0 - Next-Generation Open Banking AI Platform for Enterprise Impact</div>
+          <div class="news-meta">
+            <span class="news-date">Feb 2026</span>
+            <span style="color:var(--gray-300)">·</span>
+            <span style="font-size:14px;color:var(--gray-500)">Product News</span>
+            <a href="#" class="news-read">Read →</a>
+          </div>
+        </div>
+        <div class="news-card reveal reveal-delay-2">
+          <div class="news-thumb">
+            <img src="intellect/images/cards_titles3.jpg" alt="Customer Story" loading="lazy"/>
+          </div>
+          <div class="news-type">Customer Story</div>
+          <div class="news-title">Intellect Powers Digital Transformation for First Abu Dhabi Bank with eMACH.ai Platform</div>
+          <div class="news-meta">
+            <span class="news-date">Jan 2026</span>
+            <span style="color:var(--gray-300)">·</span>
+            <span style="font-size:14px;color:var(--gray-500)">Case Study</span>
+            <a href="#" class="news-read">Read →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <!-- Statement band -->
+    <div class="footer-statement">
+      <div class="footer-statement-headline">
+        The future of banking<br>
+        <span class="footer-last-line">
+          <em>starts here.</em>
+          <a href="#" class="btn-outline footer-contact-btn">
+            Contact Us
+            <svg width="13" height="13" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Mid row: logo + L1 nav -->
+    <div class="footer-mid">
+      <div class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 634.23 203.43" style="height:41px;width:auto;display:block;" aria-label="Intellect Design Arena">
+          <style>
+            .fst0{fill-rule:evenodd;clip-rule:evenodd;fill:#ffffff;}
+            .fst1{fill-rule:evenodd;clip-rule:evenodd;fill:#DA4732;}
+            .fst2{fill-rule:evenodd;clip-rule:evenodd;fill:#FFDD00;}
+            .fst3{fill-rule:evenodd;clip-rule:evenodd;fill:#008FD5;}
+            .fst4{fill-rule:evenodd;clip-rule:evenodd;fill:#ffffff;}
+          </style>
+          <g>
+            <g>
+              <rect x="28.74" y="44.29" class="fst0" width="24.31" height="91.01"></rect>
+              <rect x="28.74" y="8.7" class="fst0" width="23.97" height="23.14"></rect>
+              <path class="fst0" d="M141.1,51.67c-2.16-2.77-4.9-5.06-8.33-6.61c-3.4-1.66-7.47-2.46-12.18-2.46c-4.67,0-9.1,0.81-13.31,2.61c-4.29,1.77-8.17,3.92-11.81,6.59v-7.51H72.81v91.01h24.33V71.16c2.32-2.43,4.96-4.44,7.87-5.9c2.91-1.4,6.19-2.18,9.56-2.18c3.23,0,5.42,1,6.69,3.03c0.55,1.26,0.99,2.78,1.37,4.7c0.44,1.93,0.62,4.31,0.62,7.07v57.42h24.28V73.99c0-4.34-0.52-8.45-1.62-12.34C144.83,57.81,143.27,54.43,141.1,51.67"></path>
+              <path class="fst0" d="M192.92,15.38h-24.3v28.9h-11.96v20.5h11.96v50.53c0,7.39,2.1,12.86,6.17,16.39c4.1,3.54,9.66,5.28,16.62,5.28c2,0,3.81,0,5.48-0.07c1.68-0.08,3.11-0.19,4.35-0.25c1.19-0.09,2.48-0.27,3.81-0.46c1.32-0.14,2.9-0.49,4.81-0.89v-20.96l-5.96,1.46c-1.75,0.43-3.58,0.71-5.51,0.71c-1.67,0-2.99-0.28-3.99-0.71c-1-0.36-1.48-1.55-1.48-3.51v-47.5h16.94v-20.5h-16.94V15.38z"></path>
+              <path class="fst0" d="M265.34,113.39c-2.82,2.11-6.35,3.12-10.57,3.12c-0.59,0-1.13-0.02-1.66-0.02c-2.57-0.2-4.67-0.8-6.32-1.86c-1.99-1.24-3.58-2.81-4.74-4.83c-1.16-2.01-2-4.32-2.5-6.88c-0.5-2.6-0.92-5.22-1.23-7.92h14.79h37.39V83.24c0-5.99-0.96-11.32-3.06-16.13c-2.09-4.76-4.71-9.14-8.08-12.92c-6.9-7.74-15.55-11.6-26.08-11.6h-0.18c-6.84,0.03-12.69,1.29-17.52,3.86c-4.91,2.58-9.04,6.06-12.25,10.35c-3.25,4.27-5.57,9.3-7.07,15.01c-1.51,5.71-2.24,11.68-2.24,17.99c0,6.11,0.73,12.11,2.24,17.74c1.51,5.6,3.83,10.62,6.91,15.02c3.08,4.34,7.07,7.88,11.95,10.46c4.93,2.63,10.76,3.96,17.46,3.96h0.53c8.43-0.04,15.47-1.52,21.29-4.39c3.07-1.41,5.97-3.39,8.71-5.92c2.76-2.56,5.43-5.81,8.09-9.83l-17.97-11.44C270.84,108.68,268.18,111.3,265.34,113.39 M239.88,71.16c0.6-1.93,1.5-3.53,2.56-4.96c1.1-1.41,2.51-2.52,4.27-3.25c1.74-0.81,3.83-1.19,6.4-1.19c4.39,0,7.87,1.39,10.46,4.35c2.44,2.78,3.84,6.46,4.19,11.1h-14.65h-14.64C238.79,75.11,239.32,73.07,239.88,71.16"></path>
+              <rect x="306" y="10.38" class="fst0" width="24.29" height="124.92"></rect>
+              <rect x="352.21" y="10.38" class="fst0" width="24.29" height="124.92"></rect>
+              <path class="fst0" d="M440.94,113.39c-2.86,2.11-6.34,3.12-10.53,3.12c-0.61,0-1.14-0.02-1.69-0.02c-2.58-0.2-4.66-0.8-6.32-1.86c-1.96-1.24-3.58-2.81-4.71-4.83c-1.19-2.01-2.02-4.29-2.51-6.88c-0.5-2.6-0.93-5.22-1.24-7.92h14.79h37.39V83.24c0-5.99-0.99-11.32-3.04-16.13c-2.1-4.76-4.75-9.14-8.11-12.92c-6.88-7.74-15.52-11.6-26.08-11.6h-0.16c-6.8,0.03-12.69,1.29-17.52,3.86c-4.95,2.58-9.01,6.06-12.23,10.35c-3.28,4.27-5.56,9.3-7.1,15.01c-1.45,5.71-2.22,11.68-2.22,17.99c0,6.11,0.76,12.11,2.22,17.74c1.54,5.6,3.83,10.62,6.94,15.02c3.08,4.34,7.06,7.88,11.98,10.46c4.89,2.63,10.71,3.96,17.43,3.96h0.52c8.42-0.04,15.48-1.52,21.3-4.39c3.05-1.41,5.95-3.39,8.7-5.92c2.73-2.56,5.4-5.81,8.08-9.83l-17.97-11.44C446.42,108.68,443.77,111.3,440.94,113.39 M415.5,71.16c0.57-1.93,1.49-3.53,2.58-4.96c1.08-1.41,2.48-2.52,4.23-3.25c1.76-0.81,3.82-1.19,6.41-1.19c4.4,0,7.9,1.39,10.49,4.35c2.4,2.78,3.85,6.46,4.15,11.1h-14.64h-14.67C414.4,75.11,414.92,73.07,415.5,71.16"></path>
+              <path class="fst0" d="M527.18,107.35c-1.08,1.76-2.34,3.27-3.76,4.62c-1.41,1.36-2.91,2.44-4.64,3.26c-1.78,0.85-3.76,1.28-6.1,1.28c-5.56,0-9.49-2.1-11.79-6.4c-2.56-4.6-3.82-11.33-3.82-20.3c0-9.06,1.26-15.88,3.82-20.32c2.24-4.3,6.09-6.4,11.47-6.4c2.34,0,4.34,0.34,5.91,1.11c1.56,0.74,2.98,1.7,4.26,2.92c1.23,1.27,2.23,2.67,3.15,4.41c0.91,1.65,1.72,3.41,2.46,5.34l20.46-8.06c-1.88-5.12-4.07-9.44-6.5-12.68c-2.38-3.29-5.4-5.89-8.81-7.8c-6.55-3.8-13.52-5.72-21.09-5.72c-12.04,0-21.7,4.3-28.79,12.78c-7.07,8.48-10.65,20.05-10.65,34.59c0,6.38,0.75,12.44,2.35,18.06c1.55,5.63,3.88,10.67,7.16,14.95c3.21,4.27,7.28,7.73,12.37,10.24c5.07,2.49,10.99,3.77,17.87,3.77c8.39,0,15.42-1.75,20.78-5.21c2.76-1.78,5.42-4.21,8-7.23c2.58-3.02,5.26-6.97,8.01-11.9l-18.79-10.73C529.39,103.82,528.22,105.58,527.18,107.35"></path>
+              <path class="fst0" d="M607.12,64.78v-20.5h-16.93v-28.9h-24.25v28.9h-11.98v20.5h11.98v50.53c0,7.39,2.07,12.86,6.12,16.39c4.09,3.54,9.65,5.28,16.62,5.28c2,0,3.85,0,5.51-0.07c1.66-0.08,3.06-0.19,4.33-0.25c1.23-0.09,2.51-0.27,3.84-0.46c1.31-0.14,2.87-0.49,4.77-0.89v-20.96l-5.95,1.46c-1.74,0.47-3.56,0.71-5.48,0.71c-1.65,0-3.01-0.23-4.02-0.71c-0.99-0.36-1.48-1.55-1.48-3.51v-47.5H607.12z"></path>
+            </g>
+            <path class="fst1" d="M35.58,154h16.93c4.66,0,8.47,3.81,8.47,8.47v16.93c0,4.66-3.81,8.47-8.47,8.47H35.58c-4.66,0-8.47-3.81-8.47-8.47v-16.93C27.12,157.82,30.92,154,35.58,154z"></path>
+            <path class="fst2" d="M78.89,154h16.93c4.65,0,8.47,3.81,8.47,8.47v16.93c0,4.66-3.82,8.47-8.47,8.47H78.89c-4.66,0-8.47-3.81-8.47-8.47v-16.93C70.42,157.82,74.23,154,78.89,154z"></path>
+            <path class="fst3" d="M122.2,154h16.93c4.66,0,8.47,3.81,8.47,8.47v16.93c0,4.66-3.81,8.47-8.47,8.47H122.2c-4.66,0-8.46-3.81-8.46-8.47v-16.93C113.74,157.82,117.54,154,122.2,154z"></path>
+            <path class="fst4" d="M166.55,186.2v-29.04h3.56v29.04H166.55L166.55,186.2L166.55,186.2z M189.7,161.27v-4.1h3.56v4.1H189.7L189.7,161.27L189.7,161.27z M189.7,186.2v-21.03h3.56v21.03H189.7L189.7,186.2L189.7,186.2z M218.57,186.2l-8-21.03h3.77l4.52,12.6c0.49,1.35,0.93,2.77,1.35,4.23c0.31-1.11,0.75-2.43,1.33-4l4.68-12.83h3.66l-7.96,21.03H218.57L218.57,186.2L218.57,186.2z M261.44,179.43l3.69,0.45c-0.59,2.16-1.66,3.82-3.23,5.01c-1.57,1.19-3.58,1.78-6.02,1.78c-3.09,0-5.52-0.94-7.33-2.84c-1.8-1.89-2.69-4.56-2.69-7.98c0-3.54,0.91-6.29,2.72-8.24c1.83-1.96,4.18-2.93,7.1-2.93c2.81,0,5.11,0.95,6.89,2.87c1.77,1.91,2.68,4.61,2.68,8.08c0,0.21-0.01,0.53-0.02,0.95h-15.68c0.12,2.32,0.78,4.08,1.96,5.31c1.17,1.23,2.63,1.84,4.39,1.84c1.3,0,2.42-0.34,3.35-1.04C260.17,182.03,260.9,180.93,261.44,179.43L261.44,179.43L261.44,179.43z M249.74,173.65h11.74c-0.15-1.76-0.6-3.09-1.34-3.97c-1.14-1.38-2.61-2.06-4.42-2.06c-1.64,0-3.02,0.55-4.13,1.64C250.48,170.36,249.86,171.82,249.74,173.65L249.74,173.65L249.74,173.65z M294.75,194.3l-0.4-3.34c0.79,0.2,1.47,0.31,2.05,0.31c0.79,0,1.42-0.13,1.89-0.39c0.48-0.26,0.87-0.63,1.18-1.11c0.23-0.36,0.58-1.24,1.08-2.64c0.07-0.21,0.17-0.49,0.31-0.88l-7.98-21.07h3.84l4.38,12.18c0.56,1.55,1.07,3.17,1.52,4.88c0.42-1.64,0.9-3.23,1.47-4.8l4.5-12.25h3.57l-8,21.39c-0.86,2.32-1.53,3.9-2,4.77c-0.63,1.18-1.36,2.04-2.17,2.58c-0.83,0.55-1.8,0.83-2.94,0.83C296.36,194.74,295.6,194.59,294.75,194.3L294.75,194.3L294.75,194.3z M327.9,175.69c0-3.89,1.08-6.78,3.26-8.66c1.8-1.54,4.01-2.33,6.61-2.33c2.89,0,5.26,0.94,7.1,2.85c1.83,1.89,2.74,4.51,2.74,7.85c0,2.71-0.4,4.83-1.22,6.38c-0.81,1.57-1.99,2.77-3.54,3.62c-1.56,0.86-3.25,1.29-5.09,1.29c-2.95,0-5.32-0.94-7.14-2.84C328.81,181.96,327.9,179.24,327.9,175.69L327.9,175.69L327.9,175.69z M331.57,175.69c0,2.7,0.59,4.71,1.76,6.05c1.17,1.34,2.66,2.01,4.44,2.01c1.77,0,3.24-0.68,4.42-2.02c1.16-1.34,1.76-3.4,1.76-6.16c0-2.6-0.6-4.58-1.78-5.91c-1.18-1.34-2.64-2.01-4.4-2.01c-1.78,0-3.26,0.67-4.44,2C332.16,170.98,331.57,172.99,331.57,175.69L331.57,175.69L331.57,175.69z M379.62,186.2v-3.09c-1.63,2.38-3.87,3.57-6.68,3.57c-1.24,0-2.4-0.24-3.48-0.71c-1.08-0.48-1.88-1.08-2.4-1.8c-0.53-0.72-0.89-1.6-1.1-2.63c-0.15-0.71-0.22-1.82-0.22-3.33v-13.03h3.56v11.66c0,1.87,0.09,3.12,0.22,3.77c0.23,0.94,0.7,1.68,1.43,2.21c0.73,0.54,1.62,0.8,2.69,0.8c1.07,0,2.07-0.27,3.01-0.83c0.94-0.54,1.6-1.29,1.99-2.23c0.39-0.94,0.59-2.32,0.59-4.11v-11.27h3.56v21.03H379.62L379.62,186.2L379.62,186.2z M402.4,186.2v-21.03h3.2v3.18c0.82-1.49,1.57-2.48,2.26-2.95c0.69-0.47,1.46-0.71,2.29-0.71c1.2,0,2.42,0.38,3.67,1.14l-1.23,3.31c-0.86-0.52-1.74-0.77-2.61-0.77c-0.79,0-1.49,0.23-2.11,0.71c-0.61,0.47-1.06,1.11-1.32,1.95c-0.4,1.27-0.6,2.66-0.6,4.16v11.01H402.4L402.4,186.2L402.4,186.2z M454.9,186.2v-2.66c-1.33,2.09-3.29,3.13-5.88,3.13c-1.68,0-3.23-0.46-4.62-1.39c-1.41-0.92-2.51-2.21-3.27-3.87c-0.78-1.66-1.16-3.57-1.16-5.71c0-2.09,0.36-4.01,1.05-5.72c0.71-1.7,1.76-3.02,3.16-3.92c1.4-0.91,2.96-1.37,4.7-1.37c1.26,0,2.39,0.26,3.38,0.8c0.99,0.53,1.8,1.23,2.42,2.08v-10.42h3.54v29.04H454.9L454.9,186.2L454.9,186.2z M443.62,175.71c0,2.69,0.57,4.71,1.71,6.04c1.13,1.33,2.46,2,4.01,2c1.56,0,2.89-0.64,3.97-1.91c1.09-1.27,1.64-3.22,1.64-5.84c0-2.87-0.56-4.98-1.66-6.33c-1.12-1.35-2.48-2.02-4.11-2.02c-1.58,0-2.91,0.66-3.97,1.94C444.16,170.87,443.62,172.91,443.62,175.71L443.62,175.71L443.62,175.71z M477.81,186.2v-21.03h3.2v3.18c0.82-1.49,1.58-2.48,2.27-2.95c0.69-0.47,1.46-0.71,2.3-0.71c1.2,0,2.42,0.38,3.65,1.14l-1.23,3.31c-0.86-0.52-1.74-0.77-2.61-0.77c-0.79,0-1.49,0.23-2.11,0.71c-0.62,0.47-1.06,1.11-1.32,1.95c-0.4,1.27-0.6,2.66-0.6,4.16v11.01H477.81L477.81,186.2L477.81,186.2z M519.79,179.43l3.68,0.45c-0.58,2.16-1.66,3.82-3.22,5.01c-1.58,1.19-3.59,1.78-6.03,1.78c-3.07,0-5.51-0.94-7.31-2.84c-1.81-1.89-2.71-4.56-2.71-7.98c0-3.54,0.91-6.29,2.73-8.24c1.82-1.96,4.19-2.93,7.09-2.93c2.81,0,5.11,0.95,6.9,2.87c1.78,1.91,2.67,4.61,2.67,8.08c0,0.21,0,0.53-0.02,0.95h-15.68c0.13,2.32,0.79,4.08,1.96,5.31s2.64,1.84,4.4,1.84c1.3,0,2.42-0.34,3.34-1.04C518.52,182.03,519.25,180.93,519.79,179.43L519.79,179.43L519.79,179.43z M508.09,173.65h11.74c-0.15-1.76-0.61-3.09-1.34-3.97c-1.14-1.38-2.61-2.06-4.42-2.06c-1.63,0-3.02,0.55-4.14,1.64C508.82,170.36,508.21,171.82,508.09,173.65L508.09,173.65L508.09,173.65z M555.72,183.61c-1.33,1.12-2.59,1.91-3.81,2.38c-1.23,0.45-2.54,0.69-3.93,0.69c-2.32,0-4.09-0.56-5.33-1.68c-1.23-1.14-1.86-2.58-1.86-4.34c0-1.04,0.24-1.97,0.71-2.82c0.47-0.86,1.08-1.53,1.83-2.05c0.76-0.51,1.61-0.9,2.57-1.16c0.7-0.18,1.76-0.37,3.16-0.54c2.88-0.35,5.01-0.75,6.37-1.23c0-0.49,0.02-0.79,0.02-0.93c0-1.45-0.34-2.48-1.01-3.07c-0.93-0.8-2.27-1.21-4.06-1.21c-1.68,0-2.91,0.28-3.72,0.88c-0.8,0.58-1.38,1.63-1.77,3.12l-3.48-0.48c0.32-1.49,0.84-2.7,1.55-3.61c0.72-0.93,1.78-1.64,3.15-2.13c1.38-0.49,2.96-0.74,4.77-0.74c1.8,0,3.25,0.21,4.38,0.62c1.12,0.43,1.94,0.96,2.48,1.6c0.52,0.64,0.89,1.45,1.11,2.43c0.11,0.6,0.17,1.7,0.17,3.29v4.75c0,3.31,0.07,5.42,0.23,6.28c0.14,0.88,0.45,1.72,0.9,2.53h-3.73C556.06,185.46,555.82,184.6,555.72,183.61L555.72,183.61L555.72,183.61z M555.43,175.64c-1.3,0.53-3.24,0.97-5.83,1.34c-1.46,0.22-2.51,0.46-3.11,0.72c-0.61,0.26-1.08,0.65-1.4,1.16c-0.33,0.51-0.5,1.07-0.5,1.69c0,0.95,0.36,1.73,1.08,2.38c0.72,0.62,1.78,0.94,3.16,0.94c1.37,0,2.59-0.3,3.67-0.9c1.07-0.6,1.86-1.43,2.36-2.46c0.38-0.81,0.57-2,0.57-3.56V175.64L555.43,175.64L555.43,175.64z M578.6,186.2v-21.03h3.18v2.95c0.66-1.03,1.54-1.86,2.63-2.49c1.1-0.62,2.35-0.94,3.75-0.94c1.55,0,2.82,0.32,3.82,0.97c1,0.64,1.71,1.54,2.11,2.71c1.67-2.45,3.84-3.68,6.49-3.68c2.09,0,3.7,0.58,4.81,1.74c1.13,1.15,1.69,2.93,1.69,5.33v14.44h-3.54v-13.26c0-1.42-0.11-2.45-0.35-3.08c-0.23-0.62-0.65-1.13-1.25-1.51c-0.61-0.38-1.33-0.57-2.15-0.57c-1.49,0-2.71,0.49-3.69,1.48c-0.97,0.97-1.46,2.55-1.46,4.72v12.22h-3.56v-13.66c0-1.6-0.29-2.78-0.87-3.58c-0.58-0.79-1.52-1.18-2.85-1.18c-1,0-1.93,0.26-2.78,0.79c-0.85,0.53-1.48,1.3-1.85,2.31c-0.39,1.03-0.58,2.5-0.58,4.41v10.91H578.6L578.6,186.2z"></path>
+          </g>
+        </svg>
+      </div>
+      <nav class="footer-l1-nav">
+        <a href="#">Products</a>
+        <a href="#">Solution Suites</a>
+        <a href="#">Segments</a>
+        <a href="#">Insights</a>
+        <a href="#">Company</a>
+      </nav>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Intellect Design Arena Ltd. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Settings</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════ JAVASCRIPT ══════════════ -->
+  <script>
+    // ── Hero height: fill visible viewport below nav ──
+    function setHeroHeight() {
+      const nav = document.querySelector('nav');
+      const offset = nav ? nav.getBoundingClientRect().bottom : 0;
+      document.documentElement.style.setProperty('--hero-h', (window.innerHeight - offset) + 'px');
+    }
+    window.addEventListener('resize', setHeroHeight);
+
+    // ── Intersection Observer Reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ── Nav scroll ──
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        nav.classList.add('scrolled');
+        nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.06)';
+      } else {
+        nav.classList.remove('scrolled');
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // ── Hero Slides ──
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    const slideCounter = document.querySelector('.hero-dots span');
+
+    function goToSlide(n) {
+      const leaving = slides[currentSlide];
+      const next = (n + slides.length) % slides.length;
+      if (next === currentSlide) return;
+
+      // Play exit animation on outgoing slide
+      leaving.classList.add('exiting');
+      dots[currentSlide].classList.remove('active');
+
+      setTimeout(() => {
+        leaving.classList.remove('active', 'exiting');
+        currentSlide = next;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+        if (slideCounter) slideCounter.textContent = '0' + (currentSlide + 1) + ' / 0' + slides.length;
+      }, 480); // matches longest exit duration + max delay
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.slide)));
+    });
+
+    let slideTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+
+    // ── Hero load animation ──
+    document.querySelector('.hero-left').style.opacity = '0';
+    document.querySelector('.hero-left').style.transform = 'translateY(20px)';
+    requestAnimationFrame(() => {
+      document.querySelector('.hero-left').style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      document.querySelector('.hero-left').style.opacity = '1';
+      document.querySelector('.hero-left').style.transform = 'translateY(0)';
+    });
+    if (document.querySelector('.dashboard-card')) {
+      document.querySelector('.dashboard-card').style.opacity = '0';
+      document.querySelector('.dashboard-card').style.transform = 'translateY(24px)';
+      setTimeout(() => {
+        document.querySelector('.dashboard-card').style.transition = 'opacity 0.9s ease 0.4s, transform 0.9s ease 0.4s';
+        document.querySelector('.dashboard-card').style.opacity = '1';
+        document.querySelector('.dashboard-card').style.transform = 'translateY(0)';
+      }, 100);
+    }
+
+    // ── eMACH.ai Tabs + sliding indicator + auto-scroll ──
+    const emachIndicator = document.getElementById('emach-indicator');
+    function moveEmachIndicator(btn) {
+      if (!emachIndicator || !btn) return;
+      requestAnimationFrame(() => {
+        emachIndicator.style.left  = btn.offsetLeft + 'px';
+        emachIndicator.style.width = btn.offsetWidth + 'px';
+      });
+    }
+
+    const emachBtns = Array.from(document.querySelectorAll('.emach-letter-btn'));
+    let emachAutoplay = null;
+    let emachCurrentIndex = 0;
+
+    function activateEmachTab(btn) {
+      const nextIndex = emachBtns.indexOf(btn);
+      if (nextIndex === emachCurrentIndex) return;
+
+      // Exit: animate current panel out
+      const leavingPanel = document.querySelector('.emach-panel.active');
+      if (leavingPanel) {
+        leavingPanel.classList.add('exiting');
+        leavingPanel.classList.remove('active');
+      }
+
+      // After exit completes, show next panel
+      setTimeout(() => {
+        if (leavingPanel) leavingPanel.classList.remove('exiting');
+        emachBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById('emach-' + btn.dataset.tab);
+        void panel.offsetWidth; // reflow to re-trigger animation
+        panel.classList.add('active');
+        moveEmachIndicator(btn);
+        emachCurrentIndex = nextIndex;
+      }, 380); // matches longest exit duration + delay
+    }
+
+    function startEmachAutoplay() {
+      clearInterval(emachAutoplay);
+      emachAutoplay = setInterval(() => {
+        emachCurrentIndex = (emachCurrentIndex + 1) % emachBtns.length;
+        activateEmachTab(emachBtns[emachCurrentIndex]);
+      }, 3500);
+    }
+
+    function resetEmachAutoplay(btn) {
+      activateEmachTab(btn);
+      startEmachAutoplay();
+    }
+
+    const firstEmachBtn = emachBtns.find(b => b.classList.contains('active')) || emachBtns[0];
+    if (firstEmachBtn) moveEmachIndicator(firstEmachBtn);
+
+    emachBtns.forEach(btn => {
+      btn.addEventListener('click', () => resetEmachAutoplay(btn));
+    });
+
+    startEmachAutoplay();
+
+    // ── Awards parallax ──
+    (function () {
+      const awardsBg = document.getElementById('awards-bg');
+      const awardsSection = awardsBg && awardsBg.closest('.awards-section');
+      if (!awardsBg || !awardsSection) return;
+      function onAwardsScroll() {
+        const rect = awardsSection.getBoundingClientRect();
+        const inView = rect.bottom > 0 && rect.top < window.innerHeight;
+        if (!inView) return;
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const shift = (progress - 0.5) * 240;
+        awardsBg.style.transform = 'translateY(' + shift + 'px)';
+      }
+      window.addEventListener('scroll', onAwardsScroll, { passive: true });
+      onAwardsScroll();
+    })();
+
+    // ── Purple Fabric parallax ──
+    (function () {
+      const pfBg = document.getElementById('pf-bg-img');
+      const pfSection = pfBg && pfBg.closest('.purple-fabric');
+      if (!pfBg || !pfSection) return;
+      function onScroll() {
+        const rect = pfSection.getBoundingClientRect();
+        const inView = rect.bottom > 0 && rect.top < window.innerHeight;
+        if (!inView) return;
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const shift = (progress - 0.5) * 240;
+        pfBg.style.transform = 'translateY(' + shift + 'px)';
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // ── Segment cards parallax - whole card moves at different speeds ──
+    (function () {
+      const speeds = [60, 100, 40, 80, 55, 120, 35, 90, 70];
+      const cards = document.querySelectorAll('.seg-card');
+      if (!cards.length) return;
+      cards.forEach((card, i) => {
+        card.style.willChange = 'transform';
+        card.style.transition = 'none';
+      });
+      const track = document.getElementById('seg-track');
+      function updateSegParallax() {
+        if (!track) return;
+        const trackRect = track.getBoundingClientRect();
+        const inView = trackRect.bottom > 0 && trackRect.top < window.innerHeight;
+        if (!inView) return;
+        const progress = (window.innerHeight - trackRect.top) / (window.innerHeight + trackRect.height);
+        cards.forEach((card, i) => {
+          const speed = speeds[i % speeds.length];
+          const shift = (progress - 0.5) * speed;
+          card.style.transform = 'translateY(' + shift + 'px)';
+        });
+      }
+      window.addEventListener('scroll', updateSegParallax, { passive: true });
+      updateSegParallax();
+    })();
+
+    // ── Product Tabs with sliding indicator ──
+    const ptIndicator = document.getElementById('pt-indicator');
+    function movePtIndicator(btn) {
+      if (!ptIndicator || !btn) return;
+      ptIndicator.style.top    = btn.offsetTop + 'px';
+      ptIndicator.style.height = btn.offsetHeight + 'px';
+    }
+    // Init indicator on first active tab
+    requestAnimationFrame(() => {
+      movePtIndicator(document.querySelector('.pt-tab-btn.active'));
+    });
+    document.querySelectorAll('.pt-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pt-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.pt-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('ptab-' + btn.dataset.ptab).classList.add('active');
+        movePtIndicator(btn);
+      });
+    });
+
+    // ── Announcement bar close ──
+    // ── Hamburger / Mobile nav ──
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        const open = mobileNav.classList.toggle('open');
+        hamburger.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      mobileNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          hamburger.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    const announceClose = document.getElementById('announce-close');
+    if (announceClose) {
+      announceClose.addEventListener('click', () => {
+        const bar = document.getElementById('announce-bar');
+        if (bar) bar.style.display = 'none';
+      });
+    }
+
+    // ── Segments Carousel (4-up, 9 total) ──
+    (function() {
+      const track   = document.getElementById('seg-track');
+      const btnPrev = document.getElementById('seg-prev');
+      const btnNext = document.getElementById('seg-next');
+      const counter = document.getElementById('seg-cur');
+      if (!track || !btnPrev || !btnNext) return;
+
+      const TOTAL   = track.children.length; // 9
+      const VISIBLE = 4;
+      let idx = 0;
+
+      function cardW() {
+        const c = track.children[0];
+        return c ? c.getBoundingClientRect().width + 24 : 0;
+      }
+
+      function update() {
+        track.style.transform = `translateX(-${idx * cardW()}px)`;
+        btnPrev.disabled = idx === 0;
+        btnNext.disabled = idx >= TOTAL - VISIBLE;
+        if (counter) {
+          const from = idx + 1;
+          const to   = Math.min(idx + VISIBLE, TOTAL);
+          counter.closest('.seg-carousel-counter').innerHTML =
+            `<span>${from}</span>&thinsp;–&thinsp;<span>${to}</span> of ${TOTAL}`;
+        }
+      }
+
+      btnNext.addEventListener('click', () => { if (idx < TOTAL - VISIBLE) { idx++; update(); } });
+      btnPrev.addEventListener('click', () => { if (idx > 0)               { idx--; update(); } });
+    })();
+
+    // ── Geography Tabs ──
+    document.querySelectorAll('.geo-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.geo-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.geo-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('geo-' + btn.dataset.geo).classList.add('active');
+      });
+    });
+
+    // ── Scroll progress bar ──
+    (function() {
+      const bar = document.getElementById('scroll-progress');
+      if (!bar) return;
+      function update() {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    // ── Animated number counters ──
+    (function() {
+      function animateCount(el, target) {
+        const duration = 1600;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3); // ease-out-cubic
+          el.textContent = Math.round(eased * target);
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(tick);
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseInt(el.dataset.target, 10);
+          if (!isNaN(target)) {
+            el.textContent = '0';
+            animateCount(el, target);
+          }
+          observer.unobserve(el);
+        });
+      }, { threshold: 0.6 });
+
+      document.querySelectorAll('.count-up[data-target]').forEach(el => observer.observe(el));
+    })();
+
+  </script>
+
+</body>
+</html>
