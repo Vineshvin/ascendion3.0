@@ -201,11 +201,7 @@
     }
     .hero-v2-video-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to bottom,
-        rgba(6,36,32,0.15) 0%,
-        rgba(6,36,32,0.5) 100%
-      );
+      background: none;
     }
 
     /* ══════════════════════════════════════════════
@@ -214,12 +210,12 @@
     .hero {
       height: 100vh; min-height: 100vh; max-height: 100vh;
       display: grid; grid-template-columns: 1fr 1fr;
-      overflow: hidden; position: relative; background: #E6E6E6;
+      overflow: hidden; position: relative; background: #ffffff;
     }
     .hero-left {
-      padding: 80px 72px 80px clamp(60px, calc((100vw - 1440px)/2 + 60px), 380px);
+      padding: 80px 60px;
       display: flex; flex-direction: column; gap: 32px;
-      justify-content: center; background: #E6E6E6;
+      justify-content: center; background: #ffffff;
       position: relative; z-index: 1;
     }
     .hero-label {
@@ -248,11 +244,11 @@
     }
     .btn-hero-primary::before {
       content: ''; position: absolute; inset: 0;
-      background: var(--a-mid); transform: translateX(-101%);
+      background: #008567; transform: translateX(-101%);
       transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index: -1;
     }
     .btn-hero-primary:hover::before { transform: translateX(0); }
-    .btn-hero-primary:hover { gap: 12px; color: var(--a-lime); }
+    .btn-hero-primary:hover { gap: 12px; color: #fff; }
     .btn-hero-ghost {
       font-family: 'Figtree', sans-serif; font-size: 14px; font-weight: 500;
       color: var(--ink); background: transparent;
@@ -263,10 +259,10 @@
     }
     .btn-hero-ghost::before {
       content: ''; position: absolute; inset: 0;
-      background: var(--ink); transform: translateX(-101%);
+      background: #00FAC2; transform: translateX(-101%);
       transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index: -1;
     }
-    .btn-hero-ghost:hover { border-color: var(--ink); color: #fff; gap: 12px; }
+    .btn-hero-ghost:hover { border-color: #00FAC2; color: var(--ink); gap: 12px; }
     .btn-hero-ghost:hover::before { transform: translateX(0); }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px; padding-top: 4px;
@@ -284,6 +280,7 @@
       background: var(--a-dark); z-index: 1;
     }
     #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-right-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
     .hero-live-tag {
       position: absolute; top: 44px; right: 36px; z-index: 3;
       background: rgba(0,0,0,0.55); backdrop-filter: blur(10px);
@@ -391,60 +388,397 @@
     }
 
     /* ══════════════════════════════════════════════
+       OUTCOMES V1 — DARK SPLIT (after hero)
+    ══════════════════════════════════════════════ */
+    .outcomes-v1 {
+      background: #0a0a0a;
+      padding: 100px 0 110px;
+    }
+    .ov1-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .ov1-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 4vw, 58px); font-weight: 400;
+      color: #fff; letter-spacing: -0.03em; line-height: 1.08;
+      position: sticky; top: 100px;
+    }
+    .ov1-heading em { font-style: normal; color: var(--a-cyan); }
+    .ov1-list {
+      display: flex; flex-direction: column;
+    }
+    .ov1-item {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 24px; align-items: baseline;
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .ov1-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+    .ov1-stat {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3vw, 42px); font-weight: 400;
+      color: #fff; letter-spacing: -0.04em; line-height: 1;
+    }
+    .ov1-desc {
+      font-family: 'Figtree', sans-serif;
+      font-size: 15px; line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+    }
+    /* reveal */
+    .ov1-heading { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .ov1-heading.visible { opacity: 1; transform: translateY(0); }
+    .ov1-item { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .ov1-item.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════════
+       OUTCOMES V1B — HORIZONTAL SCOREBOARD
+    ══════════════════════════════════════════════ */
+    .outcomes-v1b {
+      background: #060606;
+      padding: 0 0 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .ov1b-header {
+      max-width: 1440px; margin: 0 auto; padding: 120px 60px 0;
+    }
+    .ov1b-eyebrow-text {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: rgba(255,255,255,0.40); letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 28px;
+    }
+    .ov1b-eyebrow-text::before { content: ''; width: 20px; height: 1px; background: rgba(255,255,255,0.25); }
+    .ov1b-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 4vw, 58px); font-weight: 400;
+      color: #fff; letter-spacing: -0.03em; line-height: 1.08;
+    }
+    .ov1b-headline em { font-style: normal; color: var(--a-cyan); }
+    .ov1b-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 40px;
+      max-width: 1440px; margin-left: auto; margin-right: auto;
+    }
+    .ov1b-col {
+      padding: 60px 44px 100px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      display: flex; flex-direction: column; gap: 0;
+      position: relative; overflow: hidden;
+    }
+    .ov1b-col:first-child { padding-left: 60px; }
+    .ov1b-col:last-child { border-right: none; padding-right: 60px; }
+    .ov1b-col::before { display: none; }
+    .ov1b-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(56px, 6.5vw, 96px); font-weight: 300;
+      color: #fff; letter-spacing: -0.06em; line-height: 1;
+      margin-bottom: 32px;
+    }
+    .ov1b-num .ov1b-suffix {
+      font-size: 0.5em; color: var(--a-cyan); letter-spacing: -0.02em;
+    }
+    .ov1b-divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.10);
+      margin-bottom: 24px;
+    }
+    .ov1b-desc {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px; line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+      flex: 1;
+    }
+    /* Staggered reveal */
+    .ov1b-header { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .ov1b-header.ov1b-vis { opacity: 1; transform: translateY(0); }
+    .ov1b-col { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .ov1b-col.ov1b-vis { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════════
        OUTCOMES V2 — CARD GRID
     ══════════════════════════════════════════════ */
     .outcomes-v2 {
-      background: #0A0A0A;
-      padding: 100px 0 120px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      background: #f5f5f3;
+      padding: 100px 0 0;
     }
     .ov2-inner {
       max-width: 1440px; margin: 0 auto; padding: 0 60px;
     }
     .ov2-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 72px; gap: 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 64px; gap: 60px;
     }
     .ov2-headline {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(36px, 4vw, 60px); font-weight: 400;
-      color: #fff; letter-spacing: -0.03em; line-height: 1.0;
-      max-width: 720px;
+      color: #0a0a0a; letter-spacing: -0.03em; line-height: 1.05;
+      flex: 0 0 auto;
     }
-    .ov2-headline em { font-style: normal; color: var(--a-cyan); }
+    .ov2-headline em { font-style: normal; color: var(--a-main); }
+    .ov2-header-right {
+      display: flex; flex-direction: column; gap: 24px; max-width: 380px;
+    }
     .ov2-sub {
-      font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.45);
-      max-width: 340px; text-align: right;
+      font-size: 16px; line-height: 1.65; color: rgba(0,0,0,0.55);
     }
+    .ov2-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 26px;
+      border: 1px solid #0a0a0a;
+      background: transparent;
+      font-family: 'Figtree', sans-serif; font-size: 15px; font-weight: 500;
+      color: #0a0a0a; text-decoration: none; cursor: pointer; align-self: flex-start;
+      transition: background 0.22s, color 0.22s;
+    }
+    .ov2-cta:hover { background: #0a0a0a; color: #fff; }
     .ov2-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: rgba(255,255,255,0.07);
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(0,0,0,0.12);
+      border-left: 1px solid rgba(0,0,0,0.12);
+      margin-top: 0;
     }
+    .ov2-inner { padding-bottom: 0; }
     .ov2-card {
-      background: #0A0A0A;
-      padding: 48px 40px 52px;
-      display: flex; flex-direction: column; gap: 24px;
-      transition: background 0.3s;
+      background: #f5f5f3;
+      border-right: 1px solid rgba(0,0,0,0.12);
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+      padding: 52px 44px 48px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 300px;
+      transition: background 0.25s;
     }
-    .ov2-card:hover { background: #111; }
+    .ov2-card:hover { background: #eeeeed; }
+    .ov2-card-top { display: flex; flex-direction: column; gap: 16px; }
     .ov2-card-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(56px, 6vw, 88px); font-weight: 400;
-      color: #fff; letter-spacing: -0.05em; line-height: 1;
+      font-size: clamp(52px, 5.5vw, 80px); font-weight: 400;
+      color: #0a0a0a; letter-spacing: -0.05em; line-height: 1;
     }
-    .ov2-card-num span { color: var(--a-cyan); }
-    .ov2-card-divider {
-      width: 32px; height: 1px; background: rgba(255,255,255,0.15);
+    .ov2-card-num sup {
+      font-size: 0.45em; vertical-align: super; color: var(--a-main);
     }
     .ov2-card-desc {
-      font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.5);
+      font-family: 'Figtree', sans-serif;
+      font-size: 15px; line-height: 1.7; color: rgba(0,0,0,0.58);
+    }
+    .ov2-card-bottom { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
+    .ov2-card-tags {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .ov2-tag-cat {
+      font-family: 'Figtree', sans-serif; font-size: 14px; font-weight: 700;
+      color: #0a0a0a;
+    }
+    .ov2-tag-dot { color: rgba(0,0,0,0.30); font-size: 14px; }
+    .ov2-tag-aava {
+      font-family: 'Figtree', sans-serif; font-size: 14px; font-weight: 500;
+      color: var(--a-main);
     }
     .ov2-label {
       font-family: 'DM Mono', monospace; font-size: 11px;
-      color: var(--a-cyan); letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--a-main); letter-spacing: 0.16em; text-transform: uppercase;
       display: flex; align-items: center; gap: 10px; margin-bottom: 32px;
     }
-    .ov2-label::before { content: ''; width: 20px; height: 1px; background: var(--a-cyan); }
+    .ov2-label::before { content: ''; width: 20px; height: 1px; background: var(--a-main); }
+
+    /* ══════════════════════════════════════════════
+       OUTCOMES V3 — GLASSMORPHISM + ABSTRACT BG
+    ══════════════════════════════════════════════ */
+    .outcomes-v3 {
+      position: relative; z-index: 2;
+      padding: 130px 0 140px;
+      min-height: 82vh; display: flex; align-items: center;
+    }
+    .ov3-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('Images/background abstract.png');
+      background-size: cover; background-position: center center;
+    }
+    .ov3-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .ov3-curves {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;
+    }
+    .ov3-curves svg { width: 100%; height: 100%; position: absolute; inset: 0; }
+    .ov3-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(90deg, rgba(5,15,35,0.22) 0%, transparent 55%);
+    }
+    .ov3-inner {
+      position: relative; z-index: 3;
+      max-width: 1440px; margin: 0 auto; padding: 0 60px; width: 100%;
+    }
+    .ov3-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; margin-bottom: 56px;
+    }
+    .ov3-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 4vw, 60px); font-weight: 400;
+      color: #fff; letter-spacing: -0.03em; line-height: 1.05;
+      flex: 0 0 auto; max-width: 520px;
+    }
+    .ov3-headline em { font-style: normal; color: var(--a-cyan); }
+    .ov3-header-right {
+      display: flex; flex-direction: column; gap: 28px;
+      max-width: 380px;
+    }
+    .ov3-sub {
+      font-family: 'Figtree', sans-serif;
+      font-size: 16px; line-height: 1.65;
+      color: rgba(255,255,255,0.72);
+    }
+    .ov3-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      border: 1px solid rgba(255,255,255,0.55);
+      background: transparent;
+      font-family: 'Figtree', sans-serif; font-size: 15px; font-weight: 500;
+      color: #fff; text-decoration: none; cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      align-self: flex-start;
+    }
+    .ov3-cta:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.85); }
+    .ov3-label {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: rgba(255,255,255,0.70); letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 56px;
+    }
+    .ov3-label::before { content: ''; width: 20px; height: 1px; background: rgba(255,255,255,0.55); }
+    .ov3-rows { display: flex; flex-direction: column; gap: 16px; }
+    .ov3-row { display: flex; align-items: stretch; gap: 16px; }
+    .ov3-card {
+      flex: 1;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(28px) saturate(1.5);
+      -webkit-backdrop-filter: blur(28px) saturate(1.5);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 0;
+      padding: 40px 32px 36px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 460px;
+      cursor: default;
+    }
+    .ov3-card-top { display: flex; flex-direction: column; gap: 12px; }
+    .ov3-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(44px, 4.8vw, 72px); font-weight: 400;
+      color: #fff; letter-spacing: -0.05em; line-height: 1;
+    }
+    .ov3-card-desc {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px; line-height: 1.65;
+      color: rgba(255,255,255,0.68);
+    }
+    .ov3-card-bottom { display: flex; flex-direction: column; }
+    .ov3-divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.50);
+      margin-bottom: 16px;
+    }
+    .ov3-card-tags {
+      display: flex; align-items: center; gap: 7px;
+    }
+    .ov3-tag-cat {
+      font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.88);
+    }
+    .ov3-tag-dot { color: rgba(255,255,255,0.35); font-size: 13px; }
+    .ov3-tag-aava {
+      font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.10em;
+      color: var(--a-cyan); text-transform: uppercase;
+    }
+    /* Arrow between cards */
+    .ov3-arrow { display: none; }
+    .ov3-arrow svg { display: none; }
+    .ov3-card { opacity: 1; transform: none; }
+    .ov3-label-wrap { opacity: 1; transform: none; }
+
+    /* ══════════════════════════════════════════════
+       OUTCOMES V4 — LIGHT GRID
+    ══════════════════════════════════════════════ */
+    .outcomes-v4 {
+      background: #f0f0ed;
+      padding: 0 0 0;
+    }
+    .ov4-inner {
+      max-width: 1440px; margin: 0 auto; padding: 100px 60px 72px;
+    }
+    .ov4-header {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 60px;
+    }
+    .ov4-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 5vw, 78px); font-weight: 400;
+      color: #0a0a0a; letter-spacing: -0.04em; line-height: 1.0;
+    }
+    .ov4-headline em { font-style: normal; color: var(--a-main); }
+    .ov4-header-right {
+      max-width: 380px; padding-bottom: 6px; flex-shrink: 0;
+    }
+    .ov4-sub {
+      font-family: 'Figtree', sans-serif; font-size: 15px; line-height: 1.65;
+      color: #666; margin-bottom: 28px;
+    }
+    .ov4-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      border: 1.5px solid #0a0a0a;
+      background: transparent;
+      font-family: 'Figtree', sans-serif; font-size: 15px; font-weight: 500;
+      color: #0a0a0a; text-decoration: none; cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .ov4-cta:hover { background: #0a0a0a; color: #fff; }
+    .ov4-grid-wrap { width: 100%; border-top: 1px solid rgba(0,0,0,0.10); }
+    .ov4-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      max-width: 1440px; margin: 0 auto;
+    }
+    .ov4-card {
+      padding: 72px 44px 72px;
+      border-right: 1px solid rgba(0,0,0,0.10);
+      border-bottom: 1px solid rgba(0,0,0,0.10);
+      display: flex; flex-direction: column; gap: 0;
+      background: #f0f0ed;
+      position: relative; overflow: hidden;
+    }
+    .ov4-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--a-main);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ov4-card:hover::before { width: 100%; }
+    .ov4-card:nth-child(3n+1) { padding-left: 60px; }
+    .ov4-card:nth-child(3n) { border-right: none; padding-right: 60px; }
+    .ov4-card:nth-last-child(-n+3) { border-bottom: none; }
+    .ov4-card--mid { background: #e6e6e2; }
+    .ov4-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(64px, 7vw, 110px); font-weight: 300;
+      color: #0a0a0a; letter-spacing: -0.05em; line-height: 1;
+      margin-bottom: 28px;
+    }
+    .ov4-suffix { font-size: 0.48em; letter-spacing: -0.02em; }
+    .ov4-suffix sup { font-size: 0.6em; vertical-align: super; }
+    .ov4-desc {
+      font-family: 'Figtree', sans-serif; font-size: 14px; line-height: 1.7;
+      color: #555; flex: 1; margin-bottom: 40px;
+    }
+    .ov4-tags { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+    .ov4-tag-cat {
+      font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600; color: #0a0a0a;
+    }
+    .ov4-dot { color: rgba(0,0,0,0.30); font-size: 13px; }
+    .ov4-tag-aava {
+      font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.10em;
+      color: var(--a-main); text-transform: uppercase;
+    }
 
     /* ══════════════════════════════════════════════
        IMPACT BAR (lime)
@@ -455,10 +789,11 @@
       max-width: 1440px; margin: 0 auto;
     }
     .impact-item {
-      padding: 56px 48px; border-right: 1px solid rgba(6,36,32,0.15);
+      padding: 56px 44px; border-right: 1px solid rgba(6,36,32,0.15);
       display: flex; flex-direction: column; gap: 8px;
     }
-    .impact-item:last-child { border-right: none; }
+    .impact-item:first-child { padding-left: 60px; }
+    .impact-item:last-child { border-right: none; padding-right: 60px; }
     .impact-number {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(48px, 5vw, 76px); font-weight: 400;
@@ -1195,7 +1530,7 @@
       max-width: 1440px; margin: 0 auto; padding: 0 60px;
     }
     .fsig-header {
-      margin-bottom: 64px;
+      margin-bottom: 0;
       opacity: 0; transform: translateY(18px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
@@ -1213,6 +1548,12 @@
     /* Flow row */
     .fsig-flow {
       display: flex; align-items: center;
+    }
+    .fsig-image-wrap {
+      width: 100%; margin-top: 0;
+    }
+    .fsig-diagram-img {
+      width: 100%; height: auto; display: block;
     }
     /* ── Input panel ── */
     .fsig-panel-input {
@@ -1375,25 +1716,27 @@
     }
     .fsig-panel-result.fsig-vis { animation: fsigResultGlow 4.5s ease-in-out infinite 1.8s; }
 
-    .statement-band {
+    /* Combined background wrapper */
+    .combined-bg-wrap {
       position: relative; overflow: hidden;
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--a-dark);
     }
-    .statement-band-bg {
+    .combined-bg-img {
       position: absolute; inset: 0; z-index: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
     }
-    .statement-band-overlay {
+    .combined-bg-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to bottom,
-        rgba(6,36,32,0.2) 0%,
-        rgba(6,36,32,0.55) 60%,
-        rgba(6,36,32,0.85) 100%
-      );
+      background: rgba(0, 0, 0, 0.60);
+    }
+    .statement-band {
+      position: relative; z-index: 2;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: transparent;
+    }
+    .statement-band-overlay {
+      display: none;
     }
     .statement-band-inner {
       position: relative; z-index: 2;
@@ -1608,9 +1951,8 @@
   </nav>
 
   <!-- HERO -->
-  <!-- HERO OPTION 2 — VIDEO GRID -->
-  <section class="hero-v2">
-    <!-- Left: text panel -->
+  <!-- HERO OPTION 2 — VIDEO GRID (hidden, restore when ready) -->
+  <section class="hero-v2" style="display:none">
     <div class="hero-v2-left">
       <h1 class="hero-headline">
         Lifting lives<br/>by building the<br/><em>world's most</em><br/><em>important software</em>
@@ -1629,10 +1971,9 @@
         </a>
       </div>
     </div>
-    <!-- Right: video panel -->
     <div class="hero-v2-right">
       <video class="hero-v2-video" autoplay muted loop playsinline>
-        <source src="design reference/images/banner_Upscaled_F.mp4" type="video/mp4"/>
+        <source src="Images/banner_Upscaled_F.mp4" type="video/mp4"/>
       </video>
       <div class="hero-v2-video-overlay"></div>
     </div>
@@ -1642,7 +1983,7 @@
   <section class="hero">
     <div class="hero-left">
       <h1 class="hero-headline">
-        Lifting lives<br/>by building the<br/><em>world's most</em><br/><em>important software</em>
+        Lifting lives<br/>by building the<br/><em style="color:#008567">world's most<br/>important software</em>
       </h1>
       <p class="hero-sub">
         We built Ascendion around a new operating model for software. Humans and AI agents, working as one system. AAVA is our engine. Engineering to the Power of AI™ is the result. As an <strong>AI-Native company</strong>, Artificial Intelligence is the operating fabric of how the work gets done, not a tool layered onto our work.
@@ -1659,7 +2000,9 @@
       </div>
     </div>
     <div class="hero-right">
-      <canvas id="heroCanvas"></canvas>
+      <video class="hero-right-video" autoplay muted loop playsinline>
+        <source src="Images/banner video.mov" type="video/mp4"/>
+      </video>
       <div class="hero-vert-text">Coordinated Intelligence</div>
       <div class="scroll-indicator">
         <div class="scroll-indicator-line"></div>
@@ -1667,35 +2010,27 @@
     </div>
   </section>
 
-  <!-- OUTCOMES V2 — CARD GRID -->
-  <section class="outcomes-v2">
-    <div class="ov2-inner">
-
-      <div class="ov2-header reveal">
-        <h2 class="ov2-headline">Outcomes show up in<br/><em>millions of lives.</em></h2>
-        <p class="ov2-sub">Real impact. Working production systems. Measurable business outcomes.</p>
+  <!-- OUTCOMES V1B — HORIZONTAL SCOREBOARD -->
+  <section class="outcomes-v1b">
+    <div class="ov1b-header">
+      <h2 class="ov1b-headline">Outcomes show up in<br/><em>millions of lives.</em></h2>
+    </div>
+    <div class="ov1b-grid">
+      <div class="ov1b-col" style="transition-delay:0.05s">
+        <div class="ov1b-num">39<span class="ov1b-suffix">M</span></div>
+        <div class="ov1b-desc">Americans with better access to care. 650+ AAVA™ agents in production. Zero downtime.</div>
       </div>
-      <div class="ov2-grid">
-        <div class="ov2-card reveal">
-          <div class="ov2-card-num">39<span>M</span></div>
-          <div class="ov2-card-divider"></div>
-          <div class="ov2-card-desc">Americans with better access to care. 650+ AAVA™ agents in production. Zero downtime.</div>
-        </div>
-        <div class="ov2-card reveal reveal-delay-1">
-          <div class="ov2-card-num">5.2<span>M</span></div>
-          <div class="ov2-card-divider"></div>
-          <div class="ov2-card-desc">Banking customers, protected at a 200-year-old UK bank.</div>
-        </div>
-        <div class="ov2-card reveal reveal-delay-2">
-          <div class="ov2-card-num">6<span>K</span></div>
-          <div class="ov2-card-divider"></div>
-          <div class="ov2-card-desc">Engineers freed at a Fortune 100 to build instead of maintain.</div>
-        </div>
-        <div class="ov2-card reveal reveal-delay-3">
-          <div class="ov2-card-num" style="font-size: clamp(40px,4.5vw,64px); padding-top: 12px;">Weeks</div>
-          <div class="ov2-card-divider"></div>
-          <div class="ov2-card-desc">A 200-year-old UK bank rebuilt in weeks rather than months.</div>
-        </div>
+      <div class="ov1b-col" style="transition-delay:0.15s">
+        <div class="ov1b-num">5.2<span class="ov1b-suffix">M</span></div>
+        <div class="ov1b-desc">Banking customers, protected at a 200-year-old UK bank.</div>
+      </div>
+      <div class="ov1b-col" style="transition-delay:0.25s">
+        <div class="ov1b-num">6<span class="ov1b-suffix">K</span></div>
+        <div class="ov1b-desc">Engineers freed at a Fortune 100 to build instead of maintain.</div>
+      </div>
+      <div class="ov1b-col" style="transition-delay:0.35s">
+        <div class="ov1b-num" style="font-size:clamp(40px,4.5vw,68px);padding-top:18px">Weeks</div>
+        <div class="ov1b-desc">A 200-year-old UK bank rebuilt in weeks rather than months.</div>
       </div>
     </div>
   </section>
@@ -1711,140 +2046,148 @@
         <p class="fsig-sub">Two forces combined and amplified — this is what produces engineering at AI scale.</p>
       </div>
 
-      <div class="fsig-flow">
+      <div class="fsig-image-wrap">
+        <img src="Images/info final 2.1.png" alt="How the engine works — formula diagram" class="fsig-diagram-img"/>
+      </div>
+    </div>
+  </section>
 
-        <!-- Input panel -->
-        <div class="fsig-panel-input" id="fsigPanel1">
-          <div class="fsig-chip">
-            <div class="fsig-chip-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-              </svg>
+  <!-- COMBINED: STATEMENT BAND + OUTCOMES V3 -->
+  <div class="combined-bg-wrap">
+    <img class="combined-bg-img" src="Images/background abstract.png" alt="" aria-hidden="true"/>
+    <div class="combined-bg-overlay"></div>
+
+    <!-- STATEMENT BAND -->
+    <div class="statement-band">
+      <div class="statement-band-inner" id="statementBand">
+        <span class="statement-text">
+          <span class="statement-line"><span class="statement-line-inner">Production.</span></span>
+          <span class="statement-line"><span class="statement-line-inner">Not pilots.</span></span>
+        </span>
+      </div>
+    </div>
+
+  <!-- OUTCOMES V3 — GLASSMORPHISM + ABSTRACT BG -->
+  <section class="outcomes-v3">
+    <div class="ov3-bg" style="display:none"></div>
+    <div class="ov3-overlay"></div>
+    <div class="ov3-inner">
+      <div class="ov3-label-wrap">
+        <div class="ov3-header">
+          <h2 class="ov3-headline">Engineering to the<br/><em>Power of AI™</em></h2>
+          <div class="ov3-header-right">
+            <p class="ov3-sub">Real impact. Working production systems. Measurable business outcomes.</p>
+            <a href="#" class="ov3-cta">See How We Deliver &nbsp;→</a>
+          </div>
+        </div>
+      </div>
+      <div class="ov3-rows">
+
+        <!-- Row 1 -->
+        <div class="ov3-row">
+          <div class="ov3-card" style="transition-delay:0.05s">
+            <div class="ov3-card-top">
+              <div class="ov3-num">$500<span style="font-size:0.52em">M<sup style="font-size:0.65em;vertical-align:super">+</sup></span></div>
+              <div class="ov3-card-desc">projected over five years for a Fortune 100 technology company.</div>
             </div>
-            <div class="fsig-chip-text">Human<br/>intelligence</div>
-          </div>
-          <div class="fsig-chip-plus">+ AND +</div>
-          <div class="fsig-chip">
-            <div class="fsig-chip-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="10" rx="1"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
-              </svg>
-            </div>
-            <div class="fsig-chip-text">Agentic<br/>execution</div>
-          </div>
-          <div class="fsig-panel-label">Core system</div>
-        </div>
-
-        <!-- Connector × -->
-        <div class="fsig-conn" id="fsigConn1">
-          <div class="fsig-conn-line"></div>
-          <div class="fsig-dots">
-            <div class="fsig-dot"></div>
-            <div class="fsig-dot"></div>
-            <div class="fsig-dot"></div>
-          </div>
-          <div class="fsig-conn-op">×</div>
-        </div>
-
-        <!-- AAVA Engine -->
-        <div class="fsig-engine" id="fsigEngine">
-          <div class="fsig-engine-wrap">
-            <div class="fsig-ring"></div>
-            <div class="fsig-ring"></div>
-            <div class="fsig-engine-circle">
-              <span class="fsig-engine-name">AAVA</span>
-              <span class="fsig-engine-sub">AI Platform</span>
+            <div class="ov3-card-bottom">
+              <div class="ov3-divider"></div>
+              <div class="ov3-card-tags">
+                <span class="ov3-tag-cat">Technology</span>
+                <span class="ov3-tag-dot">·</span>
+                <span class="ov3-tag-aava">AAVA</span>
+              </div>
             </div>
           </div>
-          <div class="fsig-engine-label">Engine</div>
-        </div>
-
-        <!-- Connector = -->
-        <div class="fsig-conn" id="fsigConn2">
-          <div class="fsig-conn-line"></div>
-          <div class="fsig-dots">
-            <div class="fsig-dot"></div>
-            <div class="fsig-dot"></div>
-            <div class="fsig-dot"></div>
+          <div class="ov3-arrow" style="transition-delay:0.12s">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="rgba(255,255,255,0.70)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="fsig-conn-op">=</div>
+          <div class="ov3-card" style="transition-delay:0.18s">
+            <div class="ov3-card-top">
+              <div class="ov3-num">$300<span style="font-size:0.52em">M</span></div>
+              <div class="ov3-card-desc">annual savings for a top-five global bank. 10M+ customers, served better.</div>
+            </div>
+            <div class="ov3-card-bottom">
+              <div class="ov3-divider"></div>
+              <div class="ov3-card-tags">
+                <span class="ov3-tag-cat">Banking</span>
+                <span class="ov3-tag-dot">·</span>
+                <span class="ov3-tag-aava">AAVA</span>
+              </div>
+            </div>
+          </div>
+          <div class="ov3-arrow" style="transition-delay:0.25s">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="rgba(255,255,255,0.70)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="ov3-card" style="transition-delay:0.32s">
+            <div class="ov3-card-top">
+              <div class="ov3-num">5.2<span style="font-size:0.52em">M</span></div>
+              <div class="ov3-card-desc">customers protected at a 200-year-old UK bank.</div>
+            </div>
+            <div class="ov3-card-bottom">
+              <div class="ov3-divider"></div>
+              <div class="ov3-card-tags">
+                <span class="ov3-tag-cat">Banking</span>
+                <span class="ov3-tag-dot">·</span>
+                <span class="ov3-tag-aava">AAVA</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Result panel -->
-        <div class="fsig-panel-result" id="fsigResult">
-          <span class="fsig-result-name">Engineering<sup class="rai">AI</sup><sup class="rtm">™</sup></span>
-          <p class="fsig-result-desc">Not AI layered on top of engineering — AI as the operating fabric of how the work gets done.</p>
-          <div class="fsig-result-label">Result.</div>
-        </div>
 
       </div>
     </div>
   </section>
 
-  <!-- STATEMENT BAND -->
-  <div class="statement-band">
-    <img class="statement-band-bg" src="Images/Production.Not pilots..png" alt="" aria-hidden="true"/>
-    <div class="statement-band-overlay"></div>
-    <div class="statement-band-inner" id="statementBand">
-      <span class="statement-text">
-        <span class="statement-line"><span class="statement-line-inner">Production.</span></span>
-        <span class="statement-line"><span class="statement-line-inner">Not pilots.</span></span>
-      </span>
-    </div>
-  </div>
+  </div><!-- /combined-bg-wrap -->
 
-  <!-- PRODUCTION — NOT PILOTS -->
-  <section class="production">
-    <div class="production-header reveal">
-      <div>
-        <h2 class="section-h2">
-          Engineering to the<br/><em>Power of AI™</em>
-        </h2>
-      </div>
-      <div class="production-header-right">
-        <p>Real impact. Working production systems. Measurable business outcomes.</p>
-        <a href="#" class="btn-outline">
-          See How We Deliver
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="impact-grid-wrap">
-      <div class="impact-grid reveal">
-        <div class="ig-card">
-          <div class="ig-metric">$500M<sup>+</sup></div>
-          <div class="ig-desc">projected over five years for a Fortune 100 technology company.</div>
-          <div class="ig-footer"><span class="ig-industry">Technology</span><span class="ig-aava">· AAVA</span></div>
-        </div>
-        <div class="ig-card">
-          <div class="ig-metric">$300M</div>
-          <div class="ig-desc">annual savings for a top-five global bank. 10M+ customers, served better.</div>
-          <div class="ig-footer"><span class="ig-industry">Banking</span><span class="ig-aava">· AAVA</span></div>
-        </div>
-        <div class="ig-card">
-          <div class="ig-metric">5.2M</div>
-          <div class="ig-desc">customers protected at a 200-year-old UK bank.</div>
-          <div class="ig-footer"><span class="ig-industry">Banking</span><span class="ig-aava">· AAVA</span></div>
-        </div>
-        <div class="ig-card">
-          <div class="ig-metric">1M</div>
-          <div class="ig-desc">eligible members enrolled on time. Star ratings up. $15M saved.</div>
-          <div class="ig-footer"><span class="ig-industry">Healthcare</span><span class="ig-aava">· AAVA</span></div>
-        </div>
-        <div class="ig-card">
-          <div class="ig-metric">39M</div>
-          <div class="ig-desc">Americans with better access to care. 650+ AAVA™ agents in production. Zero downtime.</div>
-          <div class="ig-footer"><span class="ig-industry">Healthcare</span><span class="ig-aava">· AAVA</span></div>
-        </div>
-        <div class="ig-card">
-          <div class="ig-metric">900K<sup>+</sup></div>
-          <div class="ig-desc">lines of 1980s code reverse-engineered in three weeks. 30% the cost. 50% the time.</div>
-          <div class="ig-footer"><span class="ig-industry">Banking</span><span class="ig-aava">· AAVA</span></div>
+  <!-- OUTCOMES V4 — LIGHT GRID (hidden, restore when ready) -->
+  <!-- <section class="outcomes-v4">
+    <div class="ov4-inner">
+      <div class="ov4-header">
+        <h2 class="ov4-headline">Engineering to the<br/><em>Power of AI™</em></h2>
+        <div class="ov4-header-right">
+          <p class="ov4-sub">Real impact. Working production systems.<br/>Measurable business outcomes.</p>
+          <a href="#" class="ov4-cta">See How We Deliver &nbsp;→</a>
         </div>
       </div>
     </div>
-  </section>
+    <div class="ov4-grid-wrap">
+      <div class="ov4-grid">
+        <div class="ov4-card">
+          <div class="ov4-num">$500<span class="ov4-suffix">M<sup>+</sup></span></div>
+          <div class="ov4-desc">projected over five years for a Fortune 100 technology company.</div>
+          <div class="ov4-tags"><span class="ov4-tag-cat">Technology</span><span class="ov4-dot">·</span><span class="ov4-tag-aava">AAVA</span></div>
+        </div>
+        <div class="ov4-card ov4-card--mid">
+          <div class="ov4-num">$300<span class="ov4-suffix">M</span></div>
+          <div class="ov4-desc">annual savings for a top-five global bank. 10M+ customers, served better.</div>
+          <div class="ov4-tags"><span class="ov4-tag-cat">Banking</span><span class="ov4-dot">·</span><span class="ov4-tag-aava">AAVA</span></div>
+        </div>
+        <div class="ov4-card">
+          <div class="ov4-num">5.2<span class="ov4-suffix">M</span></div>
+          <div class="ov4-desc">customers protected at a 200-year-old UK bank.</div>
+          <div class="ov4-tags"><span class="ov4-tag-cat">Banking</span><span class="ov4-dot">·</span><span class="ov4-tag-aava">AAVA</span></div>
+        </div>
+        <div class="ov4-card">
+          <div class="ov4-num">1<span class="ov4-suffix">M</span></div>
+          <div class="ov4-desc">eligible members enrolled on time. Star ratings up. $15M saved.</div>
+          <div class="ov4-tags"><span class="ov4-tag-cat">Healthcare</span><span class="ov4-dot">·</span><span class="ov4-tag-aava">AAVA</span></div>
+        </div>
+        <div class="ov4-card ov4-card--mid">
+          <div class="ov4-num">39<span class="ov4-suffix">M</span></div>
+          <div class="ov4-desc">Americans with better access to care. 650+ AAVA™ agents in production. Zero downtime.</div>
+          <div class="ov4-tags"><span class="ov4-tag-cat">Healthcare</span><span class="ov4-dot">·</span><span class="ov4-tag-aava">AAVA</span></div>
+        </div>
+        <div class="ov4-card">
+          <div class="ov4-num">900<span class="ov4-suffix">K<sup>+</sup></span></div>
+          <div class="ov4-desc">lines of 1980s code reverse-engineered in three weeks. 30% the cost. 50% the time.</div>
+          <div class="ov4-tags"><span class="ov4-tag-cat">Banking</span><span class="ov4-dot">·</span><span class="ov4-tag-aava">AAVA</span></div>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
   <!-- SERVICES / PRACTICES -->
   <section class="services">
@@ -2186,6 +2529,28 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
+
+    /* ── Outcomes V3 reveal ── */
+    (function() {
+      const ov3Cards = document.querySelectorAll('.ov3-card, .ov3-arrow, .ov3-label-wrap');
+      if (!ov3Cards.length) return;
+      const ov3io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('ov3-vis'); ov3io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      ov3Cards.forEach(el => ov3io.observe(el));
+    })();
+
+    /* ── Outcomes V1B reveal ── */
+    (function() {
+      const els = document.querySelectorAll('.ov1b-col, .ov1b-header');
+      if (!els.length) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ov1b-vis'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    })();
 
     /* ── Statement band scroll parallax ── */
     (function() {
