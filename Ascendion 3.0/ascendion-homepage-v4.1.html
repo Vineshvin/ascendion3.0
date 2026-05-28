@@ -452,135 +452,190 @@
     .v41-test-dot.active { background: #0A0A0A; }
 
     /* ══════════════════════════════════════════════
-       WHO WE ARE
+       WHO WE ARE — MANIFESTO LAYOUT
     ══════════════════════════════════════════════ */
     .v41-about {
-      background: #0D0D0D;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 140px 0;
+      background: #0A0A0A;
+      border-top: 1px solid rgba(255,255,255,0.06);
       overflow: hidden;
-      position: relative;
     }
-    /* Subtle cyan glow top-right */
-    .v41-about::before {
-      content: '';
-      position: absolute; top: -160px; right: -100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(ellipse, rgba(0,255,209,0.04) 0%, transparent 70%);
-      pointer-events: none;
+
+    /* ── A. Top rule + heading block ── */
+    .v41-about-top {
+      max-width: 1440px; margin: 0 auto;
+      padding: 80px 60px 0;
+      display: flex; align-items: center; gap: 24px;
     }
-    .v41-about-inner {
-      max-width: 1440px; margin: 0 auto; padding: 0 60px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 100px; align-items: start;
-    }
-    /* Left: sticky heading */
-    .v41-about-left {
-      position: sticky; top: 100px;
-    }
-    .v41-about-label {
+    .v41-about-eyebrow {
       font-family: 'DM Mono', monospace; font-size: 10px;
       color: var(--cyan); letter-spacing: 0.22em; text-transform: uppercase;
-      margin-bottom: 28px; display: flex; align-items: center; gap: 12px;
+      white-space: nowrap;
     }
-    .v41-about-label::before {
-      content: ''; width: 28px; height: 1px; background: var(--cyan);
+    .v41-about-rule { flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
+
+    /* Heading row: left mega-text + right accent tag */
+    .v41-about-hero {
+      max-width: 1440px; margin: 0 auto;
+      padding: 48px 60px 72px;
+      display: grid; grid-template-columns: 1fr 340px;
+      gap: 60px; align-items: end;
     }
     .v41-about-heading {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(30px, 3vw, 48px);
-      font-weight: 400; line-height: 1.06;
-      letter-spacing: -0.03em; color: #fff;
+      font-size: clamp(44px, 5.5vw, 80px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.04em; color: #fff;
     }
-    .v41-about-heading em {
-      font-style: normal; color: var(--cyan);
+    .v41-about-heading em { font-style: normal; color: var(--cyan); }
+    .v41-about-tag {
+      display: flex; flex-direction: column; gap: 12px;
+      padding-bottom: 6px;
     }
-    /* Right: content stacks */
-    .v41-about-right {
-      display: flex; flex-direction: column; gap: 48px;
+    .v41-about-tag-line {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.14em;
+      text-transform: uppercase; line-height: 1.8;
     }
-    /* Three paragraphs with left accent bar */
-    .v41-about-paras {
-      display: flex; flex-direction: column; gap: 0;
-    }
-    .v41-about-para {
-      padding: 22px 0 22px 24px;
-      border-left: 2px solid rgba(255,255,255,0.07);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      font-size: 16px; line-height: 1.8;
-      color: rgba(255,255,255,0.55);
-      transition: border-left-color 0.35s, color 0.35s;
-    }
-    .v41-about-para:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
-    .v41-about-para:hover { border-left-color: var(--cyan); color: rgba(255,255,255,0.88); }
+    .v41-about-tag-line strong { color: rgba(255,255,255,0.7); font-weight: 500; }
 
-    /* "We are not" — strikethrough block */
-    .v41-not-block {
-      display: flex; flex-direction: column; gap: 0;
+    /* ── B. Numbered mission cards (3-col) ── */
+    .v41-mission-grid {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: grid; grid-template-columns: repeat(3, 1fr);
     }
-    .v41-not-eyebrow {
+    .v41-mission-card {
+      position: relative; overflow: hidden;
+      padding: 52px 48px 56px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.4s;
+    }
+    .v41-mission-card:last-child { border-right: none; }
+    .v41-mission-card:hover { background: rgba(0,255,209,0.025); }
+    /* Watermark number */
+    .v41-mission-num {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(80px, 10vw, 140px);
+      font-weight: 500; line-height: 1;
+      color: var(--cyan); opacity: 0.05;
+      position: absolute; top: 24px; right: 32px;
+      transition: opacity 0.4s; pointer-events: none;
+      letter-spacing: -0.06em;
+    }
+    .v41-mission-card:hover .v41-mission-num { opacity: 0.1; }
+    /* Card label */
+    .v41-mission-idx {
       font-family: 'DM Mono', monospace; font-size: 10px;
-      color: rgba(255,255,255,0.25); letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .v41-mission-text {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(15px, 1.2vw, 17px); line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      position: relative; z-index: 1;
+      transition: color 0.35s;
+    }
+    .v41-mission-card:hover .v41-mission-text { color: rgba(255,255,255,0.8); }
+    /* Bottom accent line on hover */
+    .v41-mission-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--cyan);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    .v41-mission-card:hover::after { transform: scaleX(1); }
+
+    /* ── C. "We are NOT" rejection band ── */
+    .v41-not-band {
+      background: #0E0E0E;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .v41-not-band-label {
+      max-width: 1440px; margin: 0 auto; padding: 40px 60px 0;
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: rgba(255,255,255,0.2); letter-spacing: 0.22em; text-transform: uppercase;
+    }
+    .v41-not-cols {
+      max-width: 1440px; margin: 0 auto; padding: 28px 60px 52px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .v41-not-col {
+      padding: 32px 40px;
+      border-right: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+    }
+    .v41-not-col:first-child { padding-left: 0; }
+    .v41-not-col:last-child { border-right: none; }
+    .v41-not-col-label {
+      font-family: 'DM Mono', monospace; font-size: 9px;
+      color: rgba(255,255,255,0.15); letter-spacing: 0.18em; text-transform: uppercase;
       margin-bottom: 14px;
     }
-    .v41-not-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+    .v41-not-big {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px; font-weight: 400;
-      color: rgba(255,255,255,0.22);
-      position: relative;
-    }
-    .v41-not-item:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
-    .v41-not-item span {
+      font-size: clamp(22px, 2.8vw, 40px);
+      font-weight: 400; letter-spacing: -0.025em;
+      color: rgba(255,255,255,0.18);
+      line-height: 1.1;
       position: relative; display: inline-block;
+      transition: color 0.3s;
     }
-    .v41-not-item span::after {
+    /* thick diagonal slash as strikethrough */
+    .v41-not-big::before {
       content: '';
-      position: absolute; left: 0; right: 0; top: 50%;
-      height: 1px; background: rgba(255,255,255,0.2);
+      position: absolute;
+      left: -4px; right: -4px; top: 46%;
+      height: 2px;
+      background: rgba(255,255,255,0.16);
+      transform: rotate(-1.5deg);
+      transition: background 0.3s;
     }
-    .v41-not-x {
-      width: 18px; height: 18px; flex-shrink: 0;
-      border: 1px solid rgba(255,255,255,0.12);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .v41-not-x svg { width: 8px; height: 8px; stroke: rgba(255,255,255,0.2); }
+    .v41-not-col:hover .v41-not-big { color: rgba(255,255,255,0.35); }
+    .v41-not-col:hover .v41-not-big::before { background: rgba(255, 80, 80, 0.4); }
 
-    /* Power statement */
-    .v41-about-power {
-      position: relative;
-      padding: 36px 36px 36px 40px;
-      background: rgba(0,255,209,0.03);
-      border: 1px solid rgba(0,255,209,0.12);
+    /* ── D. Power statement + CTA ── */
+    .v41-power-block {
+      max-width: 1440px; margin: 0 auto;
+      padding: 100px 60px 120px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
     }
-    .v41-about-power::before {
-      content: '';
-      position: absolute; top: 0; left: 0; bottom: 0;
-      width: 3px; background: var(--cyan);
-    }
-    .v41-about-power p {
+    .v41-power-statement {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(18px, 1.8vw, 22px);
-      font-weight: 500; color: #fff;
-      line-height: 1.55; letter-spacing: -0.02em;
+      font-size: clamp(26px, 3vw, 44px);
+      font-weight: 400; line-height: 1.12;
+      letter-spacing: -0.03em; color: #fff;
     }
-    .v41-about-power p em {
-      font-style: normal; color: var(--cyan);
+    .v41-power-statement em { font-style: normal; color: var(--cyan); }
+    /* Decorative dot after each sentence */
+    .v41-power-dot {
+      display: inline-block; width: 6px; height: 6px;
+      background: var(--cyan); border-radius: 50%;
+      margin-left: 6px; vertical-align: middle;
+      opacity: 0.6;
     }
-
-    /* CTA link */
+    .v41-power-right {
+      display: flex; flex-direction: column;
+      gap: 32px; align-items: flex-start;
+    }
+    .v41-power-sub {
+      font-size: 15px; line-height: 1.8;
+      color: rgba(255,255,255,0.4);
+      padding-left: 20px;
+      border-left: 2px solid rgba(0,255,209,0.25);
+    }
     .v41-about-cta {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: 10px;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px; font-weight: 500; color: #fff;
-      padding-bottom: 3px;
-      border-bottom: 1px solid rgba(255,255,255,0.25);
-      transition: color 0.25s, border-color 0.25s, gap 0.3s;
-      align-self: flex-start;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+      color: #0A0A0A; background: var(--cyan);
+      padding: 12px 24px;
+      transition: background 0.25s, gap 0.3s;
     }
-    .v41-about-cta:hover { color: var(--cyan); border-bottom-color: var(--cyan); gap: 14px; }
+    .v41-about-cta:hover { background: var(--cyan2); gap: 14px; }
 
     /* ══════════════════════════════════════════════
        FOOTER
@@ -872,78 +927,86 @@
     </div>
   </section>
 
-  <!-- WHO WE ARE -->
+  <!-- WHO WE ARE — MANIFESTO -->
   <section class="v41-about">
-    <div class="v41-about-inner">
 
-      <!-- Left: Sticky heading -->
-      <div class="v41-about-left v41-reveal">
-        <div class="v41-about-label">Who We Are</div>
-        <h2 class="v41-about-heading">
-          Ascendion is an <em>AI-native</em> software and data engineering disruptor
-        </h2>
-      </div>
+    <!-- A. Top eyebrow rule -->
+    <div class="v41-about-top">
+      <span class="v41-about-eyebrow">Who We Are</span>
+      <div class="v41-about-rule"></div>
+    </div>
 
-      <!-- Right: Content stacks -->
-      <div class="v41-about-right">
-
-        <!-- Three mission sentences -->
-        <div class="v41-about-paras">
-          <p class="v41-about-para v41-reveal">
-            We design, build, and run the software systems that improve everyday work and life.
-          </p>
-          <p class="v41-about-para v41-reveal" style="transition-delay:0.08s">
-            We deliver as one system: human engineers and AI agents, working as one workforce.
-          </p>
-          <p class="v41-about-para v41-reveal" style="transition-delay:0.16s">
-            We exist to disrupt the multi-trillion-dollar technology services market — and to make the work itself better for the people who do it.
-          </p>
-        </div>
-
-        <!-- What we're not -->
-        <div class="v41-not-block v41-reveal" style="transition-delay:0.1s">
-          <div class="v41-not-eyebrow">What we're not</div>
-          <div class="v41-not-item">
-            <div class="v41-not-x">
-              <svg viewBox="0 0 8 8" fill="none" stroke-width="1.4" stroke-linecap="square">
-                <path d="M1 1L7 7M7 1L1 7"/>
-              </svg>
-            </div>
-            <span>We are not a consulting boutique.</span>
-          </div>
-          <div class="v41-not-item">
-            <div class="v41-not-x">
-              <svg viewBox="0 0 8 8" fill="none" stroke-width="1.4" stroke-linecap="square">
-                <path d="M1 1L7 7M7 1L1 7"/>
-              </svg>
-            </div>
-            <span>We are not a software vendor.</span>
-          </div>
-          <div class="v41-not-item">
-            <div class="v41-not-x">
-              <svg viewBox="0 0 8 8" fill="none" stroke-width="1.4" stroke-linecap="square">
-                <path d="M1 1L7 7M7 1L1 7"/>
-              </svg>
-            </div>
-            <span>We are not a body shop.</span>
-          </div>
-        </div>
-
-        <!-- Power statement -->
-        <div class="v41-about-power v41-reveal" style="transition-delay:0.15s">
-          <p>We put <em>AI into production.</em> In regulated environments. At enterprise scale.</p>
-        </div>
-
-        <!-- CTA -->
-        <a href="#" class="v41-about-cta v41-reveal" style="transition-delay:0.2s">
-          Meet the people behind the work
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
-          </svg>
-        </a>
-
+    <!-- B. Mega heading + accent tag -->
+    <div class="v41-about-hero v41-reveal">
+      <h2 class="v41-about-heading">
+        Ascendion is an<br/><em>AI-native</em> software<br/>and data engineering<br/>disruptor
+      </h2>
+      <div class="v41-about-tag">
+        <div class="v41-about-tag-line"><strong>Category:</strong> AI-Native Engineering</div>
+        <div class="v41-about-tag-line"><strong>Founded:</strong> Purpose-built for the AI era</div>
+        <div class="v41-about-tag-line"><strong>Market:</strong> Multi-trillion-dollar disruption</div>
+        <div class="v41-about-tag-line"><strong>Model:</strong> Human + AI as one workforce</div>
       </div>
     </div>
+
+    <!-- C. 3 numbered mission cards -->
+    <div class="v41-mission-grid">
+      <div class="v41-mission-card v41-reveal">
+        <div class="v41-mission-num">01</div>
+        <div class="v41-mission-idx">Design · Build · Run</div>
+        <p class="v41-mission-text">We design, build, and run the software systems that improve everyday work and life.</p>
+      </div>
+      <div class="v41-mission-card v41-reveal" style="transition-delay:0.1s">
+        <div class="v41-mission-num">02</div>
+        <div class="v41-mission-idx">One Workforce</div>
+        <p class="v41-mission-text">We deliver as one system: human engineers and AI agents, working as one workforce.</p>
+      </div>
+      <div class="v41-mission-card v41-reveal" style="transition-delay:0.2s">
+        <div class="v41-mission-num">03</div>
+        <div class="v41-mission-idx">Disruption</div>
+        <p class="v41-mission-text">We exist to disrupt the multi-trillion-dollar technology services market — and to make the work itself better for the people who do it.</p>
+      </div>
+    </div>
+
+    <!-- D. "What we're NOT" rejection band -->
+    <div class="v41-not-band v41-reveal">
+      <div class="v41-not-band-label">What we're not</div>
+      <div class="v41-not-cols">
+        <div class="v41-not-col">
+          <div class="v41-not-col-label">Rejected</div>
+          <span class="v41-not-big">a consulting<br/>boutique.</span>
+        </div>
+        <div class="v41-not-col">
+          <div class="v41-not-col-label">Rejected</div>
+          <span class="v41-not-big">a software<br/>vendor.</span>
+        </div>
+        <div class="v41-not-col">
+          <div class="v41-not-col-label">Rejected</div>
+          <span class="v41-not-big">a body<br/>shop.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- E. Power statement + CTA -->
+    <div class="v41-power-block v41-reveal">
+      <div class="v41-power-statement">
+        We put <em>AI into production.</em><span class="v41-power-dot"></span><br/>
+        In regulated environments.<span class="v41-power-dot"></span><br/>
+        At enterprise scale.<span class="v41-power-dot"></span>
+      </div>
+      <div class="v41-power-right">
+        <p class="v41-power-sub">
+          The people who build it, the systems that run it, and the outcomes that prove it — all operating as one.
+        </p>
+        <a href="#" class="v41-about-cta">
+          Meet the people behind the work
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
   </section>
 
   <!-- FOOTER -->
