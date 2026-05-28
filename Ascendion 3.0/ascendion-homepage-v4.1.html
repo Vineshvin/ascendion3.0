@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ascendion v4.1 — Engineering to the Power of AI™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: #0A0A0A;
+      color: #ffffff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; cursor: pointer; font-family: inherit; }
+    ul { list-style: none; }
+
+    :root {
+      --cyan:   #00FFD1;
+      --cyan2:  #00FAC2;
+      --dark:   #0A0A0A;
+      --dark2:  #111111;
+      --dark3:  #161616;
+      --gray:   rgba(255,255,255,0.5);
+      --gray2:  rgba(255,255,255,0.25);
+      --white:  #ffffff;
+    }
+
+    /* ══════════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════════ */
+    .v41-nav {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .v41-nav-inner {
+      max-width: 1440px; margin: 0 auto;
+      padding: 0 60px; height: 64px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 40px;
+    }
+    .v41-logo {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .v41-logo-icon {
+      width: 28px; height: 28px; background: var(--cyan);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .v41-logo-icon svg { width: 16px; height: 16px; }
+    .v41-logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 700;
+      color: #fff; letter-spacing: -0.01em;
+    }
+    .v41-logo-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px; font-weight: 500;
+      color: var(--cyan); letter-spacing: 0.14em;
+      text-transform: uppercase; display: block;
+      line-height: 1; margin-top: 2px;
+    }
+    .v41-nav-links {
+      display: flex; align-items: center; gap: 0;
+    }
+    .v41-nav-links a {
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7);
+      padding: 8px 16px; transition: color 0.2s;
+    }
+    .v41-nav-links a:hover { color: #fff; }
+    .v41-nav-cta {
+      font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+      color: #0A0A0A; background: var(--cyan);
+      padding: 9px 22px; display: inline-flex; align-items: center; gap: 7px;
+      letter-spacing: 0.01em; transition: background 0.25s, gap 0.3s;
+    }
+    .v41-nav-cta:hover { background: var(--cyan2); gap: 11px; }
+
+    /* ══════════════════════════════════════════════
+       HERO — "Outcomes tell our story"
+    ══════════════════════════════════════════════ */
+    .v41-hero {
+      background: #0A0A0A;
+      min-height: calc(100vh - 64px);
+      display: grid;
+      grid-template-columns: 1fr 1fr 420px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left — pixel dot art hands */
+    .v41-hero-left {
+      position: relative; overflow: hidden;
+      min-height: 560px;
+    }
+    .v41-hero-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+
+    /* Center — text content */
+    .v41-hero-center {
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 80px 40px;
+      gap: 24px; position: relative; z-index: 1;
+    }
+    .v41-hero-eyebrow {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .v41-hero-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 4.5vw, 68px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+    .v41-hero-headline em {
+      font-style: normal; color: var(--cyan);
+      display: block;
+    }
+    .v41-hero-sub {
+      font-size: 15px; line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+      max-width: 360px;
+    }
+
+    /* Right — portrait + callout */
+    .v41-hero-right {
+      position: relative; overflow: hidden;
+      background: #111111;
+    }
+    .v41-hero-portrait {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+      filter: grayscale(15%) contrast(1.05);
+    }
+    .v41-callout {
+      position: absolute; bottom: 40px; left: 24px; right: 24px;
+      background: var(--cyan);
+      padding: 20px 24px;
+      z-index: 2;
+    }
+    .v41-callout-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: #0A0A0A; line-height: 1;
+    }
+    .v41-callout-desc {
+      font-size: 13px; font-weight: 500;
+      color: rgba(0,0,0,0.65); margin-top: 6px;
+    }
+    /* Portrait placeholder (CSS gradient if no image) */
+    .v41-portrait-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #0f1f1c 0%, #0a0a0a 60%, #061a14 100%);
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .v41-portrait-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(0,255,209,0.08), transparent);
+    }
+    .v41-portrait-figure {
+      width: 200px; height: 280px;
+      background: linear-gradient(180deg, #1a3530 0%, #0a1a16 100%);
+      border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+      position: relative; margin-bottom: 80px;
+      box-shadow: 0 0 80px rgba(0,255,209,0.12);
+    }
+    .v41-portrait-figure::before {
+      content: ''; position: absolute;
+      width: 90px; height: 90px;
+      background: rgba(0,255,209,0.08);
+      border-radius: 50%;
+      top: 30px; left: 50%; transform: translateX(-50%);
+    }
+
+    /* ══════════════════════════════════════════════
+       STATS SECTION — full-width photo + overlays
+    ══════════════════════════════════════════════ */
+    .v41-stats {
+      position: relative; overflow: hidden;
+      min-height: 520px;
+    }
+    .v41-stats-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, #0d1a17 0%, #030a08 100%);
+    }
+    .v41-stats-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0.35;
+    }
+    .v41-stats-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.55) 100%);
+    }
+    .v41-stats-inner {
+      position: relative; z-index: 2;
+      max-width: 1440px; margin: 0 auto; padding: 100px 60px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 40px; align-items: center;
+    }
+    .v41-stat-item {
+      padding: 0 40px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .v41-stat-item:first-child { padding-left: 0; }
+    .v41-stat-item:last-child { border-right: none; }
+    .v41-stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 600; color: var(--cyan);
+      letter-spacing: -0.04em; line-height: 1;
+    }
+    .v41-stat-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 500; color: #fff;
+      margin-bottom: 12px; line-height: 1.1;
+    }
+    .v41-stat-desc {
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      line-height: 1.65; max-width: 280px;
+    }
+    .v41-play-btn {
+      position: absolute; top: 40px; right: 60px; z-index: 3;
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .v41-play-btn:hover { background: var(--cyan); }
+    .v41-play-btn svg { width: 16px; height: 16px; fill: #fff; }
+    .v41-play-btn:hover svg { fill: #0A0A0A; }
+
+    /* ══════════════════════════════════════════════
+       12 SECONDS SECTION
+    ══════════════════════════════════════════════ */
+    .v41-twelve {
+      background: #0D0D0D;
+      padding: 120px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .v41-twelve-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+      display: grid; grid-template-columns: 1fr 1fr 380px;
+      gap: 60px; align-items: center;
+    }
+    .v41-twelve-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 400; color: #fff;
+      line-height: 1.08; letter-spacing: -0.03em;
+    }
+    .v41-twelve-heading em {
+      font-style: italic; color: var(--cyan);
+      display: block;
+    }
+    .v41-twelve-facts {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .v41-fact {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 15px; line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+    .v41-fact:hover { color: rgba(255,255,255,0.85); }
+    .v41-fact:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+    .v41-fact a {
+      color: #fff; text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(255,255,255,0.3);
+    }
+    .v41-fact a:hover { text-decoration-color: var(--cyan); color: var(--cyan); }
+    .v41-fact strong { color: #fff; font-weight: 500; }
+    .v41-twelve-portrait {
+      position: relative; overflow: hidden;
+      height: 400px; background: #161616;
+    }
+    .v41-twelve-portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    /* CSS portrait fallback */
+    .v41-twelve-portrait-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, #0d2520 0%, #080d0b 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .v41-twelve-portrait-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(0,255,209,0.07), transparent);
+    }
+    .v41-twelve-silhouette {
+      width: 160px; height: 240px;
+      background: linear-gradient(180deg, #1e3a34 0%, #0d1e1a 100%);
+      border-radius: 50% 50% 8px 8px / 40% 40% 8px 8px;
+      position: relative;
+    }
+    .v41-twelve-silhouette::before {
+      content: ''; position: absolute;
+      width: 70px; height: 70px;
+      background: rgba(0,255,209,0.1);
+      border-radius: 50%;
+      top: 20px; left: 50%; transform: translateX(-50%);
+    }
+
+    /* ══════════════════════════════════════════════
+       DISRUPTION / RECOGNITION
+    ══════════════════════════════════════════════ */
+    .v41-disrupt {
+      background: #F4F4F2; padding: 100px 0;
+    }
+    .v41-disrupt-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+    }
+    .v41-disrupt-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; color: #0A0A0A;
+      letter-spacing: -0.03em; margin-bottom: 48px;
+    }
+    .v41-disrupt-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .v41-disrupt-card {
+      background: #fff;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .v41-disrupt-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+    .v41-disrupt-img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+    }
+    .v41-disrupt-body {
+      padding: 24px;
+    }
+    .v41-disrupt-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; color: #888;
+      letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .v41-disrupt-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 500;
+      color: #0A0A0A; line-height: 1.35;
+    }
+
+    /* ══════════════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════════════ */
+    .v41-testimonials {
+      background: #ffffff; padding: 100px 0;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .v41-test-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+    }
+    .v41-test-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; margin-bottom: 56px;
+      gap: 24px;
+    }
+    .v41-test-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(26px, 2.8vw, 40px);
+      font-weight: 400; color: #0A0A0A;
+      letter-spacing: -0.03em;
+    }
+    .v41-test-cta {
+      font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+      color: #0A0A0A; background: var(--cyan);
+      padding: 10px 22px; display: inline-flex; align-items: center; gap: 8px;
+      white-space: nowrap; flex-shrink: 0;
+      transition: background 0.25s;
+    }
+    .v41-test-cta:hover { background: var(--cyan2); }
+    .v41-test-card {
+      display: grid; grid-template-columns: 1fr 340px;
+      gap: 0; background: #F9F9F8;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .v41-test-quote-wrap {
+      padding: 56px 60px;
+    }
+    .v41-test-quote {
+      font-size: clamp(16px, 1.6vw, 20px);
+      line-height: 1.7; color: #1a1a1a;
+      font-weight: 400; font-style: italic;
+      margin-bottom: 36px;
+    }
+    .v41-test-author-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 600; color: #0A0A0A;
+    }
+    .v41-test-author-role {
+      font-size: 13px; color: #888; margin-top: 4px;
+    }
+    .v41-test-photo {
+      background: #E8E8E6;
+      overflow: hidden;
+    }
+    .v41-test-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .v41-test-photo-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #e0e0de 0%, #c8c8c4 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .v41-test-nav {
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 8px; margin-top: 20px;
+    }
+    .v41-test-nav-btn {
+      width: 40px; height: 40px;
+      background: transparent; border: 1px solid rgba(0,0,0,0.15);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    }
+    .v41-test-nav-btn:hover { border-color: #0A0A0A; background: #0A0A0A; }
+    .v41-test-nav-btn:hover svg { stroke: #fff; }
+    .v41-test-nav-btn svg { stroke: #0A0A0A; transition: stroke 0.2s; }
+
+    /* Dot indicators */
+    .v41-test-dots {
+      display: flex; align-items: center; gap: 6px; margin-right: auto;
+    }
+    .v41-test-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(0,0,0,0.15);
+    }
+    .v41-test-dot.active { background: #0A0A0A; }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    .v41-footer {
+      background: #0A0A0A;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .v41-footer-top {
+      max-width: 1440px; margin: 0 auto; padding: 72px 60px 60px;
+      display: grid; grid-template-columns: 280px 1fr 1fr 1fr;
+      gap: 60px;
+    }
+    .v41-footer-brand .v41-logo-text { color: var(--cyan); font-size: 20px; }
+    .v41-footer-brand .v41-logo-sub { color: rgba(255,255,255,0.35); margin-top: 4px; }
+    .v41-footer-tagline {
+      font-size: 13px; color: rgba(255,255,255,0.35);
+      margin-top: 12px; line-height: 1.6; max-width: 200px;
+    }
+    .v41-footer-social {
+      display: flex; align-items: center; gap: 10px; margin-top: 28px;
+    }
+    .v41-social-link {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .v41-social-link:hover { background: var(--cyan); }
+    .v41-social-link:hover svg { stroke: #0A0A0A; }
+    .v41-social-link svg { stroke: rgba(255,255,255,0.5); width: 15px; height: 15px; }
+    .v41-footer-col-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.16em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .v41-footer-links {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .v41-footer-links a {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+    .v41-footer-links a:hover { color: #fff; }
+    .v41-footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      max-width: 1440px; margin: 0 auto; padding: 20px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .v41-footer-copy {
+      font-size: 12px; color: rgba(255,255,255,0.25);
+    }
+    .v41-footer-legal {
+      display: flex; gap: 24px;
+    }
+    .v41-footer-legal a {
+      font-size: 12px; color: rgba(255,255,255,0.3);
+      transition: color 0.2s;
+    }
+    .v41-footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ══════════════════════════════════════════════
+       REVEAL ANIMATIONS
+    ══════════════════════════════════════════════ */
+    .v41-reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .v41-reveal.v41-vis { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .v41-hero { grid-template-columns: 1fr 1fr; }
+      .v41-hero-left { display: none; }
+      .v41-twelve-inner { grid-template-columns: 1fr 1fr; }
+      .v41-twelve-portrait { display: none; }
+    }
+    @media (max-width: 768px) {
+      .v41-nav-links { display: none; }
+      .v41-hero { grid-template-columns: 1fr; }
+      .v41-hero-right { min-height: 340px; }
+      .v41-stats-inner { grid-template-columns: 1fr; gap: 32px; }
+      .v41-stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0 0 24px 0; }
+      .v41-stat-item:last-child { border-bottom: none; }
+      .v41-twelve-inner { grid-template-columns: 1fr; }
+      .v41-disrupt-grid { grid-template-columns: 1fr; }
+      .v41-test-card { grid-template-columns: 1fr; }
+      .v41-test-photo { min-height: 260px; }
+      .v41-footer-top { grid-template-columns: 1fr 1fr; }
+      .v41-nav-inner { padding: 0 24px; }
+      .v41-disrupt-inner, .v41-test-inner, .v41-twelve-inner,
+      .v41-stats-inner, .v41-footer-top, .v41-footer-bottom { padding-left: 24px; padding-right: 24px; }
+      .v41-hero-center { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="v41-nav">
+    <div class="v41-nav-inner">
+      <a href="#" class="v41-logo">
+        <div class="v41-logo-icon">
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 15L9 3L15 15" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+            <path d="M5.5 11H12.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+          </svg>
+        </div>
+        <div>
+          <strong class="v41-logo-text">ASCENDION</strong>
+          <span class="v41-logo-sub">Engineering to the Power of AI™</span>
+        </div>
+      </a>
+      <nav class="v41-nav-links">
+        <a href="#">What We Do</a>
+        <a href="#">AAVA</a>
+        <a href="#">Impact</a>
+        <a href="#">Insights</a>
+        <a href="#">About</a>
+      </nav>
+      <a href="#" class="v41-nav-cta">
+        Get In Touch
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#0A0A0A" stroke-width="1.4" stroke-linecap="square"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="v41-hero">
+
+    <!-- Left: Banner image -->
+    <div class="v41-hero-left">
+      <img src="v4.1/bannerimg.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+    </div>
+
+    <!-- Center: Text -->
+    <div class="v41-hero-center v41-reveal" id="v41HeroText">
+      <div class="v41-hero-eyebrow">Outcomes · Impact · Scale</div>
+      <h1 class="v41-hero-headline">
+        <em>Outcomes</em>
+        tell our story
+      </h1>
+      <p class="v41-hero-sub">
+        Software now shapes more of how we work and live. We use the power of AI to make it better, so we can improve millions of lives.
+      </p>
+    </div>
+
+    <!-- Right: Portrait + callout -->
+    <div class="v41-hero-right">
+      <img src="v4.1/profile.png" alt="Profile" class="v41-hero-portrait"/>
+      <div class="v41-callout">
+        <div class="v41-callout-num">39 million Americans</div>
+        <div class="v41-callout-desc">Better access to care.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- STATS -->
+  <section class="v41-stats">
+    <img src="v4.1/casestudy.png" alt="" class="v41-stats-photo"/>
+    <div class="v41-stats-overlay"></div>
+    <button class="v41-play-btn" aria-label="Play video">
+      <svg viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+    </button>
+    <div class="v41-stats-inner">
+      <div class="v41-stat-item v41-reveal">
+        <div class="v41-stat-num">39 MILLION</div>
+        <div class="v41-stat-label">Americans</div>
+        <div class="v41-stat-desc">Protected through a quiet rebuild of a 100-year-old institution.</div>
+      </div>
+      <div class="v41-stat-item v41-reveal" style="transition-delay:0.1s">
+        <div class="v41-stat-num">5.2 MILLION</div>
+        <div class="v41-stat-label">banking customers</div>
+        <div class="v41-stat-desc">Secured and served at a 200-year-old UK bank.</div>
+      </div>
+      <div class="v41-stat-item v41-reveal" style="transition-delay:0.2s">
+        <div class="v41-stat-num">4 MILLION</div>
+        <div class="v41-stat-label">dual-eligible members</div>
+        <div class="v41-stat-desc">Better access to coordinated healthcare services.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 SECONDS -->
+  <section class="v41-twelve">
+    <div class="v41-twelve-inner">
+
+      <div class="v41-reveal">
+        <h2 class="v41-twelve-heading">
+          What you should know about us
+          <em>in twelve seconds</em>
+        </h2>
+      </div>
+
+      <div class="v41-twelve-facts v41-reveal" style="transition-delay:0.1s">
+        <div class="v41-fact">We are an <a href="#">AI-native software engineering company</a></div>
+        <div class="v41-fact">We run <a href="#">10,000+ production agents on AAVA™</a></div>
+        <div class="v41-fact">our agentic AI product — inside <a href="#">30%+ of the Fortune 100</a></div>
+        <div class="v41-fact">52% of our own production code is AI-generated. <strong>We use what we sell.</strong></div>
+      </div>
+
+      <div class="v41-twelve-portrait v41-reveal" style="transition-delay:0.2s">
+        <img src="v4.1/twelve seconds.png" alt="AI engineer" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LEADING DISRUPTION -->
+  <section class="v41-disrupt">
+    <div class="v41-disrupt-inner">
+      <h2 class="v41-disrupt-heading v41-reveal">We are leading the disruption:</h2>
+      <div class="v41-disrupt-grid">
+
+        <div class="v41-disrupt-card v41-reveal">
+          <img src="v4.1/hfs horizon.png" alt="HFS Horizons" class="v41-disrupt-img"/>
+          <div class="v41-disrupt-body">
+            <div class="v41-disrupt-year">2026</div>
+            <div class="v41-disrupt-title">HFS Services-as-Software Leader</div>
+          </div>
+        </div>
+
+        <div class="v41-disrupt-card v41-reveal" style="transition-delay:0.1s">
+          <img src="v4.1/isg provider lens.png" alt="ISG Provider Lens" class="v41-disrupt-img"/>
+          <div class="v41-disrupt-body">
+            <div class="v41-disrupt-year">2026</div>
+            <div class="v41-disrupt-title">HFS Services-as-Software Leader</div>
+          </div>
+        </div>
+
+        <div class="v41-disrupt-card v41-reveal" style="transition-delay:0.2s">
+          <img src="v4.1/hfs research.png" alt="HFS Research" class="v41-disrupt-img"/>
+          <div class="v41-disrupt-body">
+            <div class="v41-disrupt-year">2026</div>
+            <div class="v41-disrupt-title">HFS Services-as-Software Leader</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="v41-testimonials">
+    <div class="v41-test-inner">
+      <div class="v41-test-header">
+        <h2 class="v41-test-heading v41-reveal">Don't just take our word for it</h2>
+        <a href="#" class="v41-test-cta">
+          See The Impact
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#0A0A0A" stroke-width="1.4" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+
+      <div class="v41-test-card v41-reveal">
+        <div class="v41-test-quote-wrap">
+          <p class="v41-test-quote">
+            "Ascendion stands out for its early and consistent commitment to applying AI, now combining its agentic engineering platform AAVA with [a] product-led engineering mindset to accelerate legacy modernization, streamline software development, and deliver measurable transformation outcomes."
+          </p>
+          <div class="v41-test-author-name">David Cushman</div>
+          <div class="v41-test-author-role">Executive Research Leader, HFS Research</div>
+        </div>
+        <div class="v41-test-photo">
+          <img src="v4.1/featured img.png" alt="David Cushman" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+        </div>
+      </div>
+
+      <div class="v41-test-nav">
+        <div class="v41-test-dots">
+          <div class="v41-test-dot active"></div>
+          <div class="v41-test-dot"></div>
+          <div class="v41-test-dot"></div>
+        </div>
+        <button class="v41-test-nav-btn" aria-label="Previous">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="1.5" stroke-linecap="square">
+            <path d="M9 2L4 7L9 12"/>
+          </svg>
+        </button>
+        <button class="v41-test-nav-btn" aria-label="Next">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="1.5" stroke-linecap="square">
+            <path d="M5 2L10 7L5 12"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="v41-footer">
+    <div class="v41-footer-top">
+
+      <!-- Brand -->
+      <div class="v41-footer-brand">
+        <div class="v41-logo">
+          <div class="v41-logo-icon">
+            <svg viewBox="0 0 18 18" fill="none">
+              <path d="M3 15L9 3L15 15" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+              <path d="M5.5 11H12.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+          </div>
+          <div>
+            <strong class="v41-logo-text">ASCENDION</strong>
+            <span class="v41-logo-sub">Engineering to the Power of AI™</span>
+          </div>
+        </div>
+        <p class="v41-footer-tagline">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="v41-footer-social">
+          <!-- LinkedIn -->
+          <a href="#" class="v41-social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" stroke-width="1.5" stroke-linecap="square"/>
+              <rect x="2" y="9" width="4" height="12" stroke-width="1.5" stroke-linecap="square"/>
+              <circle cx="4" cy="4" r="2" stroke-width="1.5"/>
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="v41-social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.5" stroke-linecap="square"/>
+              <circle cx="12" cy="12" r="4" stroke-width="1.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" class="v41-social-link" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4l16 16M4 20L20 4" stroke-width="1.5" stroke-linecap="square"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- What We Do -->
+      <div>
+        <div class="v41-footer-col-title">What We Do</div>
+        <div class="v41-footer-links">
+          <a href="#">Assisted AI</a>
+          <a href="#">Data AI</a>
+          <a href="#">Experience AI</a>
+          <a href="#">Platform Engineering AI</a>
+          <a href="#">Product Engineering AI</a>
+          <a href="#">QOC AI</a>
+          <a href="#">Enterprise Platforms AI</a>
+          <a href="#">Operations AI</a>
+        </div>
+      </div>
+
+      <!-- Industries -->
+      <div>
+        <div class="v41-footer-col-title">Industries</div>
+        <div class="v41-footer-links">
+          <a href="#">Banking &amp; Financial Services</a>
+          <a href="#">Communications, Media and Entertainment</a>
+          <a href="#">Healthcare &amp; Life Sciences</a>
+          <a href="#">Retail and Consumer Goods</a>
+          <a href="#">High Tech</a>
+          <a href="#">Travel and Hospitality</a>
+          <a href="#">Private Equity</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="v41-footer-col-title">Quick Links</div>
+        <div class="v41-footer-links">
+          <a href="#">Home</a>
+          <a href="#">Who we are</a>
+          <a href="#">How we deliver</a>
+          <a href="#">Insights and impact</a>
+          <a href="#">Careers India</a>
+          <a href="#">Careers North America</a>
+          <a href="#">Careers Europe</a>
+          <a href="#">Careers Asia-Pacific</a>
+          <a href="#">Global Delivery Hub</a>
+          <a href="#">Contact us</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="v41-footer-bottom">
+      <div class="v41-footer-copy">© 2026 ASCENDION. All rights reserved.</div>
+      <div class="v41-footer-legal">
+        <a href="#">Terms of use</a>
+        <a href="#">Privacy policy</a>
+        <a href="#">Accessibility disclosure</a>
+        <a href="#">AI enhanced senior notice</a>
+        <a href="#">Security Disclosure Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Scroll reveal ── */
+    const revEls = document.querySelectorAll('.v41-reveal');
+    const revIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('v41-vis'); revIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    revEls.forEach(el => revIO.observe(el));
+
+    /* ── Hero canvas removed — replaced with bannerimg.png ── */
+    (function() {
+      const canvas = document.getElementById('v41HeroCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let W, H;
+      const CYAN = [0, 255, 209];
+      const CYAN2 = [0, 200, 160];
+
+      // Dot grid
+      const dots = [];
+      const COLS = 40, ROWS = 60;
+      let dotW, dotH, dotR;
+
+      // Hand shape mask — two abstract "reaching hands"
+      function inHandMask(cx, cy, nw, nh) {
+        const x = cx / nw, y = cy / nh;
+        // Left hand fingers — top-left region
+        const leftHand = (
+          (x < 0.45 && y < 0.55 && Math.abs(x - 0.22) < 0.18 + Math.sin(y * 8) * 0.04) ||
+          // thumb
+          (x < 0.3 && y > 0.15 && y < 0.45 && Math.abs(x - 0.1) < 0.06 + Math.sin(y * 6) * 0.02) ||
+          // wrist area
+          (x < 0.42 && y > 0.42 && y < 0.58 && x > 0.06)
+        );
+        // Right hand fingers — bottom-right region (mirrored)
+        const rightHand = (
+          (x > 0.55 && y > 0.45 && Math.abs(x - 0.78) < 0.18 + Math.sin(y * 8) * 0.04) ||
+          (x > 0.7 && y > 0.55 && y < 0.85 && Math.abs(x - 0.9) < 0.06 + Math.sin(y * 6) * 0.02) ||
+          (x > 0.58 && y > 0.42 && y < 0.58 && x < 0.94)
+        );
+        return leftHand || rightHand;
+      }
+
+      function resize() {
+        W = canvas.offsetWidth;
+        H = canvas.offsetHeight;
+        canvas.width  = W * devicePixelRatio;
+        canvas.height = H * devicePixelRatio;
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+        dotW = W / COLS;
+        dotH = H / ROWS;
+        dotR = Math.min(dotW, dotH) * 0.28;
+        buildDots();
+      }
+
+      function buildDots() {
+        dots.length = 0;
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            const cx = (c + 0.5) * dotW;
+            const cy = (r + 0.5) * dotH;
+            const inHand = inHandMask(cx, cy, W, H);
+            const baseAlpha = inHand ? 0.55 + Math.random() * 0.45 : 0.04 + Math.random() * 0.06;
+            dots.push({
+              cx, cy,
+              inHand,
+              baseAlpha,
+              alpha: baseAlpha,
+              phase: Math.random() * Math.PI * 2,
+              speed: 0.4 + Math.random() * 0.8,
+            });
+          }
+        }
+      }
+
+      let t = 0;
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // bg
+        ctx.fillStyle = '#0A0A0A';
+        ctx.fillRect(0, 0, W, H);
+
+        // subtle glow center
+        const grd = ctx.createRadialGradient(W * 0.5, H * 0.5, 0, W * 0.5, H * 0.5, W * 0.55);
+        grd.addColorStop(0, 'rgba(0,255,209,0.04)');
+        grd.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, W, H);
+
+        t += 0.012;
+
+        dots.forEach(d => {
+          const wave = Math.sin(t * d.speed + d.phase) * 0.3;
+          const a = Math.max(0, Math.min(1, d.baseAlpha + wave * (d.inHand ? 0.25 : 0.03)));
+
+          if (d.inHand) {
+            ctx.fillStyle = `rgba(${CYAN[0]},${CYAN[1]},${CYAN[2]},${a})`;
+          } else {
+            ctx.fillStyle = `rgba(255,255,255,${a})`;
+          }
+          ctx.beginPath();
+          ctx.arc(d.cx, d.cy, dotR, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      const ro = new ResizeObserver(resize);
+      ro.observe(canvas.parentElement);
+      resize();
+      draw();
+    })();
+  </script>
+
+</body>
+</html>
