@@ -95,26 +95,41 @@
       background: #0A0A0A;
       min-height: calc(100vh - 64px);
       display: grid;
-      grid-template-columns: 1fr 1fr 420px;
+      grid-template-columns: 1fr 420px;
       overflow: hidden;
       position: relative;
     }
 
-    /* Left — pixel dot art hands */
-    .v41-hero-left {
-      position: relative; overflow: hidden;
-      min-height: 560px;
-    }
-    .v41-hero-canvas {
-      position: absolute; inset: 0; width: 100%; height: 100%;
+    /* Full-width banner image behind everything */
+    .v41-hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center center;
+      display: block;
+      z-index: 0;
     }
 
-    /* Center — text content */
+    /* Subtle gradient overlay so text stays readable */
+    .v41-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(10,10,10,0.55) 0%,
+        rgba(10,10,10,0.15) 55%,
+        rgba(10,10,10,0.0) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Left — text content anchored to bottom */
     .v41-hero-center {
+      position: relative; z-index: 2;
       display: flex; flex-direction: column;
-      justify-content: center;
-      padding: 80px 48px 80px 40px;
-      gap: 24px; position: relative; z-index: 1;
+      justify-content: flex-end;
+      padding: 60px 48px 72px 60px;
+      gap: 20px;
     }
     .v41-hero-eyebrow {
       font-family: 'DM Mono', monospace; font-size: 11px;
@@ -122,7 +137,7 @@
     }
     .v41-hero-headline {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(40px, 4.5vw, 68px);
+      font-size: clamp(44px, 5vw, 76px);
       font-weight: 400; line-height: 0.95;
       letter-spacing: -0.03em;
     }
@@ -132,59 +147,38 @@
     }
     .v41-hero-sub {
       font-size: 15px; line-height: 1.75;
-      color: rgba(255,255,255,0.5);
-      max-width: 360px;
+      color: rgba(255,255,255,0.55);
+      max-width: 400px;
     }
 
-    /* Right — portrait + callout */
+    /* Right — portrait stacked above callout */
     .v41-hero-right {
-      position: relative; overflow: hidden;
-      background: #111111;
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      background: transparent;
+    }
+    .v41-hero-portrait-wrap {
+      flex: 1; overflow: hidden;
+      background: #111;
     }
     .v41-hero-portrait {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center top;
       display: block;
-      filter: grayscale(15%) contrast(1.05);
     }
     .v41-callout {
-      position: absolute; bottom: 40px; left: 24px; right: 24px;
+      flex-shrink: 0;
       background: var(--cyan);
-      padding: 20px 24px;
-      z-index: 2;
+      padding: 28px 32px;
     }
     .v41-callout-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px; font-weight: 700;
-      color: #0A0A0A; line-height: 1;
+      font-size: 24px; font-weight: 700;
+      color: #0A0A0A; line-height: 1.1;
     }
     .v41-callout-desc {
-      font-size: 13px; font-weight: 500;
-      color: rgba(0,0,0,0.65); margin-top: 6px;
-    }
-    /* Portrait placeholder (CSS gradient if no image) */
-    .v41-portrait-bg {
-      width: 100%; height: 100%;
-      background: linear-gradient(160deg, #0f1f1c 0%, #0a0a0a 60%, #061a14 100%);
-      position: relative; display: flex; align-items: center; justify-content: center;
-    }
-    .v41-portrait-bg::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(0,255,209,0.08), transparent);
-    }
-    .v41-portrait-figure {
-      width: 200px; height: 280px;
-      background: linear-gradient(180deg, #1a3530 0%, #0a1a16 100%);
-      border-radius: 50% 50% 0 0 / 60% 60% 0 0;
-      position: relative; margin-bottom: 80px;
-      box-shadow: 0 0 80px rgba(0,255,209,0.12);
-    }
-    .v41-portrait-figure::before {
-      content: ''; position: absolute;
-      width: 90px; height: 90px;
-      background: rgba(0,255,209,0.08);
-      border-radius: 50%;
-      top: 30px; left: 50%; transform: translateX(-50%);
+      font-size: 14px; font-weight: 500;
+      color: rgba(0,0,0,0.65); margin-top: 8px;
     }
 
     /* ══════════════════════════════════════════════
@@ -589,12 +583,10 @@
   <!-- HERO -->
   <section class="v41-hero">
 
-    <!-- Left: Banner image -->
-    <div class="v41-hero-left">
-      <img src="v4.1/bannerimg.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-    </div>
+    <!-- Full-width background banner image -->
+    <img src="v4.1/bannerimg.png" alt="" class="v41-hero-bg"/>
 
-    <!-- Center: Text -->
+    <!-- Left: Text anchored bottom-left -->
     <div class="v41-hero-center v41-reveal" id="v41HeroText">
       <div class="v41-hero-eyebrow">Outcomes · Impact · Scale</div>
       <h1 class="v41-hero-headline">
@@ -606,12 +598,14 @@
       </p>
     </div>
 
-    <!-- Right: Portrait + callout -->
+    <!-- Right: Portrait stacked above cyan callout -->
     <div class="v41-hero-right">
-      <img src="v4.1/profile.png" alt="Profile" class="v41-hero-portrait"/>
+      <div class="v41-hero-portrait-wrap">
+        <img src="v4.1/profile.png" alt="Profile" class="v41-hero-portrait"/>
+      </div>
       <div class="v41-callout">
-        <div class="v41-callout-num">39 million Americans</div>
-        <div class="v41-callout-desc">Better access to care.</div>
+        <div class="v41-callout-num">5.2 million<br/>banking customers</div>
+        <div class="v41-callout-desc">Protected through a quiet rebuild</div>
       </div>
     </div>
 
