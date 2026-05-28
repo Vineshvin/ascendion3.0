@@ -452,6 +452,137 @@
     .v41-test-dot.active { background: #0A0A0A; }
 
     /* ══════════════════════════════════════════════
+       WHO WE ARE
+    ══════════════════════════════════════════════ */
+    .v41-about {
+      background: #0D0D0D;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 140px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Subtle cyan glow top-right */
+    .v41-about::before {
+      content: '';
+      position: absolute; top: -160px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(0,255,209,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .v41-about-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 100px; align-items: start;
+    }
+    /* Left: sticky heading */
+    .v41-about-left {
+      position: sticky; top: 100px;
+    }
+    .v41-about-label {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: var(--cyan); letter-spacing: 0.22em; text-transform: uppercase;
+      margin-bottom: 28px; display: flex; align-items: center; gap: 12px;
+    }
+    .v41-about-label::before {
+      content: ''; width: 28px; height: 1px; background: var(--cyan);
+    }
+    .v41-about-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(30px, 3vw, 48px);
+      font-weight: 400; line-height: 1.06;
+      letter-spacing: -0.03em; color: #fff;
+    }
+    .v41-about-heading em {
+      font-style: normal; color: var(--cyan);
+    }
+    /* Right: content stacks */
+    .v41-about-right {
+      display: flex; flex-direction: column; gap: 48px;
+    }
+    /* Three paragraphs with left accent bar */
+    .v41-about-paras {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .v41-about-para {
+      padding: 22px 0 22px 24px;
+      border-left: 2px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 16px; line-height: 1.8;
+      color: rgba(255,255,255,0.55);
+      transition: border-left-color 0.35s, color 0.35s;
+    }
+    .v41-about-para:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+    .v41-about-para:hover { border-left-color: var(--cyan); color: rgba(255,255,255,0.88); }
+
+    /* "We are not" — strikethrough block */
+    .v41-not-block {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .v41-not-eyebrow {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: rgba(255,255,255,0.25); letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .v41-not-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px; font-weight: 400;
+      color: rgba(255,255,255,0.22);
+      position: relative;
+    }
+    .v41-not-item:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+    .v41-not-item span {
+      position: relative; display: inline-block;
+    }
+    .v41-not-item span::after {
+      content: '';
+      position: absolute; left: 0; right: 0; top: 50%;
+      height: 1px; background: rgba(255,255,255,0.2);
+    }
+    .v41-not-x {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .v41-not-x svg { width: 8px; height: 8px; stroke: rgba(255,255,255,0.2); }
+
+    /* Power statement */
+    .v41-about-power {
+      position: relative;
+      padding: 36px 36px 36px 40px;
+      background: rgba(0,255,209,0.03);
+      border: 1px solid rgba(0,255,209,0.12);
+    }
+    .v41-about-power::before {
+      content: '';
+      position: absolute; top: 0; left: 0; bottom: 0;
+      width: 3px; background: var(--cyan);
+    }
+    .v41-about-power p {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 500; color: #fff;
+      line-height: 1.55; letter-spacing: -0.02em;
+    }
+    .v41-about-power p em {
+      font-style: normal; color: var(--cyan);
+    }
+
+    /* CTA link */
+    .v41-about-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 500; color: #fff;
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      transition: color 0.25s, border-color 0.25s, gap 0.3s;
+      align-self: flex-start;
+    }
+    .v41-about-cta:hover { color: var(--cyan); border-bottom-color: var(--cyan); gap: 14px; }
+
+    /* ══════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════ */
     .v41-footer {
@@ -738,6 +869,80 @@
         </button>
       </div>
 
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="v41-about">
+    <div class="v41-about-inner">
+
+      <!-- Left: Sticky heading -->
+      <div class="v41-about-left v41-reveal">
+        <div class="v41-about-label">Who We Are</div>
+        <h2 class="v41-about-heading">
+          Ascendion is an <em>AI-native</em> software and data engineering disruptor
+        </h2>
+      </div>
+
+      <!-- Right: Content stacks -->
+      <div class="v41-about-right">
+
+        <!-- Three mission sentences -->
+        <div class="v41-about-paras">
+          <p class="v41-about-para v41-reveal">
+            We design, build, and run the software systems that improve everyday work and life.
+          </p>
+          <p class="v41-about-para v41-reveal" style="transition-delay:0.08s">
+            We deliver as one system: human engineers and AI agents, working as one workforce.
+          </p>
+          <p class="v41-about-para v41-reveal" style="transition-delay:0.16s">
+            We exist to disrupt the multi-trillion-dollar technology services market — and to make the work itself better for the people who do it.
+          </p>
+        </div>
+
+        <!-- What we're not -->
+        <div class="v41-not-block v41-reveal" style="transition-delay:0.1s">
+          <div class="v41-not-eyebrow">What we're not</div>
+          <div class="v41-not-item">
+            <div class="v41-not-x">
+              <svg viewBox="0 0 8 8" fill="none" stroke-width="1.4" stroke-linecap="square">
+                <path d="M1 1L7 7M7 1L1 7"/>
+              </svg>
+            </div>
+            <span>We are not a consulting boutique.</span>
+          </div>
+          <div class="v41-not-item">
+            <div class="v41-not-x">
+              <svg viewBox="0 0 8 8" fill="none" stroke-width="1.4" stroke-linecap="square">
+                <path d="M1 1L7 7M7 1L1 7"/>
+              </svg>
+            </div>
+            <span>We are not a software vendor.</span>
+          </div>
+          <div class="v41-not-item">
+            <div class="v41-not-x">
+              <svg viewBox="0 0 8 8" fill="none" stroke-width="1.4" stroke-linecap="square">
+                <path d="M1 1L7 7M7 1L1 7"/>
+              </svg>
+            </div>
+            <span>We are not a body shop.</span>
+          </div>
+        </div>
+
+        <!-- Power statement -->
+        <div class="v41-about-power v41-reveal" style="transition-delay:0.15s">
+          <p>We put <em>AI into production.</em> In regulated environments. At enterprise scale.</p>
+        </div>
+
+        <!-- CTA -->
+        <a href="#" class="v41-about-cta v41-reveal" style="transition-delay:0.2s">
+          Meet the people behind the work
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+          </svg>
+        </a>
+
+      </div>
     </div>
   </section>
 
