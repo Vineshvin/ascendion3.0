@@ -636,6 +636,142 @@
     .v41-production-fact span { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.42); }
 
     /* ══════════════════════════════════════════════
+       HOW WE DO IT
+    ══════════════════════════════════════════════ */
+    .v41-howwe {
+      background: #0A0A0A;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    /* ── Intro block ── */
+    .v41-howwe-intro {
+      max-width: 1440px; margin: 0 auto;
+      padding: 72px 60px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .v41-howwe-intro-left {}
+    .v41-howwe-tag {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: var(--cyan); letter-spacing: 0.22em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+    }
+    .v41-howwe-tag::before { content: ''; width: 24px; height: 1px; background: var(--cyan); }
+    .v41-howwe-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.04em; color: #fff;
+      margin-bottom: 32px;
+    }
+    .v41-howwe-sub {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(17px, 1.6vw, 22px);
+      font-weight: 400; color: var(--cyan);
+      letter-spacing: -0.01em; line-height: 1.4;
+    }
+    .v41-howwe-intro-right {
+      padding-top: 8px; display: flex; flex-direction: column; gap: 24px;
+    }
+    .v41-howwe-body {
+      font-size: 15px; line-height: 1.85;
+      color: rgba(255,255,255,0.45);
+    }
+    .v41-howwe-body strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .v41-howwe-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px; font-weight: 600;
+      color: #0A0A0A; background: var(--cyan); padding: 10px 22px;
+      align-self: flex-start; transition: background 0.25s, gap 0.3s;
+    }
+    .v41-howwe-link:hover { background: var(--cyan2); gap: 12px; }
+
+    /* ── Three pillar cards ── */
+    .v41-howwe-pillars {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .v41-pillar {
+      position: relative; overflow: hidden;
+      min-height: 580px;
+      display: flex; flex-direction: column;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      cursor: default;
+    }
+    .v41-pillar:last-child { border-right: none; }
+
+    /* Image fills top portion */
+    .v41-pillar-img-wrap {
+      position: relative; overflow: hidden;
+      height: 280px; flex-shrink: 0;
+    }
+    .v41-pillar-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+      filter: grayscale(30%) contrast(1.05) brightness(0.85);
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1),
+                  filter 0.5s ease;
+    }
+    .v41-pillar:hover .v41-pillar-img {
+      transform: scale(1.06);
+      filter: grayscale(0%) contrast(1.05) brightness(0.9);
+    }
+    /* Cyan accent bar at top of image */
+    .v41-pillar-img-wrap::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--cyan); z-index: 2;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .v41-pillar:hover .v41-pillar-img-wrap::before { transform: scaleX(1); }
+    /* Image fade to dark at bottom */
+    .v41-pillar-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(10,10,10,0) 40%,
+        rgba(10,10,10,0.85) 100%);
+      z-index: 1;
+    }
+
+    /* Content area below image */
+    .v41-pillar-body {
+      flex: 1; background: #0D0D0D;
+      padding: 32px 36px 44px;
+      display: flex; flex-direction: column; gap: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.35s;
+    }
+    .v41-pillar:hover .v41-pillar-body { background: rgba(0,255,209,0.025); }
+    .v41-pillar-num {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: var(--cyan); letter-spacing: 0.2em;
+    }
+    .v41-pillar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 1.8vw, 26px);
+      font-weight: 500; color: #fff;
+      letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .v41-pillar-desc {
+      font-size: 14px; line-height: 1.8;
+      color: rgba(255,255,255,0.42);
+      transition: color 0.3s;
+    }
+    .v41-pillar:hover .v41-pillar-desc { color: rgba(255,255,255,0.7); }
+    .v41-pillar-arrow {
+      margin-top: auto; padding-top: 20px;
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: rgba(255,255,255,0.2); letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.3s, gap 0.3s;
+    }
+    .v41-pillar:hover .v41-pillar-arrow { color: var(--cyan); gap: 12px; }
+
+    /* ══════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════ */
     .v41-footer {
@@ -1014,6 +1150,93 @@
           </div>
         </div>
       </div>
+    </div>
+
+  </section>
+
+  <!-- HOW WE DO IT -->
+  <section class="v41-howwe">
+
+    <!-- Intro block -->
+    <div class="v41-howwe-intro">
+      <div class="v41-howwe-intro-left v41-reveal">
+        <div class="v41-howwe-tag">How We Do It</div>
+        <h2 class="v41-howwe-heading">How we<br/>do it</h2>
+        <p class="v41-howwe-sub">Three things,<br/>working as one system.</p>
+      </div>
+      <div class="v41-howwe-intro-right v41-reveal" style="transition-delay:0.12s">
+        <p class="v41-howwe-body">
+          We operationalize AI inside the enterprise.
+        </p>
+        <p class="v41-howwe-body">
+          The market has no shortage of models, tools, and agent frameworks. The scarce thing is the operating capability to put any of them into production inside a regulated, complex business. That capability is <strong>Engineering to the Power of AI™</strong> — our delivery method.
+        </p>
+        <p class="v41-howwe-body">
+          People, process, and platform, <strong>designed as one.</strong>
+        </p>
+        <a href="#" class="v41-howwe-link">
+          How We Deliver
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Three pillars -->
+    <div class="v41-howwe-pillars">
+
+      <div class="v41-pillar v41-reveal">
+        <div class="v41-pillar-img-wrap">
+          <img src="Images/Experience AI.png" alt="People" class="v41-pillar-img"/>
+        </div>
+        <div class="v41-pillar-body">
+          <div class="v41-pillar-num">01 · People</div>
+          <div class="v41-pillar-title">Human engineers<br/>+ AI agents</div>
+          <p class="v41-pillar-desc">Our engineers work alongside AI agents as one integrated workforce — not humans using AI tools, but humans and AI operating as a single delivery system.</p>
+          <div class="v41-pillar-arrow">
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="v41-pillar v41-reveal" style="transition-delay:0.1s">
+        <div class="v41-pillar-img-wrap">
+          <img src="Images/Data AI.png" alt="Process" class="v41-pillar-img"/>
+        </div>
+        <div class="v41-pillar-body">
+          <div class="v41-pillar-num">02 · Process</div>
+          <div class="v41-pillar-title">Engineered for<br/>regulated complexity</div>
+          <p class="v41-pillar-desc">We bring the operating discipline to take AI from experiment to production — inside environments with real compliance requirements, real risk, and real scale.</p>
+          <div class="v41-pillar-arrow">
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="v41-pillar v41-reveal" style="transition-delay:0.2s">
+        <div class="v41-pillar-img-wrap">
+          <img src="Images/Platform Engineering AI.png" alt="Platform" class="v41-pillar-img"/>
+        </div>
+        <div class="v41-pillar-body">
+          <div class="v41-pillar-num">03 · Platform</div>
+          <div class="v41-pillar-title">AAVA™ — our<br/>agentic AI platform</div>
+          <p class="v41-pillar-desc">AAVA™ is the platform that runs 10,000+ production agents across the Fortune 100 — purpose-built to operationalize AI at enterprise scale, not a wrapper around someone else's model.</p>
+          <div class="v41-pillar-arrow">
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </section>
