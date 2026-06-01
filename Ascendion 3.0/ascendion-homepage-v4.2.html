@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ascendion v4.2 — Engineering to the Power of AI™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: #0A0A0A;
+      color: #ffffff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; cursor: pointer; font-family: inherit; }
+    ul { list-style: none; }
+
+    :root {
+      /* ── Brand accent — green only, used sparingly ── */
+      --green:  #00E87A;   /* Primary accent: stat numbers, headline word, CTA bg */
+      --green2: #00CF6E;   /* Hover state of --green */
+
+      /* ── Neutrals ── */
+      --dark:   #000000;
+      --dark2:  #111111;
+      --dark3:  #1a1a1a;
+      --dark4:  #2a2a2a;
+      --gray:   rgba(255,255,255,0.5);
+      --gray2:  rgba(255,255,255,0.25);
+      --white:  #ffffff;
+
+      /* ── Fix 10: Type ramp documentation ── */
+      --type-display:  'Space Grotesk', sans-serif;  /* H1 only */
+      --type-heading:  'Space Grotesk', sans-serif;  /* H2, H3 */
+      --type-body:     'Figtree', sans-serif;         /* Body copy */
+      --type-ui:       'DM Mono', monospace;          /* Nav, labels, captions */
+
+      --size-h1:    clamp(44px, 5vw, 76px);
+      --size-h2:    clamp(32px, 4vw, 60px);
+      --size-h3:    clamp(20px, 2vw, 28px);
+      --size-body:  15px;
+      --size-small: 13px;
+
+      --weight-display: 400;  /* Space Grotesk — NEVER bold/700 */
+      --weight-heading: 500;
+      --weight-body:    400;
+    }
+
+    /* ══════════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════════ */
+    .v41-nav {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .v41-nav-inner {
+      max-width: 1440px; margin: 0 auto;
+      padding: 0 60px; height: 64px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 40px;
+    }
+    .v41-logo {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .v41-logo-icon {
+      width: 28px; height: 28px; background: #ffffff;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .v41-logo-icon svg { width: 16px; height: 16px; }
+    .v41-logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 700;
+      color: #fff; letter-spacing: -0.01em;
+    }
+    .v41-logo-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px; font-weight: 500;
+      color: rgba(255,255,255,0.4); letter-spacing: 0.14em;
+      text-transform: uppercase; display: block;
+      line-height: 1; margin-top: 2px;
+    }
+    .v41-nav-links {
+      display: flex; align-items: center; gap: 0;
+    }
+    .v41-nav-links a {
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7);
+      padding: 8px 16px; transition: color 0.2s;
+    }
+    .v41-nav-links a:hover { color: #fff; }
+    .v41-nav-cta {
+      font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+      color: #000000; background: var(--green);
+      padding: 9px 22px; display: inline-flex; align-items: center; gap: 7px;
+      letter-spacing: 0.01em; transition: background 0.25s, gap 0.3s;
+      border-radius: 2px;
+    }
+    .v41-nav-cta:hover { background: var(--green2); gap: 11px; }
+
+    /* ══════════════════════════════════════════════
+       HERO — "Outcomes tell our story"
+    ══════════════════════════════════════════════ */
+    .v41-hero {
+      background: #0A0A0A;
+      min-height: calc(100vh - 64px);
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Full-width banner image behind everything */
+    .v41-hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center center;
+      display: block;
+      z-index: 0;
+    }
+
+    /* Subtle gradient overlay so text stays readable */
+    .v41-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(10,10,10,0.55) 0%,
+        rgba(10,10,10,0.15) 55%,
+        rgba(10,10,10,0.0) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Left — text content anchored to bottom */
+    .v41-hero-center {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 60px 48px 72px 60px;
+      gap: 20px;
+    }
+    .v41-hero-eyebrow {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: rgba(255,255,255,0.4); letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .v41-hero-headline {
+      font-family: var(--type-display);
+      font-size: var(--size-h1);
+      font-weight: var(--weight-display); line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+    .v41-hero-headline em {
+      font-style: normal; color: var(--green); /* one accent word per section */
+      display: block;
+    }
+    .v41-hero-sub {
+      font-size: 15px; line-height: 1.75;
+      color: rgba(255,255,255,0.55);
+      max-width: 400px;
+    }
+
+    /* Right — portrait stacked above callout */
+    .v41-hero-right {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      background: transparent;
+    }
+    .v41-hero-portrait-wrap {
+      flex: 1; overflow: hidden;
+      background: #111;
+    }
+    .v41-hero-portrait {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    .v41-callout {
+      flex-shrink: 0;
+      background: var(--green); /* key metric callout — green accent allowed */
+      padding: 28px 32px;
+    }
+    .v41-callout-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: #0A0A0A; line-height: 1.1;
+    }
+    .v41-callout-desc {
+      font-size: 14px; font-weight: 500;
+      color: rgba(0,0,0,0.65); margin-top: 8px;
+    }
+
+    /* ══════════════════════════════════════════════
+       STATS SECTION — full-width photo + overlays
+    ══════════════════════════════════════════════ */
+    .v41-stats {
+      position: relative; overflow: hidden;
+      min-height: 520px;
+    }
+    .v41-stats-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, #111111 0%, #000000 100%);
+    }
+    .v41-stats-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0.35;
+    }
+    .v41-stats-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.55) 100%);
+    }
+    .v41-stats-inner {
+      position: relative; z-index: 2;
+      max-width: 1440px; margin: 0 auto; padding: 100px 60px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 40px; align-items: center;
+    }
+    .v41-stat-item {
+      padding: 0 40px;
+      /* Fix 3: border-right removed — use spacing for separation */
+    }
+    .v41-stat-item:first-child { padding-left: 0; }
+    .v41-stat-num {
+      font-family: var(--type-heading);
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 600; color: var(--green); /* key metric number — green allowed */
+      letter-spacing: -0.04em; line-height: 1;
+    }
+    .v41-stat-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 500; color: #fff;
+      margin-bottom: 12px; line-height: 1.1;
+    }
+    .v41-stat-desc {
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      line-height: 1.65; max-width: 280px;
+    }
+    .v41-play-btn {
+      position: absolute; top: 40px; right: 60px; z-index: 3;
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .v41-play-btn:hover { background: rgba(255,255,255,0.2); }
+    .v41-play-btn svg { width: 16px; height: 16px; fill: #fff; }
+    .v41-play-btn:hover svg { fill: #fff; }
+
+    /* ══════════════════════════════════════════════
+       12 SECONDS SECTION
+    ══════════════════════════════════════════════ */
+    .v41-twelve {
+      background: #111111;
+      padding: 120px 0;
+      /* Fix 3: border-top removed */
+    }
+    .v41-twelve-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+      display: grid; grid-template-columns: 1fr 1fr 380px;
+      gap: 60px; align-items: center;
+    }
+    .v41-twelve-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 400; color: #fff;
+      line-height: 1.08; letter-spacing: -0.03em;
+    }
+    .v41-twelve-heading em {
+      font-style: italic; color: var(--green); /* one accent word per section */
+      display: block;
+    }
+    .v41-twelve-facts {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .v41-fact {
+      padding: 18px 0;
+      font-size: var(--size-body); line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+      /* Fix 3: borders removed — use padding for spacing */
+    }
+    .v41-fact:hover { color: rgba(255,255,255,0.85); }
+    .v41-fact a {
+      color: #fff; text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(255,255,255,0.3);
+    }
+    .v41-fact a:hover { text-decoration-color: var(--green); color: #fff; }
+    .v41-fact strong { color: #fff; font-weight: 500; }
+    .v41-twelve-portrait {
+      position: relative; overflow: hidden;
+      height: 400px; background: #161616;
+    }
+    .v41-twelve-portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    /* CSS portrait fallback — Fix 1: teal gradients removed */
+    .v41-twelve-portrait-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .v41-twelve-silhouette {
+      width: 160px; height: 240px;
+      background: linear-gradient(180deg, #2a2a2a 0%, #111111 100%);
+      border-radius: 50% 50% 8px 8px / 40% 40% 8px 8px;
+      position: relative;
+    }
+    .v41-twelve-silhouette::before {
+      content: ''; position: absolute;
+      width: 70px; height: 70px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      top: 20px; left: 50%; transform: translateX(-50%);
+    }
+
+    /* ══════════════════════════════════════════════
+       DISRUPTION / RECOGNITION
+    ══════════════════════════════════════════════ */
+    .v41-disrupt {
+      background: #F4F4F2; padding: 100px 0;
+    }
+    .v41-disrupt-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+    }
+    .v41-disrupt-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 400; color: #0A0A0A;
+      letter-spacing: -0.03em; margin-bottom: 48px;
+    }
+    .v41-disrupt-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .v41-disrupt-card {
+      background: #fff;
+      overflow: hidden;
+      /* Fix 3: border removed */
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .v41-disrupt-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+    .v41-disrupt-img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+    }
+    .v41-disrupt-body {
+      padding: 24px;
+    }
+    .v41-disrupt-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px; color: #888;
+      letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .v41-disrupt-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 500;
+      color: #0A0A0A; line-height: 1.35;
+    }
+
+    /* ══════════════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════════════ */
+    .v41-testimonials {
+      background: #ffffff; padding: 100px 0;
+      /* Fix 3: border-top removed */
+    }
+    .v41-test-inner {
+      max-width: 1440px; margin: 0 auto; padding: 0 60px;
+    }
+    .v41-test-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; margin-bottom: 56px;
+      gap: 24px;
+    }
+    .v41-test-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(26px, 2.8vw, 40px);
+      font-weight: 400; color: #0A0A0A;
+      letter-spacing: -0.03em;
+    }
+    .v41-test-cta {
+      font-family: var(--type-body); font-size: var(--size-small); font-weight: 600;
+      color: #000000; background: var(--green); /* single CTA — green allowed */
+      padding: 10px 22px; display: inline-flex; align-items: center; gap: 8px;
+      white-space: nowrap; flex-shrink: 0;
+      border-radius: 2px; transition: background 0.25s;
+    }
+    .v41-test-cta:hover { background: var(--green2); }
+    .v41-test-card {
+      display: grid; grid-template-columns: 1fr 340px;
+      gap: 0; background: #F9F9F8;
+      /* Fix 3: border removed */
+    }
+    .v41-test-quote-wrap {
+      padding: 56px 60px;
+    }
+    /* Fix 6: Remove italic styling, normalize to body copy treatment */
+    .v41-test-quote {
+      font-family: var(--type-body);
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height: 1.75; color: #1a1a1a;
+      font-weight: var(--weight-body); font-style: normal;
+      margin-bottom: 36px;
+    }
+    .v41-test-author-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 600; color: #0A0A0A;
+    }
+    .v41-test-author-role {
+      font-size: 13px; color: #888; margin-top: 4px;
+    }
+    .v41-test-photo {
+      background: #E8E8E6;
+      overflow: hidden;
+    }
+    .v41-test-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .v41-test-photo-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #e0e0de 0%, #c8c8c4 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .v41-test-nav {
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 8px; margin-top: 20px;
+    }
+    .v41-test-nav-btn {
+      width: 40px; height: 40px;
+      background: transparent;
+      /* Fix 3: border removed */
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .v41-test-nav-btn:hover { background: #0A0A0A; }
+    .v41-test-nav-btn:hover svg { stroke: #fff; }
+    .v41-test-nav-btn svg { stroke: #0A0A0A; transition: stroke 0.2s; }
+
+    /* Dot indicators */
+    .v41-test-dots {
+      display: flex; align-items: center; gap: 6px; margin-right: auto;
+    }
+    .v41-test-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(0,0,0,0.15);
+    }
+    .v41-test-dot.active { background: #0A0A0A; }
+
+    /* ══════════════════════════════════════════════
+       WHO WE ARE — EDITORIAL SPLIT
+    ══════════════════════════════════════════════ */
+    .v41-about {
+      background: #000000;
+      /* Fix 3: border-top removed */
+      overflow: hidden;
+    }
+
+    /* ── A. Header strip ── */
+    .v41-about-strip {
+      max-width: 1440px; margin: 0 auto;
+      padding: 52px 60px 48px;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .v41-about-strip-tag {
+      font-family: var(--type-ui); font-size: 10px;
+      color: rgba(255,255,255,0.35); letter-spacing: 0.22em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    /* Fix 3: strip rule (visible line) removed */
+    .v41-about-strip-rule { display: none; }
+
+    /* ── B. Split: left text / right image ── */
+    .v41-about-split {
+      display: grid; grid-template-columns: 55fr 45fr;
+      min-height: 700px;
+      /* Fix 3: border-top removed */
+    }
+    .v41-about-left {
+      padding: 64px 72px 72px 60px;
+      display: flex; flex-direction: column;
+      /* Fix 3: border-right removed */
+    }
+    .v41-about-main-heading {
+      font-family: var(--type-display);
+      font-size: clamp(38px, 4.5vw, 68px);
+      font-weight: var(--weight-display); line-height: 0.95;
+      letter-spacing: -0.04em; color: #fff;
+      margin-bottom: 56px;
+    }
+    .v41-about-main-heading em { font-style: normal; color: var(--green); /* one accent word */ }
+
+    .v41-about-missions { display: flex; flex-direction: column; flex: 1; }
+    .v41-about-mission-row {
+      display: grid; grid-template-columns: 44px 1fr;
+      gap: 20px; padding: 22px 0;
+      /* Fix 3: borders removed */
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .v41-mission-n {
+      font-family: var(--type-ui); font-size: 10px;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.12em; padding-top: 4px;
+    }
+    .v41-mission-p {
+      font-size: 15px; line-height: 1.8;
+      color: rgba(255,255,255,0.45); transition: color 0.3s;
+    }
+    .v41-about-mission-row:hover .v41-mission-p { color: rgba(255,255,255,0.85); }
+
+    .v41-about-cta-wrap { margin-top: 48px; }
+    .v41-about-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--type-body);
+      font-size: var(--size-small); font-weight: 600;
+      color: #000000; background: var(--green); padding: 12px 26px; /* single CTA — green */
+      border-radius: 2px; transition: background 0.25s, gap 0.3s;
+    }
+    .v41-about-cta:hover { background: var(--green2); gap: 14px; }
+
+    /* ── Right: image with overlay + badge ── */
+    .v41-about-right { position: relative; overflow: hidden; }
+    .v41-about-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top; display: block;
+      filter: grayscale(25%) contrast(1.05);
+    }
+    .v41-about-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(0,0,0,0.05) 0%,    /* Fix 1: teal tint removed */
+        rgba(0,0,0,0.2) 45%,
+        rgba(0,0,0,0.6) 100%
+      );
+    }
+    .v41-about-img-badge {
+      position: absolute; bottom: 36px; left: 32px;
+      background: var(--green); padding: 20px 28px; z-index: 2; /* key metric — green */
+    }
+    .v41-badge-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px; font-weight: 700;
+      color: #0A0A0A; line-height: 1; letter-spacing: -0.04em;
+    }
+    .v41-badge-label {
+      font-size: 12px; font-weight: 500;
+      color: rgba(0,0,0,0.58); margin-top: 5px;
+    }
+
+    /* ── C. "We are NOT" — scrolling marquee ── */
+    .v41-not-band {
+      background: #111111;
+      /* Fix 3: border-top removed */
+      padding: 44px 0;
+      overflow: hidden;
+    }
+    .v41-not-eyebrow {
+      max-width: 1440px; margin: 0 auto 18px; padding: 0 60px;
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: rgba(255,255,255,0.18); letter-spacing: 0.22em; text-transform: uppercase;
+    }
+    .v41-not-track {
+      display: flex; align-items: center;
+      width: max-content;
+      animation: v41-marquee 24s linear infinite;
+    }
+    .v41-not-track:hover { animation-play-state: paused; }
+    @keyframes v41-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .v41-not-item-m { display: flex; align-items: center; flex-shrink: 0; }
+    .v41-not-text-m {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(26px, 3vw, 44px);
+      font-weight: 400; letter-spacing: -0.03em;
+      color: rgba(255,255,255,0.16);
+      white-space: nowrap; padding: 0 36px;
+      position: relative; display: inline-block;
+    }
+    .v41-not-text-m::after {
+      content: ''; position: absolute;
+      left: 36px; right: 36px; top: 52%;
+      height: 1.5px; background: rgba(255,255,255,0.18);
+    }
+    .v41-not-sep { color: rgba(255,255,255,0.25); font-size: 18px; padding: 0 4px; }
+
+    /* ── D. Power / Production statement with bg image ── */
+    .v41-about-production {
+      position: relative; overflow: hidden; min-height: 440px;
+      display: flex; align-items: center;
+    }
+    .v41-production-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0.2; filter: grayscale(50%) contrast(1.1);
+    }
+    .v41-production-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(10,10,10,0.96) 0%,
+        rgba(10,10,10,0.75) 55%,
+        rgba(10,10,10,0.88) 100%
+      );
+    }
+    .v41-production-inner {
+      position: relative; z-index: 2;
+      max-width: 1440px; margin: 0 auto; padding: 80px 60px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .v41-production-statement {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3.2vw, 48px);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.03em; color: #fff;
+    }
+    .v41-production-statement em { font-style: normal; color: var(--green); /* one accent word */ }
+    .v41-production-right { display: flex; flex-direction: column; gap: 0; }
+    .v41-production-fact {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 0;
+      /* Fix 3: borders removed */
+    }
+    .v41-prod-dot {
+      width: 4px; height: 4px; background: var(--green); border-radius: 50%;
+      flex-shrink: 0; margin-top: 10px;
+    }
+    .v41-production-fact span { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.42); }
+
+    /* ══════════════════════════════════════════════
+       HOW WE DO IT
+    ══════════════════════════════════════════════ */
+    .v41-howwe {
+      background: #000000;
+      /* Fix 3: border-top removed */
+      overflow: hidden;
+    }
+
+    /* ── Intro block ── */
+    .v41-howwe-intro {
+      max-width: 1440px; margin: 0 auto;
+      padding: 72px 60px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+      /* Fix 3: border-bottom removed */
+    }
+    .v41-howwe-intro-left {}
+    .v41-howwe-tag {
+      font-family: var(--type-ui); font-size: 10px;
+      color: rgba(255,255,255,0.35); letter-spacing: 0.22em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+    }
+    /* Fix 3: decorative line from ::before removed */
+    .v41-howwe-tag::before { display: none; }
+    .v41-howwe-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.04em; color: #fff;
+      margin-bottom: 32px;
+    }
+    /* Fix 2: sub-heading was full large text in green — replaced with white */
+    .v41-howwe-sub {
+      font-family: var(--type-heading);
+      font-size: clamp(17px, 1.6vw, 22px);
+      font-weight: var(--weight-body); color: rgba(255,255,255,0.7);
+      letter-spacing: -0.01em; line-height: 1.4;
+    }
+    .v41-howwe-intro-right {
+      padding-top: 8px; display: flex; flex-direction: column; gap: 24px;
+    }
+    .v41-howwe-body {
+      font-size: 15px; line-height: 1.85;
+      color: rgba(255,255,255,0.45);
+    }
+    .v41-howwe-body strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .v41-howwe-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--type-body);
+      font-size: var(--size-small); font-weight: 600;
+      color: #000000; background: var(--green); padding: 10px 22px; /* single CTA — green */
+      align-self: flex-start; border-radius: 2px; transition: background 0.25s, gap 0.3s;
+    }
+    .v41-howwe-link:hover { background: var(--green2); gap: 12px; }
+
+    /* ── Three pillar cards ── */
+    .v41-howwe-pillars {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .v41-pillar {
+      position: relative; overflow: hidden;
+      min-height: 580px;
+      display: flex; flex-direction: column;
+      /* Fix 3: border-right removed */
+      cursor: default;
+    }
+
+    /* Image fills top portion */
+    .v41-pillar-img-wrap {
+      position: relative; overflow: hidden;
+      height: 280px; flex-shrink: 0;
+    }
+    .v41-pillar-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+      filter: grayscale(30%) contrast(1.05) brightness(0.85);
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1),
+                  filter 0.5s ease;
+    }
+    .v41-pillar:hover .v41-pillar-img {
+      transform: scale(1.06);
+      filter: grayscale(0%) contrast(1.05) brightness(0.9);
+    }
+    /* Green accent bar at top of image — icon/underline accent, allowed */
+    .v41-pillar-img-wrap::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--green); z-index: 2;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .v41-pillar:hover .v41-pillar-img-wrap::before { transform: scaleX(1); }
+    /* Image fade to dark at bottom */
+    .v41-pillar-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(10,10,10,0) 40%,
+        rgba(10,10,10,0.85) 100%);
+      z-index: 1;
+    }
+
+    /* Content area below image */
+    .v41-pillar-body {
+      flex: 1; background: #111111;
+      padding: 32px 36px 44px;
+      display: flex; flex-direction: column; gap: 16px;
+      /* Fix 3: border-top removed */
+      transition: background 0.35s;
+    }
+    .v41-pillar:hover .v41-pillar-body { background: #1a1a1a; /* Fix 2: no green wash */ }
+    .v41-pillar-num {
+      font-family: var(--type-ui); font-size: 10px;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.2em;
+    }
+    .v41-pillar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 1.8vw, 26px);
+      font-weight: 500; color: #fff;
+      letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .v41-pillar-desc {
+      font-size: 14px; line-height: 1.8;
+      color: rgba(255,255,255,0.42);
+      transition: color 0.3s;
+    }
+    .v41-pillar:hover .v41-pillar-desc { color: rgba(255,255,255,0.7); }
+    .v41-pillar-arrow {
+      margin-top: auto; padding-top: 20px;
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: rgba(255,255,255,0.2); letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.3s, gap 0.3s;
+    }
+    .v41-pillar:hover .v41-pillar-arrow { color: var(--green); gap: 12px; /* icon accent — green allowed */ }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    /* Fix 9: Footer simplified — black bg, no borders, logo white */
+    .v41-footer {
+      background: #000000;
+      /* Fix 3 + Fix 9: border-top removed */
+    }
+    /* Fix 9: Simplified footer — brand block only, no link columns */
+    .v41-footer-top {
+      max-width: 1440px; margin: 0 auto; padding: 64px 60px 48px;
+    }
+    /* Fix 1: Logo must be white in footer, never green */
+    .v41-footer-brand .v41-logo-text { color: #ffffff; font-size: 20px; }
+    .v41-footer-brand .v41-logo-sub { color: rgba(255,255,255,0.35); margin-top: 4px; }
+    .v41-footer-tagline {
+      font-size: 13px; color: rgba(255,255,255,0.35);
+      margin-top: 12px; line-height: 1.6; max-width: 200px;
+    }
+    .v41-footer-social {
+      display: flex; align-items: center; gap: 10px; margin-top: 28px;
+    }
+    .v41-social-link {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .v41-social-link:hover { background: rgba(255,255,255,0.15); }
+    .v41-social-link:hover svg { stroke: #0A0A0A; }
+    .v41-social-link svg { stroke: rgba(255,255,255,0.5); width: 15px; height: 15px; }
+    .v41-footer-col-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      color: rgba(255,255,255,0.3); letter-spacing: 0.16em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .v41-footer-links {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .v41-footer-links a {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+    .v41-footer-links a:hover { color: #fff; }
+    .v41-footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      max-width: 1440px; margin: 0 auto; padding: 20px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .v41-footer-copy {
+      font-size: 12px; color: rgba(255,255,255,0.25);
+    }
+    .v41-footer-legal {
+      display: flex; gap: 24px;
+    }
+    .v41-footer-legal a {
+      font-size: 12px; color: rgba(255,255,255,0.3);
+      transition: color 0.2s;
+    }
+    .v41-footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ══════════════════════════════════════════════
+       REVEAL ANIMATIONS
+    ══════════════════════════════════════════════ */
+    .v41-reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .v41-reveal.v41-vis { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .v41-hero { grid-template-columns: 1fr 1fr; }
+      .v41-hero-left { display: none; }
+      .v41-twelve-inner { grid-template-columns: 1fr 1fr; }
+      .v41-twelve-portrait { display: none; }
+    }
+    @media (max-width: 768px) {
+      .v41-nav-links { display: none; }
+      .v41-hero { grid-template-columns: 1fr; }
+      .v41-hero-right { min-height: 340px; }
+      .v41-stats-inner { grid-template-columns: 1fr; gap: 32px; }
+      .v41-stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0 0 24px 0; }
+      .v41-stat-item:last-child { border-bottom: none; }
+      .v41-twelve-inner { grid-template-columns: 1fr; }
+      .v41-disrupt-grid { grid-template-columns: 1fr; }
+      .v41-test-card { grid-template-columns: 1fr; }
+      .v41-test-photo { min-height: 260px; }
+      .v41-footer-top { grid-template-columns: 1fr 1fr; }
+      .v41-nav-inner { padding: 0 24px; }
+      .v41-disrupt-inner, .v41-test-inner, .v41-twelve-inner,
+      .v41-stats-inner, .v41-footer-top, .v41-footer-bottom { padding-left: 24px; padding-right: 24px; }
+      .v41-hero-center { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="v41-nav">
+    <div class="v41-nav-inner">
+      <a href="#" class="v41-logo">
+        <div class="v41-logo-icon">
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 15L9 3L15 15" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+            <path d="M5.5 11H12.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+          </svg>
+        </div>
+        <div>
+          <strong class="v41-logo-text">ASCENDION</strong>
+          <span class="v41-logo-sub">Engineering to the Power of AI™</span>
+        </div>
+      </a>
+      <nav class="v41-nav-links">
+        <a href="#">What We Do</a>
+        <a href="#">AAVA</a>
+        <a href="#">Impact</a>
+        <a href="#">Insights</a>
+        <a href="#">About</a>
+      </nav>
+      <a href="#" class="v41-nav-cta">
+        Get In Touch
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#0A0A0A" stroke-width="1.4" stroke-linecap="square"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="v41-hero">
+
+    <!-- Full-width background banner image -->
+    <img src="v4.1/bannerimg.png" alt="" class="v41-hero-bg"/>
+
+    <!-- Left: Text anchored bottom-left -->
+    <div class="v41-hero-center v41-reveal" id="v41HeroText">
+      <div class="v41-hero-eyebrow">Outcomes · Impact · Scale</div>
+      <h1 class="v41-hero-headline">
+        <em>Outcomes</em>
+        tell our story
+      </h1>
+      <p class="v41-hero-sub">
+        Software now shapes more of how we work and live. We use the power of AI to make it better, so we can improve millions of lives.
+      </p>
+    </div>
+
+    <!-- Right: Portrait + metric callout -->
+    <div class="v41-hero-right">
+      <div class="v41-hero-portrait-wrap">
+        <img src="v4.1/profile.png" alt="Profile" class="v41-hero-portrait"/>
+      </div>
+      <div class="v41-callout">
+        <div class="v41-callout-num">5.2 million<br/>banking customers</div>
+        <div class="v41-callout-desc">Protected through a quiet rebuild</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- STATS -->
+  <section class="v41-stats">
+    <!-- CLIENT FEEDBACK FIX 4: Replace "people at monitors" image — placeholder until approved motion asset is supplied -->
+    <div class="v41-stats-photo" style="background:#111111;display:flex;align-items:center;justify-content:center;position:absolute;inset:0;z-index:0;">
+      <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;color:rgba(255,255,255,0.2);text-transform:uppercase;">[ Replace: humans in motion — unexpected angles ]</span>
+    </div>
+    <div class="v41-stats-overlay"></div>
+    <button class="v41-play-btn" aria-label="Play video">
+      <svg viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+    </button>
+    <div class="v41-stats-inner">
+      <div class="v41-stat-item v41-reveal">
+        <div class="v41-stat-num">39 MILLION</div>
+        <div class="v41-stat-label">Americans</div>
+        <div class="v41-stat-desc">Protected through a quiet rebuild of a 100-year-old institution.</div>
+      </div>
+      <div class="v41-stat-item v41-reveal" style="transition-delay:0.1s">
+        <div class="v41-stat-num">5.2 MILLION</div>
+        <div class="v41-stat-label">banking customers</div>
+        <div class="v41-stat-desc">Secured and served at a 200-year-old UK bank.</div>
+      </div>
+      <div class="v41-stat-item v41-reveal" style="transition-delay:0.2s">
+        <div class="v41-stat-num">4 MILLION</div>
+        <div class="v41-stat-label">dual-eligible members</div>
+        <div class="v41-stat-desc">Better access to coordinated healthcare services.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 SECONDS -->
+  <section class="v41-twelve">
+    <div class="v41-twelve-inner">
+
+      <div class="v41-reveal">
+        <h2 class="v41-twelve-heading">
+          What you should know about us
+          <em>in twelve seconds</em>
+        </h2>
+      </div>
+
+      <div class="v41-twelve-facts v41-reveal" style="transition-delay:0.1s">
+        <div class="v41-fact">We are an <a href="#">AI-native software engineering company</a></div>
+        <div class="v41-fact">We run <a href="#">10,000+ production agents on AAVA™</a></div>
+        <div class="v41-fact">our agentic AI product — inside <a href="#">30%+ of the Fortune 100</a></div>
+        <div class="v41-fact">52% of our own production code is AI-generated. <strong>We use what we sell.</strong></div>
+      </div>
+
+      <!-- SIGNATURE TREATMENT: Intentional pixelation on this portrait — keep (instance 1 of 2) -->
+      <div class="v41-twelve-portrait v41-reveal" style="transition-delay:0.2s">
+        <img src="v4.1/featured img.png" alt="AI engineer" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AAVA EQUATION -->
+  <!-- CLIENT FEEDBACK FIX 5: AAVA Equation section — background image treatment required. Human Intelligence × AAVA = Engineering AI. Imagery must sit behind this equation at z-index: 0; equation text at z-index: 1. Replace placeholder with approved background asset. -->
+  <section class="v41-aava" style="position:relative;background:#0a0a0a;padding:120px 60px;overflow:hidden;text-align:center;">
+    <div style="position:absolute;inset:0;background:#111111;display:flex;align-items:center;justify-content:center;z-index:0;">
+      <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;color:rgba(255,255,255,0.15);text-transform:uppercase;">[ Replace: AAVA equation background image ]</span>
+    </div>
+    <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:32px;">The AAVA Equation</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,64px);font-weight:400;color:#ffffff;letter-spacing:-0.02em;line-height:1.1;">
+        Human Intelligence <span style="color:var(--green);">×</span> AAVA <span style="color:rgba(255,255,255,0.3);">=</span> Engineering AI
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBE PLACEHOLDER -->
+  <!-- CLIENT FEEDBACK FIX 8: Rotating pixelated globe from Variant 1 approved. Reinstate this animation here. Replace div below with Three.js / CSS globe component. -->
+  <div class="globe-placeholder" style="background:#000000;height:480px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+    <div style="width:320px;height:320px;border-radius:50%;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;position:relative;">
+      <div style="width:240px;height:240px;border-radius:50%;border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;">
+        <div style="width:160px;height:160px;border-radius:50%;border:1px solid rgba(0,232,122,0.2);background:rgba(0,232,122,0.04);"></div>
+      </div>
+      <span style="position:absolute;bottom:-32px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(255,255,255,0.2);text-transform:uppercase;white-space:nowrap;">[ Globe animation — reinstate from Variant 1 ]</span>
+    </div>
+  </div>
+
+  <!-- LEADING DISRUPTION -->
+  <section class="v41-disrupt">
+    <div class="v41-disrupt-inner">
+      <h2 class="v41-disrupt-heading v41-reveal">We are leading the disruption:</h2>
+      <div class="v41-disrupt-grid">
+
+        <div class="v41-disrupt-card v41-reveal">
+          <img src="v4.1/hfs horizon.png" alt="HFS Horizons" class="v41-disrupt-img"/>
+          <div class="v41-disrupt-body">
+            <div class="v41-disrupt-year">2026</div>
+            <div class="v41-disrupt-title">HFS Services-as-Software Leader</div>
+          </div>
+        </div>
+
+        <div class="v41-disrupt-card v41-reveal" style="transition-delay:0.1s">
+          <img src="v4.1/isg provider lens.png" alt="ISG Provider Lens" class="v41-disrupt-img"/>
+          <div class="v41-disrupt-body">
+            <div class="v41-disrupt-year">2026</div>
+            <div class="v41-disrupt-title">HFS Services-as-Software Leader</div>
+          </div>
+        </div>
+
+        <div class="v41-disrupt-card v41-reveal" style="transition-delay:0.2s">
+          <img src="v4.1/hfs research.png" alt="HFS Research" class="v41-disrupt-img"/>
+          <div class="v41-disrupt-body">
+            <div class="v41-disrupt-year">2026</div>
+            <div class="v41-disrupt-title">HFS Services-as-Software Leader</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="v41-testimonials">
+    <div class="v41-test-inner">
+      <div class="v41-test-header">
+        <h2 class="v41-test-heading v41-reveal">Don't just take our word for it</h2>
+        <a href="#" class="v41-test-cta">
+          See The Impact
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#0A0A0A" stroke-width="1.4" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+
+      <div class="v41-test-card v41-reveal">
+        <div class="v41-test-quote-wrap">
+          <p class="v41-test-quote">
+            "Ascendion stands out for its early and consistent commitment to applying AI, now combining its agentic engineering platform AAVA with [a] product-led engineering mindset to accelerate legacy modernization, streamline software development, and deliver measurable transformation outcomes."
+          </p>
+          <div class="v41-test-author-name">David Cushman</div>
+          <div class="v41-test-author-role">Executive Research Leader, HFS Research</div>
+        </div>
+        <!-- CLIENT FEEDBACK FIX 6: Headshots removed from testimonials — no photos in quote cards -->
+        <div class="v41-test-photo" style="background:#111111;"></div>
+      </div>
+
+      <div class="v41-test-nav">
+        <div class="v41-test-dots">
+          <div class="v41-test-dot active"></div>
+          <div class="v41-test-dot"></div>
+          <div class="v41-test-dot"></div>
+        </div>
+        <button class="v41-test-nav-btn" aria-label="Previous">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="1.5" stroke-linecap="square">
+            <path d="M9 2L4 7L9 12"/>
+          </svg>
+        </button>
+        <button class="v41-test-nav-btn" aria-label="Next">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke-width="1.5" stroke-linecap="square">
+            <path d="M5 2L10 7L5 12"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHO WE ARE — EDITORIAL SPLIT -->
+  <section class="v41-about">
+
+    <!-- A. Header strip -->
+    <div class="v41-about-strip">
+      <span class="v41-about-strip-tag">Who We Are</span>
+      <div class="v41-about-strip-rule"></div>
+    </div>
+
+    <!-- B. Left text + Right image -->
+    <div class="v41-about-split">
+
+      <div class="v41-about-left v41-reveal">
+        <h2 class="v41-about-main-heading">
+          Ascendion is an <em>AI-native</em><br/>software and data<br/>engineering disruptor
+        </h2>
+        <div class="v41-about-missions">
+          <div class="v41-about-mission-row">
+            <div class="v41-mission-n">01</div>
+            <p class="v41-mission-p">We design, build, and run the software systems that improve everyday work and life.</p>
+          </div>
+          <div class="v41-about-mission-row">
+            <div class="v41-mission-n">02</div>
+            <p class="v41-mission-p">We deliver as one system: human engineers and AI agents, working as one workforce.</p>
+          </div>
+          <div class="v41-about-mission-row">
+            <div class="v41-mission-n">03</div>
+            <p class="v41-mission-p">We exist to disrupt the multi-trillion-dollar technology services market — and to make the work itself better for the people who do it.</p>
+          </div>
+        </div>
+        <div class="v41-about-cta-wrap">
+          <a href="#" class="v41-about-cta">
+            Meet the people behind the work
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+              <path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="v41-about-right v41-reveal" style="transition-delay:0.18s">
+        <!-- SIGNATURE TREATMENT: Intentional pixelation on this portrait — keep (instance 2 of 2) -->
+        <img src="v4.1/profile.png" alt="" class="v41-about-img"/>
+        <div class="v41-about-img-overlay"></div>
+        <div class="v41-about-img-badge">
+          <div class="v41-badge-num">Fortune 100</div>
+          <div class="v41-badge-label">30%+ of Fortune 100 trust us</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- C. "We are NOT" scrolling marquee -->
+    <div class="v41-not-band v41-reveal">
+      <div class="v41-not-eyebrow">What we're not</div>
+      <div class="v41-not-track">
+        <div class="v41-not-item-m"><span class="v41-not-text-m">a consulting boutique</span><span class="v41-not-sep">·</span></div>
+        <div class="v41-not-item-m"><span class="v41-not-text-m">a software vendor</span><span class="v41-not-sep">·</span></div>
+        <div class="v41-not-item-m"><span class="v41-not-text-m">a body shop</span><span class="v41-not-sep">·</span></div>
+        <div class="v41-not-item-m"><span class="v41-not-text-m">a consulting boutique</span><span class="v41-not-sep">·</span></div>
+        <div class="v41-not-item-m"><span class="v41-not-text-m">a software vendor</span><span class="v41-not-sep">·</span></div>
+        <div class="v41-not-item-m"><span class="v41-not-text-m">a body shop</span><span class="v41-not-sep">·</span></div>
+      </div>
+    </div>
+
+    <!-- D. Power statement with background image -->
+    <div class="v41-about-production v41-reveal">
+      <img src="Images/Production.Not pilots..png" alt="" class="v41-production-bg"/>
+      <div class="v41-production-overlay"></div>
+      <div class="v41-production-inner">
+        <div class="v41-production-statement">
+          We put <em>AI into production.</em><br/>
+          In regulated environments.<br/>
+          At enterprise scale.
+        </div>
+        <div class="v41-production-right">
+          <div class="v41-production-fact">
+            <div class="v41-prod-dot"></div>
+            <span>Not proofs of concept. Not pilots. Production systems running in real environments for real users.</span>
+          </div>
+          <div class="v41-production-fact">
+            <div class="v41-prod-dot"></div>
+            <span>10,000+ AI agents running in production on AAVA™ inside 30%+ of the Fortune 100.</span>
+          </div>
+          <div class="v41-production-fact">
+            <div class="v41-prod-dot"></div>
+            <span>52% of our own production code is AI-generated. We use what we sell.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- HOW WE DO IT -->
+  <section class="v41-howwe">
+
+    <!-- Intro block -->
+    <div class="v41-howwe-intro">
+      <div class="v41-howwe-intro-left v41-reveal">
+        <div class="v41-howwe-tag">How We Do It</div>
+        <h2 class="v41-howwe-heading">How we<br/>do it</h2>
+        <p class="v41-howwe-sub">Three things,<br/>working as one system.</p>
+      </div>
+      <div class="v41-howwe-intro-right v41-reveal" style="transition-delay:0.12s">
+        <p class="v41-howwe-body">
+          We operationalize AI inside the enterprise.
+        </p>
+        <p class="v41-howwe-body">
+          The market has no shortage of models, tools, and agent frameworks. The scarce thing is the operating capability to put any of them into production inside a regulated, complex business. That capability is <strong>Engineering to the Power of AI™</strong> — our delivery method.
+        </p>
+        <p class="v41-howwe-body">
+          People, process, and platform, <strong>designed as one.</strong>
+        </p>
+        <a href="#" class="v41-howwe-link">
+          How We Deliver
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M2 5.5H9M9 5.5L6.5 3M9 5.5L6.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Three pillars -->
+    <div class="v41-howwe-pillars">
+
+      <div class="v41-pillar v41-reveal">
+        <div class="v41-pillar-img-wrap">
+          <img src="Images/Experience AI.png" alt="People" class="v41-pillar-img"/>
+        </div>
+        <div class="v41-pillar-body">
+          <div class="v41-pillar-num">01 · People</div>
+          <div class="v41-pillar-title">Human engineers<br/>+ AI agents</div>
+          <p class="v41-pillar-desc">Our engineers work alongside AI agents as one integrated workforce — not humans using AI tools, but humans and AI operating as a single delivery system.</p>
+          <div class="v41-pillar-arrow">
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="v41-pillar v41-reveal" style="transition-delay:0.1s">
+        <div class="v41-pillar-img-wrap">
+          <img src="Images/Data AI.png" alt="Process" class="v41-pillar-img"/>
+        </div>
+        <div class="v41-pillar-body">
+          <div class="v41-pillar-num">02 · Process</div>
+          <div class="v41-pillar-title">Engineered for<br/>regulated complexity</div>
+          <p class="v41-pillar-desc">We bring the operating discipline to take AI from experiment to production — inside environments with real compliance requirements, real risk, and real scale.</p>
+          <div class="v41-pillar-arrow">
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="v41-pillar v41-reveal" style="transition-delay:0.2s">
+        <div class="v41-pillar-img-wrap">
+          <img src="Images/Platform Engineering AI.png" alt="Platform" class="v41-pillar-img"/>
+        </div>
+        <div class="v41-pillar-body">
+          <div class="v41-pillar-num">03 · Platform</div>
+          <div class="v41-pillar-title">AAVA™ — our<br/>agentic AI platform</div>
+          <p class="v41-pillar-desc">AAVA™ is the platform that runs 10,000+ production agents across the Fortune 100 — purpose-built to operationalize AI at enterprise scale, not a wrapper around someone else's model.</p>
+          <div class="v41-pillar-arrow">
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="v41-footer">
+    <div class="v41-footer-top">
+
+      <!-- Brand -->
+      <div class="v41-footer-brand">
+        <div class="v41-logo">
+          <div class="v41-logo-icon">
+            <svg viewBox="0 0 18 18" fill="none">
+              <path d="M3 15L9 3L15 15" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+              <path d="M5.5 11H12.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+          </div>
+          <div>
+            <strong class="v41-logo-text">ASCENDION</strong>
+            <span class="v41-logo-sub">Engineering to the Power of AI™</span>
+          </div>
+        </div>
+        <p class="v41-footer-tagline">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="v41-footer-social">
+          <!-- LinkedIn -->
+          <a href="#" class="v41-social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" stroke-width="1.5" stroke-linecap="square"/>
+              <rect x="2" y="9" width="4" height="12" stroke-width="1.5" stroke-linecap="square"/>
+              <circle cx="4" cy="4" r="2" stroke-width="1.5"/>
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="v41-social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.5" stroke-linecap="square"/>
+              <circle cx="12" cy="12" r="4" stroke-width="1.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" class="v41-social-link" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4l16 16M4 20L20 4" stroke-width="1.5" stroke-linecap="square"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- CLIENT FEEDBACK FIX 9: Footer simplified — essential nav only, no extra columns -->
+
+    </div>
+
+    <div class="v41-footer-bottom">
+      <div class="v41-footer-copy">© 2026 ASCENDION. All rights reserved.</div>
+      <div class="v41-footer-legal">
+        <a href="#">Terms of use</a>
+        <a href="#">Privacy policy</a>
+        <a href="#">Accessibility disclosure</a>
+        <a href="#">AI enhanced senior notice</a>
+        <a href="#">Security Disclosure Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Scroll reveal ── */
+    const revEls = document.querySelectorAll('.v41-reveal');
+    const revIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('v41-vis'); revIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    revEls.forEach(el => revIO.observe(el));
+
+    /* ── Hero canvas removed — replaced with bannerimg.png ── */
+    (function() {
+      const canvas = document.getElementById('v41HeroCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let W, H;
+      const CYAN = [0, 255, 209];
+      const CYAN2 = [0, 200, 160];
+
+      // Dot grid
+      const dots = [];
+      const COLS = 40, ROWS = 60;
+      let dotW, dotH, dotR;
+
+      // Hand shape mask — two abstract "reaching hands"
+      function inHandMask(cx, cy, nw, nh) {
+        const x = cx / nw, y = cy / nh;
+        // Left hand fingers — top-left region
+        const leftHand = (
+          (x < 0.45 && y < 0.55 && Math.abs(x - 0.22) < 0.18 + Math.sin(y * 8) * 0.04) ||
+          // thumb
+          (x < 0.3 && y > 0.15 && y < 0.45 && Math.abs(x - 0.1) < 0.06 + Math.sin(y * 6) * 0.02) ||
+          // wrist area
+          (x < 0.42 && y > 0.42 && y < 0.58 && x > 0.06)
+        );
+        // Right hand fingers — bottom-right region (mirrored)
+        const rightHand = (
+          (x > 0.55 && y > 0.45 && Math.abs(x - 0.78) < 0.18 + Math.sin(y * 8) * 0.04) ||
+          (x > 0.7 && y > 0.55 && y < 0.85 && Math.abs(x - 0.9) < 0.06 + Math.sin(y * 6) * 0.02) ||
+          (x > 0.58 && y > 0.42 && y < 0.58 && x < 0.94)
+        );
+        return leftHand || rightHand;
+      }
+
+      function resize() {
+        W = canvas.offsetWidth;
+        H = canvas.offsetHeight;
+        canvas.width  = W * devicePixelRatio;
+        canvas.height = H * devicePixelRatio;
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+        dotW = W / COLS;
+        dotH = H / ROWS;
+        dotR = Math.min(dotW, dotH) * 0.28;
+        buildDots();
+      }
+
+      function buildDots() {
+        dots.length = 0;
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            const cx = (c + 0.5) * dotW;
+            const cy = (r + 0.5) * dotH;
+            const inHand = inHandMask(cx, cy, W, H);
+            const baseAlpha = inHand ? 0.55 + Math.random() * 0.45 : 0.04 + Math.random() * 0.06;
+            dots.push({
+              cx, cy,
+              inHand,
+              baseAlpha,
+              alpha: baseAlpha,
+              phase: Math.random() * Math.PI * 2,
+              speed: 0.4 + Math.random() * 0.8,
+            });
+          }
+        }
+      }
+
+      let t = 0;
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // bg
+        ctx.fillStyle = '#0A0A0A';
+        ctx.fillRect(0, 0, W, H);
+
+        // subtle glow center
+        const grd = ctx.createRadialGradient(W * 0.5, H * 0.5, 0, W * 0.5, H * 0.5, W * 0.55);
+        grd.addColorStop(0, 'rgba(0,255,209,0.04)');
+        grd.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, W, H);
+
+        t += 0.012;
+
+        dots.forEach(d => {
+          const wave = Math.sin(t * d.speed + d.phase) * 0.3;
+          const a = Math.max(0, Math.min(1, d.baseAlpha + wave * (d.inHand ? 0.25 : 0.03)));
+
+          if (d.inHand) {
+            ctx.fillStyle = `rgba(${CYAN[0]},${CYAN[1]},${CYAN[2]},${a})`;
+          } else {
+            ctx.fillStyle = `rgba(255,255,255,${a})`;
+          }
+          ctx.beginPath();
+          ctx.arc(d.cx, d.cy, dotR, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      const ro = new ResizeObserver(resize);
+      ro.observe(canvas.parentElement);
+      resize();
+      draw();
+    })();
+  </script>
+
+</body>
+</html>
