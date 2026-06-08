@@ -791,156 +791,167 @@
     .v41-pillar:hover .v41-pillar-arrow { color: var(--green); gap: 12px; /* icon accent — green allowed */ }
 
     /* ══════════════════════════════════════════════
-       AAVA PLATFORM SECTION — redesigned
+       AAVA PLATFORM — cinematic full-bleed redesign
     ══════════════════════════════════════════════ */
-    .v41-aavap {
-      background: #000000;
+    .v41-aavap { background: #000; overflow: hidden; }
+
+    /* ── ZONE 1: Full-bleed image hero with text overlay ── */
+    .v41-aavap-hero {
+      position: relative;
+      height: 88vh; min-height: 600px; max-height: 900px;
       overflow: hidden;
     }
-    /* ── A. Full-width heading band ── */
-    .v41-aavap-heading-band {
-      max-width: 1440px; margin: 0 auto;
-      padding: 100px 60px 0;
+    .v41-aavap-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      filter: grayscale(10%) contrast(1.08);
+    }
+    /* Multi-layer gradient: heavy bottom, moderate left, light top */
+    .v41-aavap-hero-grad {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom,  rgba(0,0,0,0.55) 0%,  rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.0) 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.97) 100%),
+        linear-gradient(to right,   rgba(0,0,0,0.7)  0%,  rgba(0,0,0,0.0) 55%);
+    }
+    /* Content grid pinned inside hero */
+    .v41-aavap-hero-content {
+      position: absolute; inset: 0;
+      max-width: 1440px; margin: 0 auto; left: 0; right: 0;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      padding: 64px 60px 72px;
+      pointer-events: none;
+    }
+    /* Top-left: AAVA™ tag */
+    .v41-aavap-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .v41-aavap-tag::after {
+      content: '';
+      display: block; width: 32px; height: 1px;
+      background: var(--green); opacity: 0.6;
+    }
+    /* Bottom zone: split heading left / sub+gap right */
+    .v41-aavap-hero-bottom {
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: end; gap: 60px;
     }
     .v41-aavap-h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(38px, 5vw, 80px);
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.0;
+      font-size: clamp(36px, 4.8vw, 76px);
+      font-weight: 400; letter-spacing: -0.03em; line-height: 1.0;
       color: #ffffff;
     }
     .v41-aavap-h2 .aava-green { color: var(--green); }
-
-    /* ── B. Split: sub + image ── */
-    .v41-aavap-split {
-      max-width: 1440px; margin: 0 auto;
-      display: grid; grid-template-columns: 55fr 45fr;
-      min-height: 480px;
-    }
-    .v41-aavap-left {
-      padding: 60px 60px 80px;
-      display: flex; flex-direction: column; justify-content: space-between;
+    .v41-aavap-hero-right {
+      display: flex; flex-direction: column; gap: 28px;
     }
     .v41-aavap-sub {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(22px, 2.4vw, 38px);
-      font-weight: 400;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      max-width: 520px;
-      margin-bottom: 48px;
+      font-size: clamp(18px, 2vw, 30px);
+      font-weight: 400; letter-spacing: -0.02em; line-height: 1.25;
+      color: rgba(255,255,255,0.6);
     }
     .v41-aavap-sub em { font-style: normal; color: #ffffff; }
     .v41-aavap-gap-stmt {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(18px, 1.8vw, 26px);
-      font-weight: 400;
+      font-size: clamp(18px, 2vw, 30px);
+      font-weight: 500; letter-spacing: -0.02em; line-height: 1.1;
       color: var(--green);
-      letter-spacing: -0.01em;
-      line-height: 1.2;
     }
 
-    /* ── Image panel ── */
-    .v41-aavap-img-panel {
-      position: relative; overflow: hidden;
+    /* ── ZONE 2: Constraint reveal — dark band ── */
+    .v41-aavap-reveal {
+      background: #000;
+      padding: 0 0 0;
     }
-    .v41-aavap-img-panel img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-      display: block;
-      filter: grayscale(20%) contrast(1.05);
-    }
-    .v41-aavap-img-panel::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
-    }
-
-    /* ── C. Constraint contrast band ── */
-    .v41-aavap-contrast {
-      background: #0d0d0d;
-      max-width: 100%;
-    }
-    .v41-aavap-contrast-inner {
+    /* "NOT vs IS" full-width horizontal strip */
+    .v41-aavap-barrier {
+      display: grid; grid-template-columns: 1fr 1fr;
       max-width: 1440px; margin: 0 auto;
-      padding: 0 60px;
-      display: grid; grid-template-columns: 1fr 1px 1fr;
     }
-    /* Column headers */
-    .v41-aavap-col {
-      padding: 64px 0;
+    /* Left — not-constrained */
+    .v41-aavap-barrier-left {
+      padding: 72px 60px 72px;
+      background: #0a0a0a;
     }
-    .v41-aavap-col:last-child { padding-left: 64px; }
-    .v41-aavap-col-hd {
+    .v41-aavap-barrier-label {
       font-family: 'DM Mono', monospace;
-      font-size: 10px; letter-spacing: 0.18em;
-      text-transform: uppercase;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
       margin-bottom: 36px;
     }
-    .v41-aavap-col-hd.muted { color: rgba(255,255,255,0.2); }
-    .v41-aavap-col-hd.active { color: var(--green); }
-    /* Vertical divider */
-    .v41-aavap-vdivider {
-      background: rgba(255,255,255,0.07);
-      margin: 40px 0;
+    .v41-aavap-barrier-label.dim { color: rgba(255,255,255,0.2); }
+    .v41-aavap-barrier-label.lit { color: var(--green); }
+    /* Each not-item: large with strikethrough */
+    .v41-aavap-not-item {
+      display: flex; align-items: baseline; gap: 16px;
+      padding: 20px 0;
     }
-    /* Not-items */
-    .v41-aavap-not-row {
-      display: flex; align-items: center; gap: 14px;
-      padding: 16px 0;
+    .v41-aavap-not-item + .v41-aavap-not-item {
+      border-top: 1px solid rgba(255,255,255,0.04);
     }
-    .v41-aavap-not-row + .v41-aavap-not-row {
-      border-top: 1px solid rgba(255,255,255,0.05);
+    .v41-aavap-not-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; color: rgba(255,255,255,0.12);
+      letter-spacing: 0.1em; flex-shrink: 0; padding-top: 2px;
     }
-    .v41-aavap-x {
-      width: 24px; height: 24px; flex-shrink: 0;
-      border-radius: 50%; background: rgba(255,255,255,0.05);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .v41-aavap-x svg { display: block; }
-    .v41-aavap-not-label {
-      font-family: 'Figtree', sans-serif;
-      font-size: 16px; font-weight: 400;
-      color: rgba(255,255,255,0.2);
+    .v41-aavap-not-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 1.8vw, 26px);
+      font-weight: 400; letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.18);
       text-decoration: line-through;
-      text-decoration-color: rgba(255,255,255,0.12);
+      text-decoration-color: rgba(255,255,255,0.1);
+      text-decoration-thickness: 1px;
     }
-    /* Is-items */
-    .v41-aavap-is-row {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 0;
+    /* Right — is-constrained */
+    .v41-aavap-barrier-right {
+      padding: 72px 60px 72px;
+      background: #050505;
     }
-    .v41-aavap-is-row + .v41-aavap-is-row {
+    .v41-aavap-is-item {
+      display: flex; align-items: baseline; gap: 16px;
+      padding: 18px 0;
+    }
+    .v41-aavap-is-item + .v41-aavap-is-item {
       border-top: 1px solid rgba(255,255,255,0.05);
     }
-    .v41-aavap-arrow {
-      width: 24px; height: 24px; flex-shrink: 0;
-      background: rgba(0,232,122,0.1);
-      display: flex; align-items: center; justify-content: center;
+    .v41-aavap-is-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+      margin-top: 9px;
     }
-    .v41-aavap-is-label {
-      font-family: 'Figtree', sans-serif;
-      font-size: 16px; font-weight: 500;
-      color: rgba(255,255,255,0.8);
+    .v41-aavap-is-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 1.8vw, 26px);
+      font-weight: 400; letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.85);
     }
 
-    /* ── D. Closing statement ── */
-    .v41-aavap-footer-row {
+    /* ── ZONE 3: Closing full-width statement ── */
+    .v41-aavap-closing-band {
+      background: #000;
+      padding: 64px 60px 80px;
+    }
+    .v41-aavap-closing-inner {
       max-width: 1440px; margin: 0 auto;
-      padding: 48px 60px 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 48px;
+      display: flex; align-items: center; gap: 32px;
     }
-    .v41-aavap-footer-text {
+    .v41-aavap-closing-rule {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.15); flex-shrink: 0;
+    }
+    .v41-aavap-closing-text {
       font-family: 'Figtree', sans-serif;
-      font-size: 16px; font-weight: 400;
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 400; line-height: 1.65;
       color: rgba(255,255,255,0.35);
-      line-height: 1.65;
-      max-width: 560px;
+      max-width: 640px;
     }
-    .v41-aavap-footer-text strong { color: rgba(255,255,255,0.65); font-weight: 500; }
 
     /* ══════════════════════════════════════════════
        FOOTER
@@ -1442,120 +1453,90 @@
 
   </section>
 
-  <!-- AAVA PLATFORM — redesigned -->
+  <!-- AAVA PLATFORM — cinematic full-bleed -->
   <section class="v41-aavap">
 
-    <!-- A. Full-width heading -->
-    <div class="v41-aavap-heading-band v41-reveal">
-      <h2 class="v41-aavap-h2">
-        <span class="aava-green">AAVA™</span> — The Last-Mile<br/>Platform for Enterprise AI
-      </h2>
+    <!-- ZONE 1: Full-bleed image with overlaid heading + sub -->
+    <div class="v41-aavap-hero v41-reveal">
+      <img src="v4.1/featured img.png" alt="AAVA platform" class="v41-aavap-hero-img"/>
+      <div class="v41-aavap-hero-grad"></div>
+      <div class="v41-aavap-hero-content">
+
+        <!-- Top: AAVA™ label -->
+        <div class="v41-aavap-tag">AAVA™</div>
+
+        <!-- Bottom: heading left / sub+statement right -->
+        <div class="v41-aavap-hero-bottom">
+          <h2 class="v41-aavap-h2">
+            The Last-Mile<br/>Platform for<br/><span class="aava-green">Enterprise AI</span>
+          </h2>
+          <div class="v41-aavap-hero-right">
+            <p class="v41-aavap-sub">
+              The last mile is where most enterprise AI <em>gets stuck.</em>
+            </p>
+            <p class="v41-aavap-gap-stmt">AAVA closes the gap.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- B. Sub-heading left + Image right -->
-    <div class="v41-aavap-split">
+    <!-- ZONE 2: NOT vs IS — two-panel contrast -->
+    <div class="v41-aavap-reveal">
+      <div class="v41-aavap-barrier">
 
-      <div class="v41-aavap-left v41-reveal">
-        <p class="v41-aavap-sub">
-          The last mile is where<br/>most enterprise AI<br/><em>gets stuck.</em>
+        <!-- Left: NOT constrained by -->
+        <div class="v41-aavap-barrier-left v41-reveal">
+          <div class="v41-aavap-barrier-label dim">Success is not constrained by ...</div>
+          <div class="v41-aavap-not-item">
+            <span class="v41-aavap-not-num">01</span>
+            <span class="v41-aavap-not-text">Foundation models</span>
+          </div>
+          <div class="v41-aavap-not-item">
+            <span class="v41-aavap-not-num">02</span>
+            <span class="v41-aavap-not-text">Cloud infrastructure</span>
+          </div>
+          <div class="v41-aavap-not-item">
+            <span class="v41-aavap-not-num">03</span>
+            <span class="v41-aavap-not-text">Developer tools</span>
+          </div>
+        </div>
+
+        <!-- Right: IS constrained by -->
+        <div class="v41-aavap-barrier-right v41-reveal" style="transition-delay:0.1s">
+          <div class="v41-aavap-is-item">
+            <div class="v41-aavap-is-dot"></div>
+            <span class="v41-aavap-is-text">Legacy technology</span>
+          </div>
+          <div class="v41-aavap-is-item">
+            <div class="v41-aavap-is-dot"></div>
+            <span class="v41-aavap-is-text">Data architectures</span>
+          </div>
+          <div class="v41-aavap-is-item">
+            <div class="v41-aavap-is-dot"></div>
+            <span class="v41-aavap-is-text">Audit and compliance requirements</span>
+          </div>
+          <div class="v41-aavap-is-item">
+            <div class="v41-aavap-is-dot"></div>
+            <span class="v41-aavap-is-text">Technology and process debt</span>
+          </div>
+          <div class="v41-aavap-is-item">
+            <div class="v41-aavap-is-dot"></div>
+            <span class="v41-aavap-is-text">Hard-coded processes</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ZONE 3: Closing statement -->
+    <div class="v41-aavap-closing-band v41-reveal">
+      <div class="v41-aavap-closing-inner">
+        <div class="v41-aavap-closing-rule"></div>
+        <p class="v41-aavap-closing-text">
+          These are operating-model constraints, in place for years or even decades.
         </p>
-        <p class="v41-aavap-gap-stmt">AAVA closes the gap.</p>
       </div>
-
-      <div class="v41-aavap-img-panel v41-reveal" style="transition-delay:0.14s">
-        <img src="v4.1/featured img.png" alt="AAVA platform"/>
-      </div>
-
-    </div>
-
-    <!-- C. Constraint contrast band -->
-    <div class="v41-aavap-contrast">
-      <div class="v41-aavap-contrast-inner">
-
-        <!-- Not constrained by -->
-        <div class="v41-aavap-col v41-reveal">
-          <div class="v41-aavap-col-hd muted">Success is not constrained by ...</div>
-          <div class="v41-aavap-not-row">
-            <div class="v41-aavap-x">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M1 1L9 9M9 1L1 9" stroke="rgba(255,255,255,0.25)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-not-label">Foundation models</span>
-          </div>
-          <div class="v41-aavap-not-row">
-            <div class="v41-aavap-x">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M1 1L9 9M9 1L1 9" stroke="rgba(255,255,255,0.25)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-not-label">Cloud infrastructure</span>
-          </div>
-          <div class="v41-aavap-not-row">
-            <div class="v41-aavap-x">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M1 1L9 9M9 1L1 9" stroke="rgba(255,255,255,0.25)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-not-label">Developer tools</span>
-          </div>
-        </div>
-
-        <!-- Vertical divider -->
-        <div class="v41-aavap-vdivider"></div>
-
-        <!-- Real constraints -->
-        <div class="v41-aavap-col v41-reveal" style="transition-delay:0.12s">
-          <div class="v41-aavap-is-row">
-            <div class="v41-aavap-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="var(--green)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-is-label">Legacy technology</span>
-          </div>
-          <div class="v41-aavap-is-row">
-            <div class="v41-aavap-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="var(--green)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-is-label">Data architectures</span>
-          </div>
-          <div class="v41-aavap-is-row">
-            <div class="v41-aavap-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="var(--green)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-is-label">Audit &amp; compliance requirements</span>
-          </div>
-          <div class="v41-aavap-is-row">
-            <div class="v41-aavap-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="var(--green)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-is-label">Technology and process debt</span>
-          </div>
-          <div class="v41-aavap-is-row">
-            <div class="v41-aavap-arrow">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="var(--green)" stroke-width="1.4" stroke-linecap="square"/>
-              </svg>
-            </div>
-            <span class="v41-aavap-is-label">Hard-coded processes</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- D. Closing statement -->
-    <div class="v41-aavap-footer-row v41-reveal">
-      <p class="v41-aavap-footer-text">
-        These are operating-model constraints, in place for years or even decades.
-      </p>
     </div>
 
   </section>
