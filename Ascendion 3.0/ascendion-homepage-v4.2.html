@@ -862,21 +862,6 @@
       position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 100%);
     }
-    .v41-aavap-img-stat {
-      position: absolute; bottom: 32px; left: 32px; z-index: 2;
-      background: var(--green); padding: 18px 24px;
-    }
-    .v41-aavap-img-stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px; font-weight: 500;
-      color: #000000; letter-spacing: -0.02em; line-height: 1;
-    }
-    .v41-aavap-img-stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(0,0,0,0.6);
-      margin-top: 4px;
-    }
 
     /* ── C. Constraint contrast band ── */
     .v41-aavap-contrast {
@@ -961,20 +946,6 @@
       max-width: 560px;
     }
     .v41-aavap-footer-text strong { color: rgba(255,255,255,0.65); font-weight: 500; }
-    .v41-aavap-footer-num {
-      flex-shrink: 0; text-align: right;
-    }
-    .v41-aavap-footer-num-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(32px, 3vw, 52px); font-weight: 400;
-      color: var(--green); letter-spacing: -0.03em; line-height: 1;
-    }
-    .v41-aavap-footer-num-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: rgba(255,255,255,0.25);
-      margin-top: 6px;
-    }
 
     /* ══════════════════════════════════════════════
        FOOTER
@@ -1503,10 +1474,6 @@
 
       <div class="v41-aavap-img-panel v41-reveal" style="transition-delay:0.14s">
         <img src="v4.1/featured img.png" alt="AAVA platform"/>
-        <div class="v41-aavap-img-stat">
-          <div class="v41-aavap-img-stat-num">10,000+</div>
-          <div class="v41-aavap-img-stat-label">Production agents on AAVA</div>
-        </div>
       </div>
 
     </div>
@@ -1517,7 +1484,7 @@
 
         <!-- Not constrained by -->
         <div class="v41-aavap-col v41-reveal">
-          <div class="v41-aavap-col-hd muted">Success is not constrained by</div>
+          <div class="v41-aavap-col-hd muted">Success is not constrained by ...</div>
           <div class="v41-aavap-not-row">
             <div class="v41-aavap-x">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -1547,9 +1514,8 @@
         <!-- Vertical divider -->
         <div class="v41-aavap-vdivider"></div>
 
-        <!-- Is constrained by -->
+        <!-- Real constraints -->
         <div class="v41-aavap-col v41-reveal" style="transition-delay:0.12s">
-          <div class="v41-aavap-col-hd active">It's constrained by</div>
           <div class="v41-aavap-is-row">
             <div class="v41-aavap-arrow">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -1595,15 +1561,11 @@
       </div>
     </div>
 
-    <!-- D. Closing footer row -->
+    <!-- D. Closing statement -->
     <div class="v41-aavap-footer-row v41-reveal">
       <p class="v41-aavap-footer-text">
-        These are <strong>operating-model constraints</strong> — in place for years or even decades. AAVA is built to work within them, not around them.
+        These are operating-model constraints, in place for years or even decades.
       </p>
-      <div class="v41-aavap-footer-num">
-        <div class="v41-aavap-footer-num-val">30%+</div>
-        <div class="v41-aavap-footer-num-label">of Fortune 100 run on AAVA</div>
-      </div>
     </div>
 
   </section>
