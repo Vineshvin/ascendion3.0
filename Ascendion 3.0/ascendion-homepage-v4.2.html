@@ -1176,12 +1176,13 @@
       margin: 0 auto;
       padding: 120px 60px 100px;
     }
+    /* Header row */
     .v41-studios-header {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
       align-items: end;
-      margin-bottom: 72px;
+      margin-bottom: 64px;
     }
     .v41-studios-h2 {
       font-family: var(--type-display);
@@ -1201,71 +1202,139 @@
       margin: 0;
       align-self: end;
     }
-    /* Table */
-    .v41-studios-table {
-      width: 100%;
-      border-collapse: collapse;
+    /* Tabbed panel */
+    .v41-studios-panel {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 0;
+      align-items: start;
     }
-    .v41-studios-table thead tr {
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-    .v41-studios-table thead th {
-      font-family: var(--type-ui);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      padding: 0 0 18px;
-      text-align: left;
-      font-weight: 400;
-    }
-    .v41-studios-table thead th:first-child { width: 32%; }
-    .v41-studios-table tbody tr {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      transition: background 0.2s;
-      cursor: default;
-    }
-    .v41-studios-table tbody tr:hover {
-      background: rgba(255,255,255,0.03);
-    }
-    .v41-studios-table tbody tr:hover .v41-studios-studio-name {
-      color: var(--green);
-    }
-    .v41-studios-table td {
-      padding: 28px 0;
-      vertical-align: top;
-    }
-    .v41-studios-table td:first-child {
-      padding-right: 48px;
-    }
-    .v41-studios-num {
-      font-family: var(--type-ui);
-      font-size: 11px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.08em;
-      display: inline-block;
-      width: 28px;
-      flex-shrink: 0;
-    }
-    .v41-studios-name-cell {
+    /* Left tab list */
+    .v41-studios-tabs {
       display: flex;
-      align-items: baseline;
-      gap: 12px;
+      flex-direction: column;
     }
-    .v41-studios-studio-name {
-      font-family: var(--type-heading);
-      font-size: 17px;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: -0.01em;
-      transition: color 0.2s;
-    }
-    .v41-studios-desc {
+    .v41-studios-tab {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
       font-family: var(--type-body);
-      font-size: 16px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.38);
+      text-align: left;
+      line-height: 1.3;
+      transition: color 0.18s, background 0.18s;
+      width: 100%;
+    }
+    .v41-studios-tab:hover {
+      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.04);
+    }
+    .v41-studios-tab.st-active {
+      background: var(--green);
+      color: #000;
+      font-weight: 600;
+    }
+    .v41-studios-tab.st-active:hover { background: var(--green); color: #000; }
+    .v41-tab-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 1px;
+      background: #000;
+      flex-shrink: 0;
+      opacity: 0;
+      margin-left: 12px;
+    }
+    .v41-studios-tab.st-active .v41-tab-dot { opacity: 1; }
+    /* Right content panel */
+    .v41-studios-content {
+      padding-left: 48px;
+    }
+    .v41-studios-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #0d0d0d;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .v41-studios-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s;
+    }
+    .v41-studios-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      pointer-events: none;
+    }
+    .v41-studios-panel-title {
+      font-family: var(--type-display);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      transition: opacity 0.25s;
+    }
+    .v41-studios-panel-desc {
+      font-family: var(--type-body);
+      font-size: 17px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.68;
+      margin: 0;
+      max-width: 680px;
+      transition: opacity 0.25s;
+    }
+    /* Fade animation on switch */
+    .v41-studios-content.st-switching .v41-studios-img-wrap img,
+    .v41-studios-content.st-switching .v41-studios-panel-title,
+    .v41-studios-content.st-switching .v41-studios-panel-desc {
+      opacity: 0;
+    }
+    /* Bottom links row */
+    .v41-studios-footer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-top: 56px;
+    }
+    .v41-studios-link {
+      background: #000;
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-family: var(--type-body);
+      font-size: 14px;
       color: rgba(255,255,255,0.55);
-      line-height: 1.6;
-      padding-top: 3px;
+      text-decoration: underline;
+      text-decoration-color: rgba(255,255,255,0.2);
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .v41-studios-link:hover { color: #fff; text-decoration-color: rgba(255,255,255,0.5); }
+    .v41-studios-link-arrow {
+      font-size: 16px;
+      color: rgba(255,255,255,0.4);
+      flex-shrink: 0;
+      font-style: normal;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .v41-studios-link:hover .v41-studios-link-arrow {
+      color: var(--green);
+      transform: translateX(3px);
     }
 
     /* ══════════════════════════════════════════════
@@ -2061,94 +2130,86 @@
         <p class="v41-studios-body">Each Studio coordinates agents around a stage of the lifecycle. Linear handoffs become parallel, autonomous, governed work.</p>
       </div>
 
-      <!-- Studio Overview Table -->
-      <div class="v41-reveal">
-        <table class="v41-studios-table">
-          <thead>
-            <tr>
-              <th>Studio</th>
-              <th>What it does</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">01</span>
-                  <span class="v41-studios-studio-name">AAVA OneView</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Unified visibility across the agentic SDLC. Real-time orchestration, governance, and insight. Predictability, lower risk.</p></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">02</span>
-                  <span class="v41-studios-studio-name">AAVA Product Studio</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Product planning, roadmap alignment, requirements engineering. Products ship.</p></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">03</span>
-                  <span class="v41-studios-studio-name">AAVA Experience Studio</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Design systems, prototyping, validation. Designers lead; agents accelerate. Consumer-grade experiences, evolving in real time.</p></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">04</span>
-                  <span class="v41-studios-studio-name">AAVA Developer Studio</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Code generation, modernization, autonomous workflows. The engineering loop, compressed.</p></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">05</span>
-                  <span class="v41-studios-studio-name">AAVA Data Studio</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Pipelines, quality, analytics, MLOps, orchestrated as a continuous operating layer.</p></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">06</span>
-                  <span class="v41-studios-studio-name">AAVA Quality Engineering Studio</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Test automation, performance, security, at autonomous scale. The system catches what teams can't.</p></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">07</span>
-                  <span class="v41-studios-studio-name">AAVA FinOps Studio</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Cost optimization, resource governance, financial control across cloud and AI workloads.</p></td>
-            </tr>
-            <tr>
-              <td>
-                <div class="v41-studios-name-cell">
-                  <span class="v41-studios-num">08</span>
-                  <span class="v41-studios-studio-name">AAVA AI-Powered Operations</span>
-                </div>
-              </td>
-              <td><p class="v41-studios-desc">Deployment, monitoring, incident response, continuous operations. Self-healing before customers notice.</p></td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- Tabbed panel -->
+      <div class="v41-studios-panel v41-reveal">
+        <!-- Left: tab list -->
+        <div class="v41-studios-tabs" id="studioTabs">
+          <button class="v41-studios-tab st-active" data-idx="0">AAVA OneView<span class="v41-tab-dot"></span></button>
+          <button class="v41-studios-tab" data-idx="1">AAVA Product Studio<span class="v41-tab-dot"></span></button>
+          <button class="v41-studios-tab" data-idx="2">AAVA Experience Studio<span class="v41-tab-dot"></span></button>
+          <button class="v41-studios-tab" data-idx="3">AAVA Developer Studio<span class="v41-tab-dot"></span></button>
+          <button class="v41-studios-tab" data-idx="4">AAVA Data Studio<span class="v41-tab-dot"></span></button>
+          <button class="v41-studios-tab" data-idx="5">AAVA Quality Engineering Studio<span class="v41-tab-dot"></span></button>
+          <button class="v41-studios-tab" data-idx="6">AAVA FinOps Studio<span class="v41-tab-dot"></span></button>
+          <button class="v41-studios-tab" data-idx="7">AAVA AI-Powered Operations<span class="v41-tab-dot"></span></button>
+        </div>
+        <!-- Right: content panel -->
+        <div class="v41-studios-content" id="studioContent">
+          <div class="v41-studios-img-wrap">
+            <img id="studioImg" src="https://picsum.photos/id/366/900/506" alt="AAVA OneView" loading="lazy">
+          </div>
+          <h3 class="v41-studios-panel-title" id="studioTitle">AAVA OneView</h3>
+          <p class="v41-studios-panel-desc" id="studioDesc">Unified visibility across the agentic SDLC. Real-time orchestration, governance, and insight. Predictability, lower risk.</p>
+        </div>
+      </div>
+
+      <!-- Bottom links -->
+      <div class="v41-studios-footer v41-reveal">
+        <a href="#" class="v41-studios-link">
+          <span>Read: How AAVA Agents Move With the People Who Run Them</span>
+          <i class="v41-studios-link-arrow">↗</i>
+        </a>
+        <a href="#" class="v41-studios-link">
+          <span>AAVA on AWS Marketplace</span>
+          <i class="v41-studios-link-arrow">↗</i>
+        </a>
+        <a href="#" class="v41-studios-link">
+          <span>AAVA on Microsoft Azure</span>
+          <i class="v41-studios-link-arrow">↗</i>
+        </a>
       </div>
 
     </div>
   </section>
+
+  <script>
+  (() => {
+    const studioData = [
+      { name: 'AAVA OneView',                  desc: 'Unified visibility across the agentic SDLC. Real-time orchestration, governance, and insight. Predictability, lower risk.',                                     img: '366' },
+      { name: 'AAVA Product Studio',            desc: 'Product planning, roadmap alignment, requirements engineering. Products ship.',                                                                                 img: '3184' },
+      { name: 'AAVA Experience Studio',         desc: 'Design systems, prototyping, validation. Designers lead; agents accelerate. Consumer-grade experiences, evolving in real time.',                               img: '3861' },
+      { name: 'AAVA Developer Studio',          desc: 'Code generation, modernization, autonomous workflows. The engineering loop, compressed.',                                                                      img: '574' },
+      { name: 'AAVA Data Studio',               desc: 'Pipelines, quality, analytics, MLOps, orchestrated as a continuous operating layer.',                                                                         img: '1181' },
+      { name: 'AAVA Quality Engineering Studio',desc: "Test automation, performance, security, at autonomous scale. The system catches what teams can't.",                                                           img: '2004' },
+      { name: 'AAVA FinOps Studio',             desc: 'Cost optimization, resource governance, financial control across cloud and AI workloads.',                                                                    img: '325' },
+      { name: 'AAVA AI-Powered Operations',     desc: 'Deployment, monitoring, incident response, continuous operations. Self-healing before customers notice.',                                                    img: '450' },
+    ];
+    const tabs    = document.querySelectorAll('#studioTabs .v41-studios-tab');
+    const content = document.getElementById('studioContent');
+    const imgEl   = document.getElementById('studioImg');
+    const titleEl = document.getElementById('studioTitle');
+    const descEl  = document.getElementById('studioDesc');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const idx = parseInt(tab.dataset.idx);
+        const d   = studioData[idx];
+        // Update active tab
+        tabs.forEach(t => t.classList.remove('st-active'));
+        tab.classList.add('st-active');
+        // Fade out
+        content.classList.add('st-switching');
+        setTimeout(() => {
+          imgEl.src   = `https://picsum.photos/id/${d.img}/900/506`;
+          imgEl.alt   = d.name;
+          titleEl.textContent = d.name;
+          descEl.textContent  = d.desc;
+          content.classList.remove('st-switching');
+        }, 220);
+      });
+    });
+  })();
+  </script>
 
   <!-- FOOTER -->
   <footer class="v41-footer">
