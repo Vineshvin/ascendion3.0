@@ -1349,13 +1349,13 @@
       margin: 0 auto;
       padding: 120px 60px 100px;
     }
-    /* Row 1: H2 left + main statement right */
+    /* Row 1: H2 + main statement */
     .v41-os-top {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: start;
-      margin-bottom: 72px;
+      margin-bottom: 64px;
     }
     .v41-os-h2 {
       font-family: var(--type-display);
@@ -1375,66 +1375,114 @@
       margin: 0;
       padding-top: 6px;
     }
-    /* Row 2: two body paragraphs */
-    .v41-os-mid {
+    /* Row 2: Standards cards (MCP / A2A / ACP) */
+    .v41-os-standards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      margin-bottom: 64px;
-      padding-top: 8px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      margin-bottom: 0;
       border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 48px;
     }
-    .v41-os-para {
+    .v41-os-std-card {
+      background: #000;
+      padding: 40px 36px 40px;
+      transition: background 0.2s;
+    }
+    .v41-os-std-card:hover { background: rgba(255,255,255,0.03); }
+    .v41-os-std-acronym {
+      font-family: var(--type-ui);
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--green);
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+    .v41-os-std-full {
       font-family: var(--type-body);
-      font-size: 16px;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.7;
+      font-size: 15px;
+      color: rgba(255,255,255,0.45);
       margin: 0;
+      line-height: 1.5;
     }
-    /* Row 3: platform groups */
-    .v41-os-platforms {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
+    /* Row 3: Frontier statement */
+    .v41-os-frontier-row {
+      padding: 48px 0;
       border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 64px;
     }
+    .v41-os-frontier {
+      font-family: var(--type-body);
+      font-size: clamp(18px, 1.8vw, 24px);
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      font-style: italic;
+      margin: 0;
+      max-width: 860px;
+    }
+    /* Rows 4 + 5: Platform logo groups */
+    .v41-os-platforms { display: flex; flex-direction: column; gap: 48px; }
     .v41-os-group-label {
       font-family: var(--type-ui);
       font-size: 11px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.3);
-      margin: 0 0 20px;
+      margin: 0 0 18px;
     }
-    .v41-os-pills {
+    .v41-os-logo-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+    .v41-os-logo-card {
+      background: #000;
+      padding: 36px 24px 28px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transition: background 0.2s;
+      cursor: default;
     }
-    .v41-os-pill {
-      font-family: var(--type-body);
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.75);
-      background: rgba(255,255,255,0.06);
-      padding: 8px 18px;
-      border-radius: 4px;
-      letter-spacing: 0.01em;
-      transition: background 0.18s, color 0.18s;
+    .v41-os-logo-card:hover { background: rgba(255,255,255,0.04); }
+    .v41-os-logo-card img {
+      height: 34px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.6;
+      filter: brightness(0) invert(1);
+      transition: opacity 0.2s;
     }
-    .v41-os-pill:hover {
-      background: rgba(255,255,255,0.11);
-      color: #fff;
+    .v41-os-logo-card:hover img { opacity: 1; }
+    /* Claude: render in green */
+    .v41-os-logo-card.os-featured img {
+      opacity: 1;
+      filter: brightness(0) saturate(100%) invert(72%) sepia(60%) saturate(700%) hue-rotate(101deg) brightness(110%);
     }
-    .v41-os-pill.os-pill-green {
-      background: rgba(0,232,122,0.1);
-      color: var(--green);
+    .v41-os-logo-name {
+      font-family: var(--type-ui);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      text-transform: uppercase;
+      transition: color 0.2s;
     }
-    .v41-os-pill.os-pill-green:hover {
-      background: rgba(0,232,122,0.16);
+    .v41-os-logo-card:hover .v41-os-logo-name { color: rgba(255,255,255,0.65); }
+    /* Inline SVG logos (e.g. ServiceNow) */
+    .v41-os-logo-icon {
+      height: 34px;
+      width: auto;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
     }
+    .v41-os-logo-card:hover .v41-os-logo-icon { color: rgba(255,255,255,0.95); }
 
     /* ══════════════════════════════════════════════
        FOOTER
@@ -2320,32 +2368,78 @@
         <p class="v41-os-main">AAVA is architected for the agentic ecosystem as it evolves, not the one any single vendor wants to lock you into.</p>
       </div>
 
-      <!-- Row 2: two supporting paragraphs -->
-      <div class="v41-os-mid v41-reveal">
-        <p class="v41-os-para">We integrate with Multi-Cloud Platform (MCP), Agent-to-Agent (A2A), and Agent Communication Protocol (ACP) standards.</p>
-        <p class="v41-os-para">Frontier models power the constellation. The system improves as the frontier extends.</p>
+      <!-- Row 2: Standards cards (MCP / A2A / ACP) -->
+      <div class="v41-os-standards v41-reveal">
+        <div class="v41-os-std-card">
+          <span class="v41-os-std-acronym">MCP</span>
+          <p class="v41-os-std-full">Multi-Cloud Platform</p>
+        </div>
+        <div class="v41-os-std-card">
+          <span class="v41-os-std-acronym">A2A</span>
+          <p class="v41-os-std-full">Agent-to-Agent</p>
+        </div>
+        <div class="v41-os-std-card">
+          <span class="v41-os-std-acronym">ACP</span>
+          <p class="v41-os-std-full">Agent Communication Protocol</p>
+        </div>
       </div>
 
-      <!-- Row 3: platform groups -->
-      <div class="v41-os-platforms v41-reveal">
-        <div>
+      <!-- Row 3: Frontier statement -->
+      <div class="v41-os-frontier-row v41-reveal">
+        <p class="v41-os-frontier">Frontier models power the constellation. The system improves as the frontier extends.</p>
+      </div>
+
+      <!-- Rows 4+5: Platform logo groups -->
+      <div class="v41-os-platforms">
+
+        <!-- Deploy on -->
+        <div class="v41-reveal">
           <p class="v41-os-group-label">We deploy on</p>
-          <div class="v41-os-pills">
-            <span class="v41-os-pill os-pill-green">Claude</span>
-            <span class="v41-os-pill">AWS</span>
-            <span class="v41-os-pill">Azure</span>
-            <span class="v41-os-pill">Google Cloud</span>
+          <div class="v41-os-logo-row">
+            <div class="v41-os-logo-card os-featured">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/anthropic.svg" alt="Claude">
+              <span class="v41-os-logo-name">Claude</span>
+            </div>
+            <div class="v41-os-logo-card">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/amazonwebservices.svg" alt="AWS">
+              <span class="v41-os-logo-name">AWS</span>
+            </div>
+            <div class="v41-os-logo-card">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/microsoftazure.svg" alt="Azure">
+              <span class="v41-os-logo-name">Azure</span>
+            </div>
+            <div class="v41-os-logo-card">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/googlecloud.svg" alt="Google Cloud">
+              <span class="v41-os-logo-name">Google Cloud</span>
+            </div>
           </div>
         </div>
-        <div>
+
+        <!-- Integrate with -->
+        <div class="v41-reveal">
           <p class="v41-os-group-label">We integrate with leading enterprise platforms</p>
-          <div class="v41-os-pills">
-            <span class="v41-os-pill">Snowflake</span>
-            <span class="v41-os-pill">Databricks</span>
-            <span class="v41-os-pill">Salesforce</span>
-            <span class="v41-os-pill">ServiceNow</span>
+          <div class="v41-os-logo-row">
+            <div class="v41-os-logo-card">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/snowflake.svg" alt="Snowflake">
+              <span class="v41-os-logo-name">Snowflake</span>
+            </div>
+            <div class="v41-os-logo-card">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/databricks.svg" alt="Databricks">
+              <span class="v41-os-logo-name">Databricks</span>
+            </div>
+            <div class="v41-os-logo-card">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/salesforce.svg" alt="Salesforce">
+              <span class="v41-os-logo-name">Salesforce</span>
+            </div>
+            <div class="v41-os-logo-card">
+              <svg class="v41-os-logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4zm8 28h-4.4L19 20.8V32h-3.6V16H20l8.4 11.2V16H32v16z"/>
+              </svg>
+              <span class="v41-os-logo-name">ServiceNow</span>
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>
