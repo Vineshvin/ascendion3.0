@@ -1028,6 +1028,143 @@
     .v41-aavaev-cta-link svg { flex-shrink: 0; }
 
     /* ══════════════════════════════════════════════
+       AAVA TRUST SECTION
+    ══════════════════════════════════════════════ */
+    .v41-trust {
+      background: #000;
+    }
+    .v41-trust-inner {
+      max-width: 1440px; margin: 0 auto;
+      padding: 120px 60px 100px;
+    }
+    /* Row 1: H2 left + opening statement right */
+    .v41-trust-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 64px;
+    }
+    .v41-trust-h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3.2vw, 52px);
+      font-weight: 400; letter-spacing: -0.03em; line-height: 1.1;
+      color: #ffffff;
+    }
+    .v41-trust-h2 em { font-style: normal; color: var(--green); }
+    .v41-trust-opening {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(18px, 1.8vw, 26px);
+      font-weight: 400; letter-spacing: -0.015em; line-height: 1.45;
+      color: rgba(255,255,255,0.6);
+    }
+    .v41-trust-opening strong {
+      color: #ffffff; font-weight: 400;
+      display: block; margin-top: 10px;
+    }
+    /* Row 2: Full-width body paragraph */
+    .v41-trust-body {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.45);
+      max-width: 860px;
+      margin-bottom: 72px;
+    }
+    /* Row 3: Two comparison columns */
+    .v41-trust-compare {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: rgba(255,255,255,0.07);
+      margin-bottom: 72px;
+    }
+    .v41-trust-col {
+      background: #000;
+      padding: 48px 48px 48px 0;
+    }
+    .v41-trust-col:last-child {
+      padding: 48px 0 48px 48px;
+    }
+    .v41-trust-col-intro {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px; font-weight: 400; line-height: 1.5;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    /* Failure mode items */
+    .v41-trust-no-item {
+      padding: 20px 0;
+    }
+    .v41-trust-no-item + .v41-trust-no-item {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .v41-trust-no-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(16px, 1.4vw, 20px);
+      font-weight: 500; letter-spacing: -0.01em;
+      color: #ffffff; margin-bottom: 5px;
+    }
+    .v41-trust-no-desc {
+      font-family: 'Figtree', sans-serif;
+      font-size: 14px; font-weight: 400;
+      color: rgba(255,255,255,0.4); line-height: 1.5;
+    }
+    /* Confidence items */
+    .v41-trust-yes-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 18px 0;
+    }
+    .v41-trust-yes-item + .v41-trust-yes-item {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .v41-trust-yes-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0; margin-top: 9px;
+    }
+    .v41-trust-yes-text {
+      font-family: 'Figtree', sans-serif;
+      font-size: clamp(15px, 1.3vw, 18px);
+      font-weight: 400; line-height: 1.5;
+      color: rgba(255,255,255,0.75);
+    }
+    /* Row 4: Read CTAs — 3 article links */
+    .v41-trust-reads {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.07);
+    }
+    .v41-trust-read-item {
+      background: #000;
+      padding: 32px 32px 32px 0;
+      display: flex; flex-direction: column; gap: 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .v41-trust-read-item:hover { background: #0d0d0d; }
+    .v41-trust-read-item:last-child {
+      padding-right: 0;
+    }
+    .v41-trust-read-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--green);
+    }
+    .v41-trust-read-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 400; letter-spacing: -0.01em; line-height: 1.35;
+      color: rgba(255,255,255,0.8);
+    }
+    .v41-trust-read-arrow {
+      margin-top: auto;
+      color: rgba(255,255,255,0.2);
+      font-size: 16px;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .v41-trust-read-item:hover .v41-trust-read-arrow {
+      color: var(--green); transform: translateX(4px);
+    }
+
+    /* ══════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════ */
     /* Fix 9: Footer simplified — black bg, no borders, logo white */
@@ -1725,6 +1862,86 @@
           </svg>
         </a>
         <span class="v41-aavaev-cta-pre">— How We Deliver</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AAVA TRUST -->
+  <section class="v41-trust">
+    <div class="v41-trust-inner">
+
+      <!-- Row 1: H2 + opening statement -->
+      <div class="v41-trust-header v41-reveal">
+        <h2 class="v41-trust-h2">
+          AAVA Delivers <em>Trust:</em><br/>the New Currency<br/>of AI
+        </h2>
+        <p class="v41-trust-opening">
+          We're all using AI. The question is whether you trust it enough to bet your business.
+        </p>
+      </div>
+
+      <!-- Row 2: Body paragraph -->
+      <p class="v41-trust-body v41-reveal">
+        Inside AAVA, agents interpret goals, plan the work, execute autonomously, validate outcomes, and adapt. They earn trust step by step. The more trusted they become, the more steps they take.
+      </p>
+
+      <!-- Row 3: Two comparison columns -->
+      <div class="v41-trust-compare v41-reveal">
+
+        <!-- Left: failure modes avoided -->
+        <div class="v41-trust-col">
+          <p class="v41-trust-col-intro">Trust earned step by step avoids the failure modes:</p>
+          <div class="v41-trust-no-item">
+            <div class="v41-trust-no-label">No stalled execution.</div>
+            <div class="v41-trust-no-desc">Self-directed progress across the SDLC.</div>
+          </div>
+          <div class="v41-trust-no-item">
+            <div class="v41-trust-no-label">No waiting for tickets.</div>
+            <div class="v41-trust-no-desc">Agents operate with intent and coordination.</div>
+          </div>
+          <div class="v41-trust-no-item">
+            <div class="v41-trust-no-label">No isolated automation.</div>
+            <div class="v41-trust-no-desc">Continuous adaptation across the full lifecycle.</div>
+          </div>
+        </div>
+
+        <!-- Right: confidence delivered -->
+        <div class="v41-trust-col v41-reveal" style="transition-delay:0.1s">
+          <p class="v41-trust-col-intro">And delivers confidence in AI impact:</p>
+          <div class="v41-trust-yes-item">
+            <div class="v41-trust-yes-dot"></div>
+            <span class="v41-trust-yes-text">Strategic decisions stay human-owned.</span>
+          </div>
+          <div class="v41-trust-yes-item">
+            <div class="v41-trust-yes-dot"></div>
+            <span class="v41-trust-yes-text">Agent actions are auditable and policy-governed.</span>
+          </div>
+          <div class="v41-trust-yes-item">
+            <div class="v41-trust-yes-dot"></div>
+            <span class="v41-trust-yes-text">Compliance and security are enforced by design.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Row 4: Read CTAs -->
+      <div class="v41-trust-reads v41-reveal">
+        <a href="#" class="v41-trust-read-item">
+          <span class="v41-trust-read-label">Read</span>
+          <span class="v41-trust-read-title">Humans at the Wheel of Agentic Change</span>
+          <span class="v41-trust-read-arrow">→</span>
+        </a>
+        <a href="#" class="v41-trust-read-item">
+          <span class="v41-trust-read-label">Read</span>
+          <span class="v41-trust-read-title">A Practical Guide to Keeping Agentic Systems Healthy</span>
+          <span class="v41-trust-read-arrow">→</span>
+        </a>
+        <a href="#" class="v41-trust-read-item">
+          <span class="v41-trust-read-label">Read</span>
+          <span class="v41-trust-read-title">The AI Trust Valley: Why Confidence, Not Code, Will Decide Who Crosses</span>
+          <span class="v41-trust-read-arrow">→</span>
+        </a>
       </div>
 
     </div>
