@@ -1338,6 +1338,105 @@
     }
 
     /* ══════════════════════════════════════════════
+       OPEN STANDARDS SECTION
+    ══════════════════════════════════════════════ */
+    .v41-os {
+      background: #000;
+      width: 100%;
+    }
+    .v41-os-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 120px 60px 100px;
+    }
+    /* Row 1: H2 left + main statement right */
+    .v41-os-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 72px;
+    }
+    .v41-os-h2 {
+      font-family: var(--type-display);
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+    .os-green { color: var(--green); }
+    .v41-os-main {
+      font-family: var(--type-body);
+      font-size: clamp(18px, 1.5vw, 22px);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      margin: 0;
+      padding-top: 6px;
+    }
+    /* Row 2: two body paragraphs */
+    .v41-os-mid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 64px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 48px;
+    }
+    .v41-os-para {
+      font-family: var(--type-body);
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin: 0;
+    }
+    /* Row 3: platform groups */
+    .v41-os-platforms {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 48px;
+    }
+    .v41-os-group-label {
+      font-family: var(--type-ui);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin: 0 0 20px;
+    }
+    .v41-os-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .v41-os-pill {
+      font-family: var(--type-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.06);
+      padding: 8px 18px;
+      border-radius: 4px;
+      letter-spacing: 0.01em;
+      transition: background 0.18s, color 0.18s;
+    }
+    .v41-os-pill:hover {
+      background: rgba(255,255,255,0.11);
+      color: #fff;
+    }
+    .v41-os-pill.os-pill-green {
+      background: rgba(0,232,122,0.1);
+      color: var(--green);
+    }
+    .v41-os-pill.os-pill-green:hover {
+      background: rgba(0,232,122,0.16);
+    }
+
+    /* ══════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════ */
     /* Fix 9: Footer simplified — black bg, no borders, logo white */
@@ -2210,6 +2309,47 @@
     });
   })();
   </script>
+
+  <!-- OPEN STANDARDS SECTION -->
+  <section class="v41-os">
+    <div class="v41-os-inner">
+
+      <!-- Row 1: H2 + main statement -->
+      <div class="v41-os-top v41-reveal">
+        <h2 class="v41-os-h2">Built on <span class="os-green">Open Standards.</span><br/>Future-Ready.</h2>
+        <p class="v41-os-main">AAVA is architected for the agentic ecosystem as it evolves, not the one any single vendor wants to lock you into.</p>
+      </div>
+
+      <!-- Row 2: two supporting paragraphs -->
+      <div class="v41-os-mid v41-reveal">
+        <p class="v41-os-para">We integrate with Multi-Cloud Platform (MCP), Agent-to-Agent (A2A), and Agent Communication Protocol (ACP) standards.</p>
+        <p class="v41-os-para">Frontier models power the constellation. The system improves as the frontier extends.</p>
+      </div>
+
+      <!-- Row 3: platform groups -->
+      <div class="v41-os-platforms v41-reveal">
+        <div>
+          <p class="v41-os-group-label">We deploy on</p>
+          <div class="v41-os-pills">
+            <span class="v41-os-pill os-pill-green">Claude</span>
+            <span class="v41-os-pill">AWS</span>
+            <span class="v41-os-pill">Azure</span>
+            <span class="v41-os-pill">Google Cloud</span>
+          </div>
+        </div>
+        <div>
+          <p class="v41-os-group-label">We integrate with leading enterprise platforms</p>
+          <div class="v41-os-pills">
+            <span class="v41-os-pill">Snowflake</span>
+            <span class="v41-os-pill">Databricks</span>
+            <span class="v41-os-pill">Salesforce</span>
+            <span class="v41-os-pill">ServiceNow</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="v41-footer">
