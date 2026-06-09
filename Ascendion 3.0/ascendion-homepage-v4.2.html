@@ -1346,12 +1346,11 @@
       position: relative;
       overflow: hidden;
     }
-    /* Subtle dot-grid atmosphere */
     .v41-os::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
       background-size: 40px 40px;
       pointer-events: none;
     }
@@ -1362,13 +1361,13 @@
       position: relative;
       z-index: 1;
     }
-    /* ── Row 1: Giant H2 + framed statement ── */
+    /* ── Row 1: Headline + framed statement ── */
     .v41-os-top {
       display: grid;
       grid-template-columns: 1fr 400px;
       gap: 80px;
       align-items: start;
-      margin-bottom: 80px;
+      margin-bottom: 72px;
     }
     .v41-os-h2 {
       font-family: var(--type-display);
@@ -1380,9 +1379,6 @@
       margin: 0;
     }
     .os-green { color: var(--green); }
-    .v41-os-statement {
-      padding-top: 8px;
-    }
     .v41-os-main {
       font-family: var(--type-body);
       font-size: 18px;
@@ -1391,12 +1387,12 @@
       margin: 0;
       border-left: 2px solid var(--green);
       padding-left: 22px;
+      padding-top: 8px;
     }
-    /* ── Row 2: Protocol connector rows ── */
-    .v41-os-protocols {
+    /* ── Row 2: Three-column protocol grid ── */
+    .v41-os-proto-header {
       border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 52px;
-      margin-bottom: 52px;
+      padding: 32px 0 28px;
     }
     .v41-os-proto-intro {
       font-family: var(--type-ui);
@@ -1404,146 +1400,126 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.22);
-      margin-bottom: 32px;
+      margin: 0;
     }
-    .v41-os-proto-row {
-      display: flex;
-      align-items: center;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+    .v41-os-protocols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      margin-bottom: 0;
+    }
+    .v41-os-proto-col {
+      background: #000;
+      padding: 44px 40px 48px;
       cursor: default;
-      transition: padding-left 0.25s ease;
+      transition: background 0.22s;
+      position: relative;
     }
-    .v41-os-proto-row:hover { padding-left: 8px; }
+    .v41-os-proto-col:hover { background: rgba(0,232,122,0.035); }
     .v41-os-proto-acronym {
       font-family: var(--type-ui);
-      font-size: 38px;
+      font-size: clamp(56px, 5.5vw, 80px);
       font-weight: 400;
-      letter-spacing: 0.07em;
       color: var(--green);
-      width: 130px;
-      flex-shrink: 0;
+      letter-spacing: 0.06em;
+      display: block;
       line-height: 1;
-      transition: letter-spacing 0.25s;
+      margin-bottom: 20px;
+      transition: letter-spacing 0.3s;
     }
-    .v41-os-proto-row:hover .v41-os-proto-acronym { letter-spacing: 0.12em; }
-    .v41-os-proto-connector {
-      flex: 1;
-      height: 1px;
-      background: repeating-linear-gradient(
-        to right,
-        rgba(0,232,122,0.2) 0px, rgba(0,232,122,0.2) 5px,
-        transparent 5px, transparent 12px
-      );
-      margin: 0 36px;
-      transition: background 0.25s;
-    }
-    .v41-os-proto-row:hover .v41-os-proto-connector {
-      background: repeating-linear-gradient(
-        to right,
-        rgba(0,232,122,0.6) 0px, rgba(0,232,122,0.6) 5px,
-        transparent 5px, transparent 12px
-      );
-    }
-    .v41-os-proto-fullname {
+    .v41-os-proto-col:hover .v41-os-proto-acronym { letter-spacing: 0.11em; }
+    .v41-os-proto-name {
       font-family: var(--type-body);
       font-size: 17px;
-      color: rgba(255,255,255,0.4);
-      text-align: right;
-      width: 320px;
-      flex-shrink: 0;
-      letter-spacing: -0.01em;
-      transition: color 0.25s;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.45;
+      margin: 0;
+      transition: color 0.22s;
     }
-    .v41-os-proto-row:hover .v41-os-proto-fullname { color: rgba(255,255,255,0.85); }
+    .v41-os-proto-col:hover .v41-os-proto-name { color: rgba(255,255,255,0.75); }
     /* ── Row 3: Frontier pull-quote ── */
     .v41-os-frontier-row {
       border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 52px 0;
       border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 52px 0;
       margin-bottom: 60px;
     }
     .v41-os-frontier {
       font-family: var(--type-body);
-      font-size: clamp(22px, 2.4vw, 30px);
+      font-size: clamp(20px, 2.2vw, 28px);
       font-style: italic;
-      color: rgba(255,255,255,0.4);
-      line-height: 1.45;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.5;
       margin: 0;
       max-width: 820px;
     }
-    /* ── Rows 4+5: Platform logos ── */
-    .v41-os-platforms-grid {
+    /* ── Rows 4+5: Logo rows (label left + wordmark pills right) ── */
+    .v41-os-platforms { display: flex; flex-direction: column; gap: 2px; }
+    .v41-os-plat-row {
       display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      align-items: start;
+      grid-template-columns: 260px 1fr;
+      align-items: center;
+      background: rgba(255,255,255,0.025);
     }
-    .v41-os-col-divider {
-      background: rgba(255,255,255,0.07);
-      align-self: stretch;
-      margin: 0 52px;
-    }
-    .v41-os-group-label {
+    .v41-os-plat-label {
       font-family: var(--type-ui);
       font-size: 10px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.22);
-      margin: 0 0 22px;
+      color: rgba(255,255,255,0.25);
+      padding: 24px 32px;
+      line-height: 1.5;
+      border-right: 1px solid rgba(255,255,255,0.06);
     }
-    .v41-os-logo-row {
+    .v41-os-plat-logos {
       display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
+      gap: 2px;
+      padding: 2px 2px 2px 2px;
     }
-    .v41-os-logo-card {
+    .v41-os-logo-pill {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 24px 16px 20px;
-      background: rgba(255,255,255,0.03);
+      gap: 10px;
+      padding: 18px 20px;
+      background: #000;
       flex: 1;
-      min-width: 100px;
       cursor: default;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s;
     }
-    .v41-os-logo-card:hover {
-      background: rgba(255,255,255,0.07);
-      transform: translateY(-3px);
-    }
-    .v41-os-logo-card img {
-      height: 26px;
+    .v41-os-logo-pill:hover { background: rgba(255,255,255,0.05); }
+    .v41-os-logo-pill img {
+      height: 20px;
       width: auto;
+      flex-shrink: 0;
       object-fit: contain;
-      opacity: 0.5;
       filter: brightness(0) invert(1);
+      opacity: 0.45;
       transition: opacity 0.2s;
     }
-    .v41-os-logo-card:hover img { opacity: 0.9; }
-    .v41-os-logo-card.os-featured img {
-      opacity: 0.9;
+    .v41-os-logo-pill:hover img { opacity: 0.85; }
+    .v41-os-logo-pill.os-featured img {
+      opacity: 0.85;
       filter: brightness(0) saturate(100%) invert(72%) sepia(60%) saturate(700%) hue-rotate(101deg) brightness(110%);
     }
-    .v41-os-logo-card.os-featured:hover img { opacity: 1; }
-    .v41-os-logo-name {
-      font-family: var(--type-ui);
-      font-size: 10px;
-      letter-spacing: 0.09em;
-      color: rgba(255,255,255,0.28);
-      text-transform: uppercase;
-      text-align: center;
+    .v41-os-logo-pill.os-featured:hover img { opacity: 1; }
+    .v41-os-pill-name {
+      font-family: var(--type-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
       transition: color 0.2s;
     }
-    .v41-os-logo-card:hover .v41-os-logo-name { color: rgba(255,255,255,0.55); }
+    .v41-os-logo-pill:hover .v41-os-pill-name { color: rgba(255,255,255,0.8); }
     .v41-os-logo-icon {
-      height: 26px;
+      height: 20px;
       width: auto;
-      color: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+      color: rgba(255,255,255,0.45);
       transition: color 0.2s;
     }
-    .v41-os-logo-card:hover .v41-os-logo-icon { color: rgba(255,255,255,0.9); }
+    .v41-os-logo-pill:hover .v41-os-logo-icon { color: rgba(255,255,255,0.85); }
 
     /* ══════════════════════════════════════════════
        FOOTER
@@ -2426,28 +2402,27 @@
       <!-- Row 1: Giant headline + framed statement -->
       <div class="v41-os-top v41-reveal">
         <h2 class="v41-os-h2">Built on<br/><span class="os-green">Open<br/>Standards.</span><br/>Future-Ready.</h2>
-        <div class="v41-os-statement">
-          <p class="v41-os-main">AAVA is architected for the agentic ecosystem as it evolves, not the one any single vendor wants to lock you into.</p>
-        </div>
+        <p class="v41-os-main">AAVA is architected for the agentic ecosystem as it evolves, not the one any single vendor wants to lock you into.</p>
       </div>
 
-      <!-- Row 2: Protocol connector rows -->
-      <div class="v41-os-protocols v41-reveal">
+      <!-- Row 2: Protocol section header -->
+      <div class="v41-os-proto-header v41-reveal">
         <p class="v41-os-proto-intro">We integrate with</p>
-        <div class="v41-os-proto-row">
+      </div>
+
+      <!-- Row 2: Three-column protocol spec grid -->
+      <div class="v41-os-protocols v41-reveal">
+        <div class="v41-os-proto-col">
           <span class="v41-os-proto-acronym">MCP</span>
-          <div class="v41-os-proto-connector"></div>
-          <span class="v41-os-proto-fullname">Multi-Cloud Platform</span>
+          <p class="v41-os-proto-name">Multi-Cloud Platform</p>
         </div>
-        <div class="v41-os-proto-row">
+        <div class="v41-os-proto-col">
           <span class="v41-os-proto-acronym">A2A</span>
-          <div class="v41-os-proto-connector"></div>
-          <span class="v41-os-proto-fullname">Agent-to-Agent</span>
+          <p class="v41-os-proto-name">Agent-to-Agent</p>
         </div>
-        <div class="v41-os-proto-row">
+        <div class="v41-os-proto-col">
           <span class="v41-os-proto-acronym">ACP</span>
-          <div class="v41-os-proto-connector"></div>
-          <span class="v41-os-proto-fullname">Agent Communication Protocol</span>
+          <p class="v41-os-proto-name">Agent Communication Protocol</p>
         </div>
       </div>
 
@@ -2456,56 +2431,53 @@
         <p class="v41-os-frontier">Frontier models power the constellation. The system improves as the frontier extends.</p>
       </div>
 
-      <!-- Rows 4+5: Platform logos — two columns with divider -->
-      <div class="v41-os-platforms-grid v41-reveal">
+      <!-- Rows 4+5: Label-left + wordmark pill rows -->
+      <div class="v41-os-platforms v41-reveal">
 
         <!-- Deploy on -->
-        <div class="v41-os-group">
-          <p class="v41-os-group-label">We deploy on</p>
-          <div class="v41-os-logo-row">
-            <div class="v41-os-logo-card os-featured">
+        <div class="v41-os-plat-row">
+          <p class="v41-os-plat-label">We deploy on</p>
+          <div class="v41-os-plat-logos">
+            <div class="v41-os-logo-pill os-featured">
               <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/anthropic.svg" alt="Claude">
-              <span class="v41-os-logo-name">Claude</span>
+              <span class="v41-os-pill-name">Claude</span>
             </div>
-            <div class="v41-os-logo-card">
+            <div class="v41-os-logo-pill">
               <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/amazonwebservices.svg" alt="AWS">
-              <span class="v41-os-logo-name">AWS</span>
+              <span class="v41-os-pill-name">AWS</span>
             </div>
-            <div class="v41-os-logo-card">
+            <div class="v41-os-logo-pill">
               <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/microsoftazure.svg" alt="Azure">
-              <span class="v41-os-logo-name">Azure</span>
+              <span class="v41-os-pill-name">Azure</span>
             </div>
-            <div class="v41-os-logo-card">
+            <div class="v41-os-logo-pill">
               <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/googlecloud.svg" alt="Google Cloud">
-              <span class="v41-os-logo-name">Google Cloud</span>
+              <span class="v41-os-pill-name">Google Cloud</span>
             </div>
           </div>
         </div>
 
-        <!-- Vertical divider -->
-        <div class="v41-os-col-divider"></div>
-
         <!-- Integrate with -->
-        <div class="v41-os-group">
-          <p class="v41-os-group-label">We integrate with leading enterprise platforms</p>
-          <div class="v41-os-logo-row">
-            <div class="v41-os-logo-card">
+        <div class="v41-os-plat-row">
+          <p class="v41-os-plat-label">We integrate with leading enterprise platforms</p>
+          <div class="v41-os-plat-logos">
+            <div class="v41-os-logo-pill">
               <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/snowflake.svg" alt="Snowflake">
-              <span class="v41-os-logo-name">Snowflake</span>
+              <span class="v41-os-pill-name">Snowflake</span>
             </div>
-            <div class="v41-os-logo-card">
+            <div class="v41-os-logo-pill">
               <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/databricks.svg" alt="Databricks">
-              <span class="v41-os-logo-name">Databricks</span>
+              <span class="v41-os-pill-name">Databricks</span>
             </div>
-            <div class="v41-os-logo-card">
+            <div class="v41-os-logo-pill">
               <img src="https://cdn.jsdelivr.net/npm/simple-icons@12.0.0/icons/salesforce.svg" alt="Salesforce">
-              <span class="v41-os-logo-name">Salesforce</span>
+              <span class="v41-os-pill-name">Salesforce</span>
             </div>
-            <div class="v41-os-logo-card">
+            <div class="v41-os-logo-pill">
               <svg class="v41-os-logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
                 <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4zm8 28h-4.4L19 20.8V32h-3.6V16H20l8.4 11.2V16H32v16z"/>
               </svg>
-              <span class="v41-os-logo-name">ServiceNow</span>
+              <span class="v41-os-pill-name">ServiceNow</span>
             </div>
           </div>
         </div>
