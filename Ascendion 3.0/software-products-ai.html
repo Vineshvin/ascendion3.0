@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Products AI — Ascendion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: #0A0A0A;
+      color: #ffffff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; cursor: pointer; font-family: inherit; }
+
+    :root {
+      --green:  #00E87A;
+      --green2: #00CF6E;
+      --dark:   #000000;
+      --type-display: 'Space Grotesk', sans-serif;
+      --type-body:    'Figtree', sans-serif;
+      --type-ui:      'DM Mono', monospace;
+    }
+
+    /* ══════════════════════════════════════════
+       NAV — identical to v4.2
+    ══════════════════════════════════════════ */
+    .v41-nav {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .v41-nav-inner {
+      max-width: 1440px; margin: 0 auto;
+      padding: 0 60px; height: 64px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 40px;
+    }
+    .v41-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .v41-logo-icon {
+      width: 28px; height: 28px; background: #ffffff;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .v41-logo-icon svg { width: 16px; height: 16px; }
+    .v41-logo-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px; font-weight: 700; color: #fff; letter-spacing: -0.01em;
+    }
+    .v41-logo-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px; font-weight: 500; color: rgba(255,255,255,0.4);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      display: block; line-height: 1; margin-top: 2px;
+    }
+    .v41-nav-links { display: flex; align-items: center; gap: 0; }
+    .v41-nav-links a {
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6);
+      padding: 8px 16px; transition: color 0.2s;
+    }
+    .v41-nav-links a:hover { color: #fff; }
+    .v41-nav-links a.active {
+      color: var(--green);
+      border-bottom: 1px solid var(--green);
+    }
+    .v41-nav-product {
+      display: inline-flex !important; align-items: center; gap: 5px;
+      font-size: 13px !important; font-weight: 600 !important;
+      color: var(--green) !important;
+      border: 1px solid rgba(0,232,122,0.3);
+      padding: 5px 13px !important; border-radius: 2px;
+      margin-left: 8px; background: rgba(0,232,122,0.07);
+      transition: background 0.2s, border-color 0.2s !important;
+    }
+    .v41-nav-product:hover, .v41-nav-product.active {
+      background: rgba(0,232,122,0.13) !important;
+      border-color: rgba(0,232,122,0.55) !important;
+    }
+    .v41-nav-cta {
+      font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 600;
+      color: #000; background: var(--green);
+      padding: 9px 22px; display: inline-flex; align-items: center; gap: 7px;
+      letter-spacing: 0.01em; transition: background 0.25s, gap 0.3s; border-radius: 2px;
+    }
+    .v41-nav-cta:hover { background: var(--green2); gap: 11px; }
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .spa-hero {
+      background: #000;
+      min-height: calc(100vh - 64px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .spa-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 38px 38px;
+      pointer-events: none;
+    }
+    /* Green ambient glow bottom-left */
+    .spa-hero::after {
+      content: '';
+      position: absolute; bottom: -120px; left: -80px;
+      width: 560px; height: 400px;
+      background: radial-gradient(ellipse, rgba(0,232,122,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .spa-hero-text {
+      padding: 80px 60px 80px 80px;
+      position: relative; z-index: 2;
+    }
+    .spa-hero-label {
+      font-family: var(--type-ui);
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .spa-hero-label::before {
+      content: ''; width: 28px; height: 1px; background: var(--green); flex-shrink: 0;
+    }
+    .spa-hero-h1 {
+      font-family: var(--type-display);
+      font-size: clamp(48px, 5.5vw, 80px); font-weight: 700;
+      color: #fff; line-height: 0.96; letter-spacing: -0.04em; margin-bottom: 30px;
+    }
+    .spa-hero-h1 .g { color: var(--green); }
+    .spa-hero-body {
+      font-family: var(--type-body);
+      font-size: 18px; color: rgba(255,255,255,0.52);
+      line-height: 1.65; margin-bottom: 48px; max-width: 500px;
+    }
+    .spa-hero-actions { display: flex; align-items: center; gap: 28px; }
+    .spa-btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--type-display); font-size: 14px; font-weight: 600;
+      color: #000; background: var(--green);
+      padding: 13px 26px; border-radius: 2px;
+      transition: background 0.2s, gap 0.2s;
+    }
+    .spa-btn-primary:hover { background: var(--green2); gap: 14px; }
+    .spa-btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--type-display); font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 3px; transition: color 0.2s, border-color 0.2s, gap 0.2s;
+    }
+    .spa-btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.45); gap: 12px; }
+
+    /* ── Pipeline visual (right side of hero) ── */
+    .spa-hero-visual {
+      position: relative; z-index: 2;
+      padding: 60px 80px 60px 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .spa-pipeline { width: 100%; max-width: 520px; }
+    .spa-pl-stage {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 4px; position: relative;
+    }
+    .spa-pl-left {
+      display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+    }
+    .spa-pl-node {
+      width: 46px; height: 46px;
+      border: 1px solid rgba(0,232,122,0.2);
+      background: rgba(0,0,0,0.8);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; flex-shrink: 0;
+    }
+    .spa-pl-node svg { width: 17px; height: 17px; color: var(--green); opacity: 0.75; }
+    /* Pulse ring per node with staggered delay */
+    .spa-pl-node::after {
+      content: '';
+      position: absolute; inset: -5px;
+      border: 1px solid rgba(0,232,122,0.35);
+      animation: nodeRing 3.5s ease-in-out infinite;
+      opacity: 0;
+    }
+    .spa-pl-stage:nth-child(1) .spa-pl-node::after { animation-delay: 0s; }
+    .spa-pl-stage:nth-child(2) .spa-pl-node::after { animation-delay: 0.7s; }
+    .spa-pl-stage:nth-child(3) .spa-pl-node::after { animation-delay: 1.4s; }
+    .spa-pl-stage:nth-child(4) .spa-pl-node::after { animation-delay: 2.1s; }
+    .spa-pl-stage:nth-child(5) .spa-pl-node::after { animation-delay: 2.8s; }
+    @keyframes nodeRing {
+      0%, 100% { opacity: 0; transform: scale(0.95); }
+      40%       { opacity: 1; transform: scale(1.1); }
+      70%       { opacity: 0.4; transform: scale(1.15); }
+    }
+    /* Connector line between nodes */
+    .spa-pl-line {
+      width: 1px; flex: 1; min-height: 16px;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,232,122,0.22) 0, rgba(0,232,122,0.22) 4px,
+        transparent 4px, transparent 9px
+      );
+      margin: 2px 0;
+    }
+    /* Animated data pulse on the connector */
+    .spa-pl-dot {
+      position: absolute;
+      left: 22px; width: 3px; height: 3px;
+      background: var(--green); border-radius: 50%;
+      box-shadow: 0 0 6px var(--green);
+      animation: dotTravel 3.5s ease-in-out infinite;
+      opacity: 0;
+    }
+    .spa-pl-stage:nth-child(1) .spa-pl-dot { animation-delay: 0.3s; }
+    .spa-pl-stage:nth-child(2) .spa-pl-dot { animation-delay: 1s; }
+    .spa-pl-stage:nth-child(3) .spa-pl-dot { animation-delay: 1.7s; }
+    .spa-pl-stage:nth-child(4) .spa-pl-dot { animation-delay: 2.4s; }
+    @keyframes dotTravel {
+      0%   { opacity: 0; top: 48px; }
+      15%  { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { opacity: 0; top: 68px; }
+    }
+    /* Stage card */
+    .spa-pl-card {
+      flex: 1; padding: 13px 18px 14px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 4px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .spa-pl-card:hover {
+      background: rgba(0,232,122,0.03);
+      border-color: rgba(0,232,122,0.14);
+    }
+    .spa-pl-index {
+      font-family: var(--type-ui); font-size: 9px;
+      letter-spacing: 0.14em; color: rgba(255,255,255,0.18);
+      margin-bottom: 3px;
+    }
+    .spa-pl-title {
+      font-family: var(--type-display); font-size: 14px;
+      font-weight: 600; color: rgba(255,255,255,0.75);
+      margin-bottom: 8px;
+    }
+    .spa-pl-bar { height: 2px; background: rgba(255,255,255,0.05); overflow: hidden; }
+    .spa-pl-fill {
+      height: 100%; background: var(--green); opacity: 0.55;
+      animation: barSweep 3.5s ease-in-out infinite;
+      transform: translateX(-100%);
+    }
+    .spa-pl-stage:nth-child(1) .spa-pl-fill { animation-delay: 0.1s; }
+    .spa-pl-stage:nth-child(2) .spa-pl-fill { animation-delay: 0.8s; }
+    .spa-pl-stage:nth-child(3) .spa-pl-fill { animation-delay: 1.5s; }
+    .spa-pl-stage:nth-child(4) .spa-pl-fill { animation-delay: 2.2s; }
+    .spa-pl-stage:nth-child(5) .spa-pl-fill { animation-delay: 2.9s; }
+    @keyframes barSweep {
+      0%   { transform: translateX(-100%); opacity: 0; }
+      20%  { opacity: 0.65; }
+      80%  { opacity: 0.45; }
+      100% { transform: translateX(0%); opacity: 0.2; }
+    }
+    .spa-pl-badge {
+      font-family: var(--type-ui); font-size: 9px;
+      color: var(--green); opacity: 0.65; flex-shrink: 0;
+      width: 46px; text-align: center; padding-top: 14px;
+    }
+
+    /* ══════════════════════════════════════════
+       SHIFT STATEMENT
+    ══════════════════════════════════════════ */
+    .spa-shift {
+      background: #000;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 76px 80px;
+    }
+    .spa-shift-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 220px 1fr; gap: 80px; align-items: start;
+    }
+    .spa-shift-lbl {
+      font-family: var(--type-ui); font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.2); padding-top: 8px;
+    }
+    .spa-shift-text {
+      font-family: var(--type-display);
+      font-size: clamp(24px, 2.8vw, 38px); font-weight: 600;
+      color: rgba(255,255,255,0.82); line-height: 1.3; letter-spacing: -0.025em;
+    }
+    .spa-shift-text .acc { color: var(--green); }
+
+    /* ══════════════════════════════════════════
+       CAPABILITIES
+    ══════════════════════════════════════════ */
+    .spa-caps {
+      background: #0A0A0A;
+      padding: 120px 80px;
+    }
+    .spa-caps-inner { max-width: 1440px; margin: 0 auto; }
+    .spa-caps-hdr {
+      display: grid; grid-template-columns: 1fr 380px; gap: 80px;
+      align-items: end; margin-bottom: 64px;
+    }
+    .spa-caps-h2 {
+      font-family: var(--type-display);
+      font-size: clamp(38px, 4vw, 58px); font-weight: 700;
+      color: #fff; line-height: 1.02; letter-spacing: -0.035em;
+    }
+    .spa-caps-h2 .g { color: var(--green); }
+    .spa-caps-sub {
+      font-family: var(--type-body); font-size: 17px;
+      color: rgba(255,255,255,0.48); line-height: 1.65;
+      border-left: 2px solid rgba(0,232,122,0.28); padding-left: 22px;
+    }
+    .spa-caps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .spa-cap {
+      background: #0A0A0A; padding: 52px 44px 56px;
+      position: relative; overflow: hidden; transition: background 0.25s;
+    }
+    .spa-cap:hover { background: rgba(255,255,255,0.015); }
+    .spa-cap::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      height: 2px; width: 0; background: var(--green);
+      transition: width 0.45s ease;
+    }
+    .spa-cap:hover::after { width: 100%; }
+    .spa-cap-num {
+      font-family: var(--type-ui); font-size: 10px;
+      letter-spacing: 0.18em; color: rgba(255,255,255,0.16); margin-bottom: 26px;
+    }
+    .spa-cap-icon {
+      width: 40px; height: 40px; color: var(--green);
+      margin-bottom: 22px; opacity: 0.78; transition: opacity 0.2s;
+    }
+    .spa-cap:hover .spa-cap-icon { opacity: 1; }
+    .spa-cap-h3 {
+      font-family: var(--type-display); font-size: 22px; font-weight: 700;
+      color: #fff; letter-spacing: -0.02em; margin-bottom: 14px; line-height: 1.15;
+    }
+    .spa-cap-body {
+      font-family: var(--type-body); font-size: 15px;
+      color: rgba(255,255,255,0.42); line-height: 1.65; margin-bottom: 28px;
+    }
+    .spa-cap-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .spa-cap-tag {
+      font-family: var(--type-ui); font-size: 9px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(0,232,122,0.55); border: 1px solid rgba(0,232,122,0.14);
+      padding: 4px 10px;
+    }
+
+    /* ══════════════════════════════════════════
+       POWERED BY AAVA
+    ══════════════════════════════════════════ */
+    .spa-aava {
+      background: #000; padding: 120px 80px;
+      position: relative; overflow: hidden;
+    }
+    .spa-aava::before {
+      content: ''; position: absolute; top: 50%; right: -150px;
+      transform: translateY(-50%); width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(0,232,122,0.055) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .spa-aava-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 460px; gap: 100px;
+      align-items: start; position: relative; z-index: 1;
+    }
+    .spa-aava-h2 {
+      font-family: var(--type-display);
+      font-size: clamp(38px, 4vw, 54px); font-weight: 700;
+      color: #fff; line-height: 1.02; letter-spacing: -0.035em; margin-bottom: 22px;
+    }
+    .spa-aava-h2 .g { color: var(--green); }
+    .spa-aava-body {
+      font-family: var(--type-body); font-size: 17px;
+      color: rgba(255,255,255,0.52); line-height: 1.65;
+      margin-bottom: 44px; max-width: 500px;
+    }
+    .spa-aava-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--type-display); font-size: 14px; font-weight: 600;
+      color: var(--green); border-bottom: 1px solid rgba(0,232,122,0.28);
+      padding-bottom: 3px; transition: gap 0.2s, border-color 0.2s;
+    }
+    .spa-aava-link:hover { gap: 14px; border-color: var(--green); }
+    .spa-aava-feats { display: flex; flex-direction: column; gap: 2px; }
+    .spa-aava-feat {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+      padding: 22px 26px; display: flex; align-items: flex-start; gap: 18px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .spa-aava-feat:hover {
+      background: rgba(0,232,122,0.03); border-color: rgba(0,232,122,0.14);
+    }
+    .spa-aava-feat-icon {
+      width: 30px; height: 30px; color: var(--green);
+      flex-shrink: 0; opacity: 0.65; margin-top: 2px; transition: opacity 0.2s;
+    }
+    .spa-aava-feat:hover .spa-aava-feat-icon { opacity: 0.9; }
+    .spa-feat-title {
+      font-family: var(--type-display); font-size: 15px; font-weight: 600;
+      color: rgba(255,255,255,0.82); margin-bottom: 3px;
+    }
+    .spa-feat-desc {
+      font-family: var(--type-body); font-size: 13px;
+      color: rgba(255,255,255,0.35); line-height: 1.55;
+    }
+
+    /* ══════════════════════════════════════════
+       STATS
+    ══════════════════════════════════════════ */
+    .spa-stats {
+      background: #0A0A0A; padding: 96px 80px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .spa-stats-inner { max-width: 1440px; margin: 0 auto; }
+    .spa-stats-lbl {
+      font-family: var(--type-ui); font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 48px;
+    }
+    .spa-stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.06);
+    }
+    .spa-stat-cell {
+      background: #0A0A0A; padding: 40px 36px 44px;
+    }
+    .spa-stat-val {
+      font-family: var(--type-display);
+      font-size: clamp(40px, 4.2vw, 60px); font-weight: 700;
+      color: var(--green); letter-spacing: -0.04em;
+      line-height: 1; margin-bottom: 12px;
+    }
+    .spa-stat-label {
+      font-family: var(--type-body); font-size: 14px;
+      color: rgba(255,255,255,0.38); line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════════
+       CTA
+    ══════════════════════════════════════════ */
+    .spa-cta {
+      background: #000; padding: 120px 80px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .spa-cta-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center;
+    }
+    .spa-cta-h2 {
+      font-family: var(--type-display);
+      font-size: clamp(34px, 3.8vw, 52px); font-weight: 700;
+      color: #fff; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 14px;
+    }
+    .spa-cta-h2 .g { color: var(--green); }
+    .spa-cta-sub {
+      font-family: var(--type-body); font-size: 17px;
+      color: rgba(255,255,255,0.42); line-height: 1.6;
+    }
+    .spa-cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--type-display); font-size: 15px; font-weight: 600;
+      color: #000; background: var(--green);
+      padding: 16px 32px; border-radius: 2px; white-space: nowrap;
+      transition: background 0.2s, gap 0.25s;
+    }
+    .spa-cta-btn:hover { background: var(--green2); gap: 16px; }
+
+    /* ══════════════════════════════════════════
+       FOOTER (minimal)
+    ══════════════════════════════════════════ */
+    .spa-foot {
+      background: #000; border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 26px 80px; display: flex;
+      justify-content: space-between; align-items: center;
+    }
+    .spa-foot-copy {
+      font-family: var(--type-ui); font-size: 10px;
+      color: rgba(255,255,255,0.2); letter-spacing: 0.07em;
+    }
+    .spa-foot-back {
+      font-family: var(--type-ui); font-size: 10px; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.32); display: inline-flex; align-items: center;
+      gap: 8px; transition: color 0.2s; text-transform: uppercase;
+    }
+    .spa-foot-back:hover { color: rgba(255,255,255,0.65); }
+
+    /* ══════════════════════════════════════════
+       SCROLL REVEAL
+    ══════════════════════════════════════════ */
+    .spa-reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .spa-vis { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="v41-nav">
+    <div class="v41-nav-inner">
+      <a href="ascendion-homepage-v4.2.html" class="v41-logo">
+        <div class="v41-logo-icon">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M3 15L9 3L15 15" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+            <path d="M5.5 11H12.5" stroke="#0A0A0A" stroke-width="2" stroke-linecap="square"/>
+          </svg>
+        </div>
+        <div>
+          <strong class="v41-logo-text">ASCENDION</strong>
+          <span class="v41-logo-sub">Engineering to the Power of AI™</span>
+        </div>
+      </a>
+      <nav class="v41-nav-links">
+        <a href="#">What We Do</a>
+        <a href="#">AAVA</a>
+        <a href="#">Impact</a>
+        <a href="#">Insights</a>
+        <a href="#">About</a>
+        <a href="software-products-ai.html" class="v41-nav-product active">Software Products AI ↗</a>
+      </nav>
+      <a href="#" class="v41-nav-cta">
+        Get In Touch
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#0A0A0A" stroke-width="1.4" stroke-linecap="square"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="spa-hero">
+    <div class="spa-hero-text">
+      <p class="spa-hero-label">Software Products AI</p>
+      <h1 class="spa-hero-h1">Software Products<br/>Built at<br/><span class="g">AI Speed</span></h1>
+      <p class="spa-hero-body">AAVA-powered engineering for enterprises that need to move faster, spend less, and ship software that evolves with the frontier.</p>
+      <div class="spa-hero-actions">
+        <a href="#" class="spa-btn-primary">
+          Start Building
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#000" stroke-width="1.4" stroke-linecap="square"/></svg>
+        </a>
+        <a href="#capabilities" class="spa-btn-ghost">See Capabilities →</a>
+      </div>
+    </div>
+
+    <!-- Pipeline visual -->
+    <div class="spa-hero-visual">
+      <div class="spa-pipeline">
+
+        <div class="spa-pl-stage">
+          <div class="spa-pl-left">
+            <div class="spa-pl-node">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <div class="spa-pl-line"></div>
+          </div>
+          <div class="spa-pl-card">
+            <p class="spa-pl-index">STAGE 01</p>
+            <p class="spa-pl-title">Requirements & Architecture</p>
+            <div class="spa-pl-bar"><div class="spa-pl-fill"></div></div>
+          </div>
+          <span class="spa-pl-badge">AAVA</span>
+          <div class="spa-pl-dot"></div>
+        </div>
+
+        <div class="spa-pl-stage">
+          <div class="spa-pl-left">
+            <div class="spa-pl-node">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <div class="spa-pl-line"></div>
+          </div>
+          <div class="spa-pl-card">
+            <p class="spa-pl-index">STAGE 02</p>
+            <p class="spa-pl-title">Agentic Code Generation</p>
+            <div class="spa-pl-bar"><div class="spa-pl-fill"></div></div>
+          </div>
+          <span class="spa-pl-badge">×8 vel.</span>
+          <div class="spa-pl-dot"></div>
+        </div>
+
+        <div class="spa-pl-stage">
+          <div class="spa-pl-left">
+            <div class="spa-pl-node">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <div class="spa-pl-line"></div>
+          </div>
+          <div class="spa-pl-card">
+            <p class="spa-pl-index">STAGE 03</p>
+            <p class="spa-pl-title">Automated Testing & QA</p>
+            <div class="spa-pl-bar"><div class="spa-pl-fill"></div></div>
+          </div>
+          <span class="spa-pl-badge">99.2%</span>
+          <div class="spa-pl-dot"></div>
+        </div>
+
+        <div class="spa-pl-stage">
+          <div class="spa-pl-left">
+            <div class="spa-pl-node">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <div class="spa-pl-line"></div>
+          </div>
+          <div class="spa-pl-card">
+            <p class="spa-pl-index">STAGE 04</p>
+            <p class="spa-pl-title">CI/CD & Deployment</p>
+            <div class="spa-pl-bar"><div class="spa-pl-fill"></div></div>
+          </div>
+          <span class="spa-pl-badge">0-DT</span>
+          <div class="spa-pl-dot"></div>
+        </div>
+
+        <div class="spa-pl-stage">
+          <div class="spa-pl-left">
+            <div class="spa-pl-node">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/>
+              </svg>
+            </div>
+          </div>
+          <div class="spa-pl-card">
+            <p class="spa-pl-index">STAGE 05</p>
+            <p class="spa-pl-title">Observe & Evolve</p>
+            <div class="spa-pl-bar"><div class="spa-pl-fill"></div></div>
+          </div>
+          <span class="spa-pl-badge">Live</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SHIFT STATEMENT ── -->
+  <div class="spa-shift spa-reveal">
+    <div class="spa-shift-inner">
+      <p class="spa-shift-lbl">The Shift</p>
+      <p class="spa-shift-text">Enterprise software has a <span class="acc">velocity problem.</span> AAVA solves it — replacing months of engineering cycles with agents that move at the speed of your ambition.</p>
+    </div>
+  </div>
+
+  <!-- ── CAPABILITIES ── -->
+  <section class="spa-caps" id="capabilities">
+    <div class="spa-caps-inner">
+      <div class="spa-caps-hdr spa-reveal">
+        <h2 class="spa-caps-h2">Three Ways We<br/>Build With <span class="g">AI</span></h2>
+        <p class="spa-caps-sub">Each capability maps to a stage of the software lifecycle — from greenfield build to legacy transformation to intelligent data products.</p>
+      </div>
+      <div class="spa-caps-grid spa-reveal">
+
+        <!-- Capability 1 -->
+        <div class="spa-cap">
+          <p class="spa-cap-num">01</p>
+          <svg class="spa-cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+          </svg>
+          <h3 class="spa-cap-h3">AI-First Product Engineering</h3>
+          <p class="spa-cap-body">Ship production-grade software products from zero to launch. AAVA Studios orchestrates requirements, architecture, code generation, testing, and deployment as a unified agentic workflow.</p>
+          <div class="spa-cap-tags">
+            <span class="spa-cap-tag">Greenfield</span>
+            <span class="spa-cap-tag">Full-Stack</span>
+            <span class="spa-cap-tag">Agentic CI/CD</span>
+          </div>
+        </div>
+
+        <!-- Capability 2 -->
+        <div class="spa-cap">
+          <p class="spa-cap-num">02</p>
+          <svg class="spa-cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+          <h3 class="spa-cap-h3">Intelligent Platform Modernization</h3>
+          <p class="spa-cap-body">Reverse-engineer, migrate, and re-architect legacy systems. AAVA agents map dependencies, surface hidden risks, and compress years of transformation into weeks — at 30% of legacy cost.</p>
+          <div class="spa-cap-tags">
+            <span class="spa-cap-tag">Migration</span>
+            <span class="spa-cap-tag">Re-engineering</span>
+            <span class="spa-cap-tag">Risk Reduction</span>
+          </div>
+        </div>
+
+        <!-- Capability 3 -->
+        <div class="spa-cap">
+          <p class="spa-cap-num">03</p>
+          <svg class="spa-cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          </svg>
+          <h3 class="spa-cap-h3">Data & AI Products</h3>
+          <p class="spa-cap-body">Build scalable data platforms, ML pipelines, and AI-powered product features that are observable and production-ready from day one. AAVA agents handle infrastructure so your engineers stay focused on innovation.</p>
+          <div class="spa-cap-tags">
+            <span class="spa-cap-tag">Data Platforms</span>
+            <span class="spa-cap-tag">ML Pipelines</span>
+            <span class="spa-cap-tag">AI Features</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── POWERED BY AAVA ── -->
+  <section class="spa-aava">
+    <div class="spa-aava-inner">
+
+      <div class="spa-reveal">
+        <h2 class="spa-aava-h2">Powered by<br/><span class="g">AAVA™</span><br/>at Every Stage</h2>
+        <p class="spa-aava-body">AAVA is Ascendion's agentic AI platform — purpose-built to coordinate specialized agents across the full software engineering lifecycle. Not a copilot. A production-grade system running inside 30%+ of the Fortune 100.</p>
+        <a href="ascendion-homepage-v4.2.html" class="spa-aava-link">Explore AAVA Platform →</a>
+      </div>
+
+      <div class="spa-reveal">
+        <div class="spa-aava-feats">
+
+          <div class="spa-aava-feat">
+            <svg class="spa-aava-feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3m0 14v3M4.22 4.22l2.12 2.12m11.32 11.32 2.12 2.12M2 12h3m14 0h3M4.22 19.78l2.12-2.12m11.32-11.32 2.12-2.12"/>
+            </svg>
+            <div>
+              <p class="spa-feat-title">AAVA OneView</p>
+              <p class="spa-feat-desc">Full observability across every agent, task, and output in your product pipeline.</p>
+            </div>
+          </div>
+
+          <div class="spa-aava-feat">
+            <svg class="spa-aava-feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            <div>
+              <p class="spa-feat-title">Studio Architecture</p>
+              <p class="spa-feat-desc">8 specialized Studios align agents to each stage of the software and data lifecycle.</p>
+            </div>
+          </div>
+
+          <div class="spa-aava-feat">
+            <svg class="spa-aava-feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9,12 11,14 15,10"/>
+            </svg>
+            <div>
+              <p class="spa-feat-title">Open Standards</p>
+              <p class="spa-feat-desc">Built on MCP, A2A, and ACP — no vendor lock-in, compatible with your existing stack.</p>
+            </div>
+          </div>
+
+          <div class="spa-aava-feat">
+            <svg class="spa-aava-feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            <div>
+              <p class="spa-feat-title">Frontier-Connected</p>
+              <p class="spa-feat-desc">Powered by Claude, AWS, Azure, and Google Cloud. Improves as the frontier extends.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── IMPACT STATS ── -->
+  <section class="spa-stats">
+    <div class="spa-stats-inner">
+      <p class="spa-stats-lbl spa-reveal">Measured Impact in Production</p>
+      <div class="spa-stats-row spa-reveal">
+        <div class="spa-stat-cell">
+          <div class="spa-stat-val">40–60%</div>
+          <p class="spa-stat-label">time-to-market acceleration</p>
+        </div>
+        <div class="spa-stat-cell">
+          <div class="spa-stat-val">30%</div>
+          <p class="spa-stat-label">the cost of legacy transformation, on average</p>
+        </div>
+        <div class="spa-stat-cell">
+          <div class="spa-stat-val">$500M+</div>
+          <p class="spa-stat-label">projected for one Fortune 100 client</p>
+        </div>
+        <div class="spa-stat-cell">
+          <div class="spa-stat-val">50–75%</div>
+          <p class="spa-stat-label">engineering velocity gains</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="spa-cta">
+    <div class="spa-cta-inner spa-reveal">
+      <div>
+        <h2 class="spa-cta-h2">Ready to Build Your Next<br/><span class="g">Software Product</span> with AI?</h2>
+        <p class="spa-cta-sub">Talk to an Ascendion engineer about what AAVA can deliver for your product roadmap.</p>
+      </div>
+      <a href="#" class="spa-cta-btn">
+        Get In Touch
+        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5H8M8 5L5.5 2.5M8 5L5.5 7.5" stroke="#000" stroke-width="1.4" stroke-linecap="square"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="spa-foot">
+    <span class="spa-foot-copy">© 2025 Ascendion — Engineering to the Power of AI™</span>
+    <a href="ascendion-homepage-v4.2.html" class="spa-foot-back">← Back to Homepage</a>
+  </footer>
+
+  <script>
+  (() => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('spa-vis'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.spa-reveal').forEach(el => obs.observe(el));
+  })();
+  </script>
+
+</body>
+</html>
